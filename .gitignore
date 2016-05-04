@@ -1,0 +1,20 @@
+# @ VSC
+.vscode
+.history
+# VSC @
+
+# @ OS generated files
+.DS_Store
+# OS generated files @
+
+node_modules
+*.log
+tmp
+temp
+
+typings
+coverage
+dist
+doc
+gh-pages
+index.tmpl

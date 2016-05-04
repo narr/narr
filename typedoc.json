@@ -1,0 +1,11 @@
+{
+  "exclude": "**/*.+(spec|e2e).ts",
+  "ignoreCompilerErrors": true,
+  "mode": "file",
+  "out": "doc",
+  "readme": "none",
+  "target": "es5",
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "module": "commonjs"
+}

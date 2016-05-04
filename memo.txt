@@ -1,0 +1,7 @@
+videos and docs for tutorial
+version up
+a11y
+w3c validation(custom attributes and tags)
+material-ui(>=IE11)
+
+npm show @angular/core versions
