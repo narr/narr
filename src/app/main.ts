@@ -1,6 +1,7 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { DIRECTIVES, PIPES, PROVIDERS } from './platform/browser';
-import { AppComponent } from './app';
+
+import { AppComponent } from './app.component';
+import { DIRECTIVES, PIPES, PROVIDERS } from '../platform/browser';
 
 function main() {
   return bootstrap(AppComponent, [

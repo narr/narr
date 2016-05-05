@@ -1,4 +1,4 @@
-import { provide, PLATFORM_PIPES } from '@angular/core';
+import { PLATFORM_PIPES, provide } from '@angular/core';
 
 export const APPLICATION_PIPES = [
 ];

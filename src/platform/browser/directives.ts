@@ -1,4 +1,4 @@
-import { provide, PLATFORM_DIRECTIVES } from '@angular/core';
+import { PLATFORM_DIRECTIVES, provide } from '@angular/core';
 
 export const APPLICATION_DIRECTIVES = [
 ];

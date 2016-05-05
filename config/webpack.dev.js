@@ -49,7 +49,7 @@ module.exports = {
     ],
     main: [
       INDEX_SCSS_PATH,
-      './main.browser.ts'
+      './app/main.ts'
     ]
   },
 

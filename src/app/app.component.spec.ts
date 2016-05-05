@@ -18,6 +18,6 @@ describe('App', () => {
   ]);
 
   it('should have a name', inject([AppComponent], app => {
-    expect(app._name).toEqual('Narr');
+    expect(app.name).toEqual('Narr');
   }));
 });

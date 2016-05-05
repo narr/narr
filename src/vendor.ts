@@ -11,8 +11,8 @@
 
 
 // Angular 2
-import '@angular/platform-browser-dynamic';
 import '@angular/core';
+import '@angular/platform-browser-dynamic';
 
 
 // Angular2 HMR
