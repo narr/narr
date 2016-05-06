@@ -43,7 +43,7 @@
     "karma": "^0.13.22",
     "karma-coverage": "^1.0.0",
     "karma-jasmine": "^1.0.2",
-    "karma-mocha-reporter": "^2.0.2",
+    "karma-mocha-reporter": "^2.0.3",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-webpack": "^1.7.0",
     "node-sass": "^3.6.0",
