@@ -1,0 +1,42 @@
+body,
+h1,
+h2,
+h3,
+h4,
+th,
+td,
+input,
+select,
+textarea,
+button {
+  line-height: normal;
+  font-family: Tahoma;
+  color: #fff;
+  font-size: 13px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+// common css
+.box-sizing {
+  box-sizing: border-box;
+}
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  visibility: hidden;
+  height: 0;
+  clear: both;
+}

@@ -1,0 +1,165 @@
+@mixin sidebar-about {
+  float: left;
+  width: 100%;
+  padding: 40px;
+  border-bottom: 1px solid #2C2D34;
+  .sidebar-thumbnail {
+    float: left;
+    width: 55px;
+  }
+  .sidebar-name {
+    float: left;
+    margin-left: 10px;
+  }
+  .sidebar-title {
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .sidebar-content {
+    color: #bbb;
+    letter-spacing: 0.5px;
+  }
+}
+
+@mixin sidebar-filter-left-active {
+  border-left-color: #3AB694;
+  color: #3AB694;
+}
+
+@mixin sidebar-filter-left {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 25px 0;
+  border-top: 1px solid #161616;
+  border-bottom: 1px solid #191919;
+  li {
+    float: left;
+    width: 100%;
+    border-left: 4px solid transparent;
+    color: #eee;
+    &:hover {
+      @include sidebar-filter-left-active;
+    }
+  }
+  .sidebar-active {
+    @include sidebar-filter-left-active;
+  }
+  a {
+    float: left;
+    margin-left: 2px;
+    padding: 15px 40px;
+    width: 84%;
+    color: inherit;
+    font-size: 18px;
+  }
+}
+
+@mixin sidebar-list-social {
+  float: left;
+  padding-left: 40px;
+  li {
+    float: left;
+  }
+  a {
+    padding: 4px;
+    vertical-align: top;
+    color: #0E7B5C;
+    font-size: 30px;
+  }
+  a:hover {
+    color: #bbb;
+  }
+}
+
+@mixin sidebar-made-with {
+  float: left;
+  margin-top: 5px;
+  padding: 15px 40px;
+  width: 100%;
+  border-top: 1px solid #292929;
+  color: #eee;
+  font-size: 14px;
+  a {
+    color: #bbb;
+    font-size: 15px;
+  }
+  a:hover {
+    color: #0E7B5C;
+  }
+}
+
+// ========================
+:host {
+  background: #212228;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 320px;
+  box-shadow: inset -0.22em 0 0.22em 0 rgba(0, 0, 0, 0.1);
+  z-index: 101;
+  .sidebar-about {
+    @include sidebar-about;
+  }
+  .sidebar-filter-left {
+    @include sidebar-filter-left;
+  }
+  .sidebar-list-social {
+    @include sidebar-list-social;
+  }
+  .sidebar-made-with {
+    @include sidebar-made-with;
+  }
+}
+
+@media (max-width: 1280px) {
+  :host {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :host {
+    width: 280px;
+    .sidebar-about {
+      .sidebar-title {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  :host {
+    margin-left: -200px;
+    width: 200px;
+    .sidebar-about {
+      padding: 20px;
+      .sidebar-thumbnail {
+        display: none;
+      }
+    }
+    .sidebar-filter-left {
+      a {
+        padding: 12px 20px;
+      }
+    }
+    .sidebar-list-social {
+      padding-left: 20px;
+    }
+    .sidebar-made-with {
+      padding: 15px 20px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    .sidebar-filter-left {
+      a {
+        margin: 0;
+      }
+    }
+  }
+}

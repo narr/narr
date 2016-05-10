@@ -1,6 +1,6 @@
-narr-app:host {
+:host {
   display: block;
-  background: #ffa;
-  width: 480px;
-  height: 480px;
+  background: url(~asset/img/bg.jpg) no-repeat center center/cover fixed;
+  // background-size: cover;
+  overflow-x: hidden;
 }

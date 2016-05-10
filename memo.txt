@@ -1,10 +1,28 @@
+npm show @angular/core versions
+=======================
 videos and docs for tutorial
 version up
-docker?
+issues on github, test cases
+=======================
+style guide
+find a portfolio considering mobile
+ng-app + normal dom for the loading performance
+medium image loading
+
+mobile
+router(async, ie9-push, history-redirect), IE9 pushState issue // https://github.com/angular/angular/issues/6506
+animate
+universal(async)
 travis
-appveyor(for IE)?
+appveyor(for IE)
+module bundler(webpack, systemjs, rollup)
+
 a11y
 w3c validation(custom attributes and tags)
+=======================
+IE9 the number limitation(31?) of style tags
+coverage typescript src file
+Typedoc issue https://github.com/TypeStrong/typedoc/issues/193
+node 6
+docker
 material-ui(>=IE11)
-
-npm show @angular/core versions

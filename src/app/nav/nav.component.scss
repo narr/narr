@@ -1,0 +1,41 @@
+$nav-height: 35px;
+// ========================
+:host {
+  // background: #ffa;
+  position: fixed;
+  // padding: 10px;
+  width: 100%;
+  // height: $nav-height;
+  height: 0; // for events of below elements
+  z-index: 100;
+  .nav-trigger {
+    display: none;
+    background: rgba(33, 34, 40, 0.9);
+    float: right;
+    // margin-right: 20px;
+    margin: 10px 10px 0 0;
+    padding: 0.5px 6px;
+    line-height: $nav-height + 1;
+    color: #3BCAA3;
+    font-size: 27px;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.ie9 {
+  :host {
+    .nav-trigger {
+      // height: $nav-height - 3;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  :host {
+    .nav-trigger {
+      display: block;
+    }
+  }
+}

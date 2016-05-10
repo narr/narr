@@ -1,0 +1,105 @@
+// $selector-intro: ':host';
+$selector-intro: 'narr-about';
+// ================================
+#{$selector-intro} {
+  display: block;
+  background: rgba(58, 182, 148, 0.7);
+  float: left;
+  width: 100%;
+  min-height: 360px;
+}
+
+:host {
+  .about-section {
+    margin: 45px auto 80px auto;
+    padding: 40px 0;
+    width: 800px;
+    overflow: hidden;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.36);
+    .about-thumbnail {
+      display: block;
+      margin: 0 auto;
+      width: 110px;
+      height: 110px;
+      border: 1px solid #3DCAA3;
+      border-radius: 122px;
+      overflow: hidden;
+    }
+    img {
+      float: left;
+      width: 105%;
+    }
+    .about-heading {
+      margin-top: 10px;
+      text-align: center;
+      color: #fff;
+      font-size: 34px;
+    }
+    .about-description {
+      margin: 5px 0;
+      text-align: center;
+      color: #eee;
+      font-size: 21px;
+    }
+    .about-twitter {
+      background: #eee;
+      margin-top: 30px;
+      padding: 0 12px 5px 12px;
+    }
+  }
+  .about-twitter {
+    iframe {
+      width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  :host {
+    .about-section {
+      .about-heading {
+        margin: 10px 0 0 0;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  :host {
+    .about-section {
+      padding-left: 0;
+      padding-right: 0;
+      width: 600px;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  :host {
+    .about-section {
+      margin: 15px auto 0 auto;
+      padding-bottom: 0;
+      width: 100%;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.36);
+      .about-description {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 18px;
+      }
+      .about-twitter {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    .about-section {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

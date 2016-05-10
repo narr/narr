@@ -4,8 +4,10 @@
   "scripts": {
     "typings": "typings",
     "predev": "rimraf ./temp",
-    "dev": "webpack-dev-server --config ./config/webpack.dev.js --inline --progress --hot",
+    "dev": "webpack-dev-server --config ./config/webpack.dev.js --inline --progress",
+    "dev:hot": "npm run dev -- --hot",
     "dev:ip": "npm run dev -- --host 192.168.0.2 --port 8080",
+    "dev:ip:hot": "npm run dev:ip -- --hot",
     "pretest": "rimraf ./coverage",
     "test": "karma start ./config/karma.conf.js --single-run",
     "test:watch": "karma start ./config/karma.conf.js",
