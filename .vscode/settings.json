@@ -1,0 +1,7 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  //-------- CSS configuration --------
+  // Controls CSS validation and problem severities.
+  // Enables or disables all validations
+  "css.validate": false
+}
