@@ -1,3 +1,6 @@
-<narr-nav></narr-nav>
-<narr-sidebar></narr-sidebar>
-<narr-main class="clearfix"></narr-main>
+<narr-nav #nav (sidebarTrigger)="setActiveArea($event)"></narr-nav>
+<narr-sidebar [ngClass]="{'sidebar-ani': nav.sidebarAni, 'sidebar-active': nav.sidebarActive}"
+  [sidebarActive]="activeEl">
+</narr-sidebar>
+<narr-main class="clearfix" [ngClass]="{'sidebar-ani': nav.sidebarAni, 'sidebar-active': nav.sidebarActive}">
+</narr-main>

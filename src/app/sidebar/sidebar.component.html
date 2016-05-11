@@ -7,10 +7,10 @@
 </div>
 
 <ul class="sidebar-filter-left">
-  <li class="sidebar-active"><a href="#intro">Intro</a></li>
-  <li><a href="#portfolio">Portfolio</a></li>
-  <li><a href="#about">About Me</a></li>
-  <li><a href="#contact">Contact</a></li>
+  <li [class.sidebar-active]="'intro' === sidebarActive"><a href="#intro">Intro</a></li>
+  <li [class.sidebar-active]="'portfolio' === sidebarActive"><a href="#portfolio">Portfolio</a></li>
+  <li [class.sidebar-active]="'about' === sidebarActive"><a href="#about">About Me</a></li>
+  <li [class.sidebar-active]="'contact' === sidebarActive"><a href="#contact">Contact</a></li>
 </ul>
 
 <ul class="sidebar-list-social">

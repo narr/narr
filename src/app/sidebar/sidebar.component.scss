@@ -134,6 +134,12 @@
   :host {
     margin-left: -200px;
     width: 200px;
+    &.sidebar-ani {
+      transition: margin-left 0.3s ease;
+    }
+    &.sidebar-active {
+      margin-left: 0;
+    }
     .sidebar-about {
       padding: 20px;
       .sidebar-thumbnail {

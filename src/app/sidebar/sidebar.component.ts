@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'narr-sidebar',
@@ -6,10 +6,6 @@ import { Component } from '@angular/core';
   template: require('./sidebar.component.html')
 })
 export class SidebarComponent {
+  @Input() private sidebarActive: string;
   private thumbnail = require('asset/img/wfp.png');
-
-  private onClick(e) {
-    e.preventDefault();
-    console.log(e);
-  }
 }

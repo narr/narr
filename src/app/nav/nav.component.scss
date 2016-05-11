@@ -18,7 +18,8 @@ $nav-height: 35px;
     line-height: $nav-height + 1;
     color: #3BCAA3;
     font-size: 27px;
-    &:hover {
+    &:hover,
+    &.sidebar-active {
       color: #fff;
     }
   }

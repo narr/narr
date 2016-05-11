@@ -21,6 +21,13 @@ $selector-host: ':host';
 @media (max-width: 800px) {
   #{$selector-host} {
     margin-left: 0;
+    width: 100%;
+    &.sidebar-ani {
+      transition: margin-left 0.3s ease;
+    }
+    &.sidebar-active {
+      margin-left: 200px;
+    }
   }
 }
 
