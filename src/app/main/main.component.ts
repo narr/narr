@@ -14,5 +14,4 @@ import { PortfolioComponent } from './portfolio';
     AboutComponent, ContactComponent, IntroComponent, PortfolioComponent, FooterComponent
   ]
 })
-export class MainComponent {
-}
+export class MainComponent { }

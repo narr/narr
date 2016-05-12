@@ -1,32 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { TestimonialComponent, TestimonialModel } from './testimonial';
+import { TestimonialComponent, TestimonialModel, TestimonialService } from './testimonial';
 
 @Component({
   selector: 'narr-footer',
   template: require('./footer.component.html'),
-  directives: [TestimonialComponent]
+  directives: [TestimonialComponent],
+  providers: [TestimonialService]
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
   private testmonialArray: TestimonialModel[];
 
-  constructor() {
-    this.testmonialArray = [
-      new TestimonialModel({
-        imgUrl: require('asset/img/testimonial1.jpg'),
-        link: 'http://en.wikipedia.org/wiki/Nelson_Mandela',
-        who: 'Nelson Mandela'
-      }),
-      new TestimonialModel({
-        imgUrl: require('asset/img/testimonial2.jpg'),
-        link: 'http://en.wikipedia.org/wiki/Mahatma_Gandhi',
-        who: 'Mahatma Gandhi'
-      }),
-      new TestimonialModel({
-        imgUrl: require('asset/img/testimonial3.jpg'),
-        link: 'http://en.wikipedia.org/wiki/Mother_Teresa',
-        who: 'Mother Teresa'
-      })
-    ];
+  constructor(private testimonialService: TestimonialService) { }
+
+  ngOnInit() {
+    this.testmonialArray = this.testimonialService.getTestimonials();
   }
 }

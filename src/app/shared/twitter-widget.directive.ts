@@ -1,10 +1,12 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[narrLoadTwidget]'
 })
-export class TwitterWidgetDirective {
-  constructor(private el: ElementRef) {
+export class TwitterWidgetDirective implements OnInit {
+  constructor(private el: ElementRef) { }
+
+  ngOnInit() {
     const protocol = /^http:/.test(document.location.toString()) ? 'http' : 'https';
     const tag = document.createElement('script');
     tag.id = 'twitter-wjs';
