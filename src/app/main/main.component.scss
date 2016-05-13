@@ -3,6 +3,7 @@ $selector-host: ':host';
 // ================================
 #{$selector-host} {
   display: block;
+  background: url(~asset/img/bg.jpg) no-repeat center center/cover fixed;
   margin-left: 320px;
 }
 
