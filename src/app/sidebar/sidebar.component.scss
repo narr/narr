@@ -133,13 +133,16 @@
 
 @media (max-width: 800px) {
   :host {
-    margin-left: -200px;
+    // margin-left: -200px;
+    transform: translateX(-200px);
     width: 200px;
     &.sidebar-ani {
-      transition: margin-left 0.3s ease;
+      // transition: margin-left 0.3s ease;
+      transition: transform 0.3s ease;
     }
     &.sidebar-active {
-      margin-left: 0;
+      // margin-left: 0;
+      transform: translateX(0);
     }
     .sidebar-about {
       padding: 20px;
