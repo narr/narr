@@ -52,7 +52,7 @@ $selector-intro: 'narr-testimonial';
   }
 }
 
-@media (max-width: 1280px) {
+@media only screen and (max-width: 1280px) {
   :host {
     .testimonial-feedback {
       p {

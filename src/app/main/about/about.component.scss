@@ -54,7 +54,7 @@ $selector-intro: 'narr-about';
   }
 }
 
-@media (max-width: 1280px) {
+@media only screen and (max-width: 1280px) {
   :host {
     .about-section {
       .about-heading {
@@ -65,7 +65,7 @@ $selector-intro: 'narr-about';
   }
 }
 
-@media (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
   :host {
     .about-section {
       padding-left: 0;
@@ -75,7 +75,7 @@ $selector-intro: 'narr-about';
   }
 }
 
-@media (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   :host {
     .about-section {
       margin: 15px auto 0 auto;
@@ -95,7 +95,7 @@ $selector-intro: 'narr-about';
   }
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   :host {
     .about-section {
       padding-left: 0;

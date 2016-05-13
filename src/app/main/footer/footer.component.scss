@@ -36,7 +36,7 @@ $selector-intro: 'narr-footer';
   }
 }
 
-@media (max-width: 1280px) {
+@media only screen and (max-width: 1280px) {
   :host {
     .footer-heading {
       font-size: 30px;
@@ -48,7 +48,7 @@ $selector-intro: 'narr-footer';
   }
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   :host {
     .footer-section {
       padding: 0 15px;

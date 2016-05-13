@@ -115,13 +115,13 @@
   }
 }
 
-@media (max-width: 1280px) {
+@media only screen and (max-width: 1280px) {
   :host {
     width: 300px;
   }
 }
 
-@media (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
   :host {
     width: 280px;
     .sidebar-about {
@@ -132,7 +132,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   :host {
     // margin-left: -200px;
     transform: translateX(-200px);
@@ -165,7 +165,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   :host {
     .sidebar-filter-left {
       a {
