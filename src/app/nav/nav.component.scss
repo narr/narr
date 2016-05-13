@@ -37,6 +37,12 @@ $nav-height: 35px;
   :host {
     .nav-trigger {
       display: block;
+      &:hover {
+        color: #3BCAA3;
+      }
+      &.sidebar-active {
+        color: #fff;
+      }
     }
   }
 }
