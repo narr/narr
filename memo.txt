@@ -2,8 +2,8 @@ npm show @angular/core versions
 =======================
 finish the base version(write my own contents)
 specs for units and e2e
+Mobile, IE9 and other browsers' test
 other good things from others' portfolios, medium image loading, loading UI for Init?
-IE9 and other browsers' test
 
 router(ie9-push, history-redirect, async), IE9 pushState issue // https://github.com/angular/angular/issues/6506
 universal(async)
