@@ -3,12 +3,12 @@ npm show @angular/core versions
 finish the base version(write my own contents)
 specs for units and e2e
 Mobile, IE9 and other browsers' test
+travis, appveyor(for IE)
 other good things from others' portfolios, medium image loading, loading UI for Init?
 
 router(ie9-push, history-redirect, async), IE9 pushState issue // https://github.com/angular/angular/issues/6506
 universal(async)
 ng2 animate(continuous animations - timing)
-travis, appveyor(for IE)
 
 find a11y lib of ng2
 node 6(problem with installing sprite-webpack-plugin)
