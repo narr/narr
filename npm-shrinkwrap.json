@@ -4687,9 +4687,9 @@
       "resolved": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz"
     },
     "typings": {
-      "version": "1.0.3",
-      "from": "typings@1.0.3",
-      "resolved": "https://registry.npmjs.org/typings/-/typings-1.0.3.tgz",
+      "version": "1.0.4",
+      "from": "typings@1.0.4",
+      "resolved": "https://registry.npmjs.org/typings/-/typings-1.0.4.tgz",
       "dependencies": {
         "bluebird": {
           "version": "3.3.5",
