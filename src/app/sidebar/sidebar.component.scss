@@ -137,6 +137,11 @@
     // margin-left: -200px;
     transform: translateX(-200px);
     width: 200px;
+    // @ for performance
+    // http://blog.teamtreehouse.com/increase-your-sites-performance-with-hardware-accelerated-css
+    backface-visibility: hidden;
+    perspective: 1;
+    // for performance @
     &.sidebar-ani {
       // transition: margin-left 0.3s ease;
       transition: transform 0.3s ease;
