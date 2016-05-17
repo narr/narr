@@ -34,9 +34,7 @@ a:hover {
 }
 
 .clearfix:after {
-  content: " ";
-  display: block;
-  visibility: hidden;
-  height: 0;
+  content: "";
+  display: table;
   clear: both;
 }
