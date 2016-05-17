@@ -1,56 +1,47 @@
 $nav-height: 35px;
 // ========================
 :host {
-  // background: #ffa;
   position: fixed;
-  // padding: 10px;
   width: 100%;
-  // height: $nav-height;
   height: 0; // for events of below elements
   z-index: 100;
   .nav-trigger {
     display: none;
     background: rgba(33, 34, 40, 0.9);
     float: right;
-    // margin-right: 20px;
     margin: 20px 20px 0 0;
     padding: 4px 12px;
     line-height: $nav-height + 1;
     color: #3BCAA3;
     font-size: 27px;
-    &:hover,
-    &.sidebar-active {
+    &:hover {
       color: #fff;
     }
-  }
-}
-
-.ie9 {
-  :host {
-    .nav-trigger {
-      // height: $nav-height - 3;
+    &.sidebar-active {
+      color: #fff;
+      &:focus {
+        color: #fff;
+      }
+    }
+    // http://stackoverflow.com/questions/17233804/how-to-prevent-sticky-hover-effects-for-buttons-on-touch-devices
+    &:focus {
+      // to reslove mobile hover issue
+      color: #3BCAA3;
     }
   }
 }
 
+// .ie9 {
+//   :host {
+//     .nav-trigger {
+//       // height: $nav-height - 3;
+//     }
+//   }
+// }
 @media only screen and (max-width: 800px) {
   :host {
     .nav-trigger {
       display: block;
-    }
-  }
-}
-
-// only for mobiles
-@media only screen and (max-device-width: 600px) {
-  :host {
-    .nav-trigger {
-      &:hover {
-        color: #3BCAA3;
-      }
-      &.sidebar-active {
-        color: #fff;
-      }
     }
   }
 }
