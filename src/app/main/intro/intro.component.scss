@@ -1,5 +1,6 @@
 // $selector-intro: ':host';
 $selector-intro: 'narr-intro';
+$btn-color: #32AE8C;
 // ================================
 #{$selector-intro} {
   display: block;
@@ -25,18 +26,23 @@ $selector-intro: 'narr-intro';
       font-size: 42px;
       font-weight: 600;
     }
-    a {
-      background: #32AE8C;
+    a:hover {
+      background: darken($btn-color, 2%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 1px 1px;
+      color: lighten($btn-color, 18%);
+    }
+    a, a:focus {
+      background: lighten($btn-color, 2%);
       padding: 11px 20px;
-      border: 1px solid #2CA382;
+      border: 1px solid darken($btn-color, 4%);
       border-radius: 3px;
+      box-shadow: 3px 3px 1px darken($btn-color, 8%);
       line-height: 36px;
       color: #fff;
       font-size: 18px;
-      text-shadow: 0 0 0;
-    }
-    a:hover {
-      opacity: 0.9;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
   }
 }
