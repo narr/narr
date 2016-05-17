@@ -3,11 +3,18 @@ $selector-intro: 'narr-intro';
 // ================================
 #{$selector-intro} {
   display: block;
+  position: relative;
   min-height: 360px;
 }
 
 :host {
+  canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
   .intro-padder {
+    position: relative;
     padding: 175px 40px 250px 40px;
     text-align: center;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.46);
