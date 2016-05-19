@@ -2,25 +2,46 @@
 $selector-intro: 'narr-intro';
 $btn-color: #32AE8C;
 // ================================
+@keyframes intro-scroll-down {
+  0% {
+    bottom: 5%;
+    opacity: 1;
+  }
+  100% {
+    bottom: 7%;
+    opacity: 0.2;
+  }
+}
+
 #{$selector-intro} {
   display: block;
+  background: rgba(0, 144, 255, 0.3);
   position: relative;
-  min-height: 360px;
+  min-height: 400px;
+  height: 100%;
+}
+
+@mixin a-normal() {
+  background: lighten($btn-color, 2%);
+  border: 1px solid darken($btn-color, 4%);
+  box-shadow: 3px 3px 1px darken($btn-color, 8%);
+  color: #fff;
 }
 
 :host {
   canvas.rain-bg {
-    position: absolute;
+    display: none; // In Mac, Canvas Ani has bad performance on a wide width window
     width: 100%;
     height: 100%;
   }
-  .intro-padder {
-    position: relative;
-    padding: 175px 40px 250px 40px;
+  .intro-center {
+    position: absolute;
+    top: 50%;
+    margin: -88px 0 0 0;
+    width: 100%;
     text-align: center;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.46);
     h1 {
-      margin-top: 40px;
       margin-bottom: 50px;
       color: #fff;
       font-size: 42px;
@@ -32,26 +53,35 @@ $btn-color: #32AE8C;
       box-shadow: 1px 1px;
       color: lighten($btn-color, 18%);
     }
-    a, a:focus {
-      background: lighten($btn-color, 2%);
-      padding: 11px 20px;
-      border: 1px solid darken($btn-color, 4%);
+    a {
+      @include a-normal();
+      padding: 10px 20px;
       border-radius: 3px;
-      box-shadow: 3px 3px 1px darken($btn-color, 8%);
       line-height: 36px;
-      color: #fff;
       font-size: 18px;
       font-weight: 800;
       letter-spacing: 1px;
     }
+    a:focus {
+      // for touch devices, to disable hover after click
+      @include a-normal();
+    }
+  }
+  .intro-scroll-down {
+    display: block;
+    position: absolute;
+    width: 100%;
+    bottom: 5%;
+    text-align: center;
+    animation: intro-scroll-down 0.8s linear 0s infinite alternate;
   }
 }
 
 @media only screen and (max-width: 1280px) {
   :host {
-    .intro-padder {
+    .intro-center {
       h1 {
-        font-size: 35px;
+        font-size: 36px;
       }
     }
   }
@@ -59,11 +89,18 @@ $btn-color: #32AE8C;
 
 @media only screen and (max-width: 800px) {
   :host {
-    .intro-padder {
-      padding: 125px 40px 200px 40px;
+    canvas.rain-bg {
+      display: block;
+    }
+    .intro-center {
       h1 {
-        font-size: 29px;
+        font-size: 28px;
       }
     }
   }
 }
+
+// @media only screen and (max-device-width: 800px) {
+//   :host {
+//   }
+// }
