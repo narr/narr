@@ -23,7 +23,7 @@ export class RainBgDirective implements OnInit {
       this.canvasH = canvas.height = canvas.offsetHeight;
 
       this.ctx = canvas.getContext('2d');
-      this.ctx.fillStyle = 'rgba(0, 144, 255, 0.3)'; // bg
+      // this.ctx.fillStyle = 'rgba(0, 144, 255, 0.3)'; // bg
       this.ctx.strokeStyle = 'rgba(174, 194, 224, 0.5)';
       this.ctx.lineWidth = 2;
       this.ctx.lineCap = 'round';
@@ -47,15 +47,16 @@ export class RainBgDirective implements OnInit {
     window.requestAnimationFrame(this.aniLoop.bind(this));
   }
 
+  // http://www.html5rocks.com/en/tutorials/canvas/performance/
   private draw() {
     this.ctx.clearRect(0, 0, this.canvasW, this.canvasH);
-    this.ctx.fillRect(0, 0, this.canvasW, this.canvasH); // bg
+    // this.ctx.fillRect(0, 0, this.canvasW, this.canvasH); // bg
+    this.ctx.beginPath();
     for (let p of this.particles) {
-      this.ctx.beginPath();
       this.ctx.moveTo(p.x, p.y);
       this.ctx.lineTo(p.x + p.vx, p.y + p.vy);
-      this.ctx.stroke();
     }
+    this.ctx.stroke();
     this.move();
   }
 
