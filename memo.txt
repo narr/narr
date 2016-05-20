@@ -1,4 +1,5 @@
 npm show @angular/core versions
+npm run typings i dt~node -- -SG
 =======================
 finish the base version(write my own contents)
 specs for units and e2e

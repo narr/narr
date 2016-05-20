@@ -1,4 +1,4 @@
-/// <reference path="../typings/browser.d.ts" />
+/// <reference path="../typings/index.d.ts" />
 
 interface WebpackRequire {
   ensure(paths: string[], callback: (require: <T>(path: string) => T) => void,
