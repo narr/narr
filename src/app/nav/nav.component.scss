@@ -7,26 +7,16 @@ $nav-height: 35px;
   z-index: 100;
   .nav-trigger {
     display: none;
-    background: rgba(33, 34, 40, 0.9);
+    background: rgba(33, 34, 40, 0.2);
     float: right;
     margin: 20px 20px 0 0;
     padding: 4px 12px;
     line-height: $nav-height + 1;
     color: #3BCAA3;
     font-size: 27px;
-    &:hover {
-      color: #fff;
-    }
+    &:hover,
     &.sidebar-active {
       color: #fff;
-      &:focus {
-        color: #fff;
-      }
-    }
-    // http://stackoverflow.com/questions/17233804/how-to-prevent-sticky-hover-effects-for-buttons-on-touch-devices
-    &:focus {
-      // to reslove mobile hover issue
-      color: #3BCAA3;
     }
   }
 }
@@ -42,6 +32,19 @@ $nav-height: 35px;
   :host {
     .nav-trigger {
       display: block;
+    }
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  :host {
+    .nav-trigger {
+      &:hover {
+        color: #3BCAA3;
+      }
+      &.sidebar-active {
+        color: #fff;
+      }
     }
   }
 }
