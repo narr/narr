@@ -21,7 +21,7 @@ material-ui(>=IE11)
 docs and videos for tutorial
 issues and infos on github, test cases(after done boilerplate)
 make branches and merge
-module bundler(webpack2(System.import, Tree-shaking), systemjs(System.import), rollup(Tree-shaking))
+module bundler(ng cli, webpack2(System.import, Tree-shaking), systemjs(System.import), rollup(Tree-shaking))
 mobile friendly, Responsive Web Design(media query, em unit), ng2 style guide, optimization
 travis, appveyor(for IE)?, docker?
 google analytics, google PageSpeed Insights
