@@ -1,15 +1,32 @@
-<div class="about-section">
-  <a class="about-thumbnail" href="#" title="Decorator">
-    <img [src]="thumbnail" alt="Decorator">
-  </a>
-  <h1 class="about-heading">World Food Program</h1>
-  <p class="about-description">
-    Fighting hunger worldwide. The United Nations World Food Programme is
-    the world's largest humanitarian agency on the front lines against hunger.
-  </p>
-  <div class="about-twitter" narrLoadTwidget>
-    <a class="twitter-timeline" href="https://twitter.com/nardgu" data-widget-id="729388392991981568"
-      data-tweet-limit="5" data-border-color="#eee" data-chrome="transparent" data-dnt="true">
-      Tweets by @nardgu</a>
+<div class="about-wrapper">
+  <div class="about-section about-me" #scrollTarget [class.ani]="aboutMeScrolled &&
+    aboutMeScrolled.scrolled">
+    <h1>About me</h1>
+    <span class="summary">I am a front‑end developer who is an enthusiastic supporter for
+    Open-source.</span>
+    <p>I started my career as an Android programmer but after I got the simplicity of
+      the debugging process(refreshing browser) in Javascript, I fell in love with
+      JS.
+      <br>
+      <br> When I code, I like to make it testable, efficient and reusable. I am
+      eager to learn new technologies and like to share opinions. That's why I'm
+      into Open-source and Javascript.
+      <br>
+      <br>I love coffee(not CoffeeScript but Typescript), binge-watching, taking
+      a walk, dogs and a simple life.
+    </p>
+  </div>
+  <div class="about-section about-skills">
+    <h1>About skills</h1>
+    <div class="skills" *ngFor="let val of skills; let skillIdx = index;" #scrollTarget
+      [class.ani]="aboutSkillsScrolled[skillIdx] && aboutSkillsScrolled[skillIdx].scrolled">
+      <span class="summary">{{val.summary}}</span>
+      <a class="about-skill-detail" [href]="item.href" target="_blank" *ngFor="let item of val.skill">
+        <div class="about-skill-bg-wrapper ic-sprite-50">
+          <span [class]="item.class"></span>
+          <span [class]="'rotate-x ' + item.class"></span>
+        </div>
+      </a>
+    </div>
   </div>
 </div>

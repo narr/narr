@@ -1,105 +1,259 @@
-// $selector-intro: ':host';
-$selector-intro: 'narr-about';
+// $selector-about: ':host';
+$selector-about: narr-about;
 // ================================
-#{$selector-intro} {
+// over-1600
+$about-padding-over-1600: 100px 0 100px 80px;
+// 250 => sidebar width
+$about-wrapper-width-over-1600: 1600 - 250 - nth($about-padding-over-1600, 2) - nth($about-padding-over-1600, 4);
+$about-me-margin-right-over-1600: 100px;
+$about-me-width-over-1600: ($about-wrapper-width-over-1600 - $about-me-margin-right-over-1600) / 2;
+$about-skill-width-over-1600: $about-me-width-over-1600 - 50;
+$about-section-font-size-over-1600: 13px;
+$skill-img-size: 50px;
+// ================================
+// max-1600
+$about-padding-max-1600: 80px 0 80px 50px;
+$about-wrapper-width-max-1600: 1280 - 250 - nth($about-padding-max-1600, 2) - nth($about-padding-max-1600, 4);
+$about-me-width-max-1600: ($about-wrapper-width-max-1600 - $about-me-margin-right-over-1600) / 2;
+// ================================
+// max-1280
+$about-padding-max-1280: 80px 50px 80px 50px;
+$about-wrapper-width-max-1280: 800 - 200 - nth($about-padding-max-1280, 2) - nth($about-padding-max-1280, 4);
+// ================================
+// max-800
+$about-padding-max-800: 80px 40px 80px 40px;
+$about-wrapper-width-max-800: 480 - nth($about-padding-max-800, 2) - nth($about-padding-max-800, 4);
+// ================================
+// ================================
+// max-480
+$about-padding-max-480: 50px 25px 50px 25px;
+$about-wrapper-width-max-480: 320 - nth($about-padding-max-480, 2) - nth($about-padding-max-480, 4);
+// ================================
+// ================================
+#{$selector-about} {
   display: block;
-  background: rgba(58, 182, 148, 0.7);
-  float: left;
-  width: 100%;
-  min-height: 360px;
+  background: rgb(255, 255, 255);
+  padding: $about-padding-over-1600;
+  overflow: hidden;
+  opacity: 0.8;
 }
 
 :host {
+  .about-wrapper {
+    // background: #ffa;
+    margin: 0 auto;
+    width: $about-wrapper-width-over-1600;
+    overflow: auto;
+  }
   .about-section {
-    margin: 45px auto 80px auto;
-    padding: 40px 0;
-    width: 800px;
-    overflow: hidden;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.36);
-    .about-thumbnail {
+    float: left;
+    font-size: $about-section-font-size-over-1600;
+    h1 {
+      margin-bottom: 30px;
+      color: #109f9a;
+      font-size: 3.3em;
+      font-weight: 600;
+    }
+    .summary {
       display: block;
-      margin: 0 auto;
-      width: 110px;
-      height: 110px;
-      border: 1px solid #3DCAA3;
-      border-radius: 122px;
-      overflow: hidden;
-    }
-    img {
-      float: left;
-      width: 105%;
-    }
-    .about-heading {
-      margin-top: 10px;
-      text-align: center;
-      color: #fff;
-      font-size: 34px;
-    }
-    .about-description {
-      margin: 5px 0;
-      text-align: center;
-      color: #eee;
-      font-size: 21px;
-    }
-    .about-twitter {
-      background: #eee;
-      margin-top: 30px;
-      padding: 0 12px 5px 12px;
+      margin-bottom: 40px;
+      color: #535353;
+      font-size: 1.8em;
     }
   }
-  .about-twitter {
-    iframe {
-      width: 100% !important;
+  .about-me {
+    margin-right: $about-me-margin-right-over-1600;
+    width: $about-me-width-over-1600;
+    opacity: 0;
+    &.ani {
+      animation: about-zoom-out-blur 2s linear forwards;
+    }
+    p {
+      line-height: 36px;
+      color: #636363;
+      font-size: 1.4em;
+    }
+  }
+  .about-skills {
+    width: $about-skill-width-over-1600;
+    .skills {
+      margin-bottom: 20px;
+      opacity: 0;
+      &.ani {
+        animation: about-zoom-in 2s linear forwards;
+      }
+    }
+    .summary {
+      margin-bottom: 10px;
+    }
+  }
+  .about-skill-detail {
+    display: inline-block;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    width: $skill-img-size;
+    height: $skill-img-size;
+    perspective: 99999px;
+    &:hover {
+      .about-skill-bg-wrapper {
+        transform: rotateX(90deg) translateY($skill-img-size/-2);
+      }
+    }
+  }
+  .about-skill-bg-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s;
+    transform-origin: 50% 0;
+    transform-style: preserve-3d;
+    span {
+      width: 100%;
+      height: 100%;
+    }
+    .rotate-x {
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 100%;
+      height: 100%;
+      transform: rotateX(-90deg);
+      transform-origin: inherit;
+    }
+  }
+}
+
+// ================================
+// ================================
+.touch {
+  :host {
+    .about-me {
+      &.ani {
+        animation: about-zoom-out 2s linear forwards;
+      }
+    }
+  }
+}
+
+// ================================
+// ================================
+@keyframes about-zoom-out-blur {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 40px grey;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 0 grey;
+    transform: scale(1);
+  }
+}
+
+// for mobile, remove the text-shadow ani
+// text-shadow performance issue
+// http://stackoverflow.com/questions/32948596/is-csss-efficiency-with-text-shadow-as-bad-as-box-shadow
+@keyframes about-zoom-out {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes about-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// ================================
+// ================================
+@media only screen and (max-width: 1600px) {
+  #{$selector-about} {
+    padding: $about-padding-max-1600;
+  }
+  :host {
+    .about-wrapper {
+      width: $about-wrapper-width-max-1600;
+    }
+    .about-section {
+      font-size: $about-section-font-size-over-1600 - 1;
+    }
+    .about-me {
+      width: $about-me-width-max-1600;
+    }
+    .about-skills {
+      width: $about-me-width-max-1600;
     }
   }
 }
 
 @media only screen and (max-width: 1280px) {
-  :host {
-    .about-section {
-      .about-heading {
-        margin: 10px 0 0 0;
-        font-size: 30px;
-      }
-    }
+  #{$selector-about} {
+    padding: $about-padding-max-1280;
   }
-}
-
-@media only screen and (max-width: 1024px) {
   :host {
-    .about-section {
-      padding-left: 0;
-      padding-right: 0;
-      width: 600px;
+    .about-wrapper {
+      width: $about-wrapper-width-max-1280;
+    }
+    .about-me {
+      margin-right: 0;
+      margin-bottom: 100px;
+      width: $about-wrapper-width-max-1280;
+    }
+    .about-skills {
+      width: $about-wrapper-width-max-1280;
     }
   }
 }
 
 @media only screen and (max-width: 800px) {
+  #{$selector-about} {
+    padding: $about-padding-max-800;
+  }
   :host {
+    .about-wrapper {
+      width: $about-wrapper-width-max-800;
+    }
     .about-section {
-      margin: 15px auto 0 auto;
-      padding-bottom: 0;
-      width: 100%;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.36);
-      .about-description {
-        padding-left: 20px;
-        padding-right: 20px;
-        font-size: 18px;
-      }
-      .about-twitter {
-        padding-bottom: 20px;
-        border-bottom: 1px solid #ccc;
-      }
+      font-size: $about-section-font-size-over-1600 - 2;
+    }
+    .about-me {
+      margin-bottom: 100px;
+      width: $about-wrapper-width-max-800;
+    }
+    .about-skills {
+      width: $about-wrapper-width-max-800;
     }
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 480px) {
+  #{$selector-about} {
+    padding: $about-padding-max-480;
+  }
   :host {
+    .about-wrapper {
+      width: $about-wrapper-width-max-480;
+    }
     .about-section {
-      padding-left: 0;
-      padding-right: 0;
+      font-size: $about-section-font-size-over-1600 - 3;
+    }
+    .about-me {
+      margin-bottom: 100px;
+      width: $about-wrapper-width-max-480;
+    }
+    .about-skills {
+      width: $about-wrapper-width-max-480;
     }
   }
 }

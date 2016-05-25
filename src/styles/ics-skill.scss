@@ -1,0 +1,96 @@
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 1) / 2;
+  $sprite-offset-y: nth($sprite, 2) / 2;
+  background-position: $sprite-offset-x $sprite-offset-y;
+}
+
+@mixin sprite($sprite) {
+  background-size: cover;
+  @include sprite-position($sprite);
+}
+
+.ic-sprite-50 {
+  .ic-css3 {
+    @include sprite($ic-css3);
+  }
+  .ic-html5 {
+    @include sprite($ic-html5);
+  }
+  .ic-js {
+    @include sprite($ic-js);
+  }
+  .ic-less {
+    @include sprite($ic-less);
+  }
+  .ic-nodejs {
+    @include sprite($ic-nodejs);
+  }
+  .ic-sass {
+    @include sprite($ic-sass);
+  }
+  .ic-typescript {
+    @include sprite($ic-typescript);
+  }
+  // ========================
+  .ic-angular {
+    @include sprite($ic-angular);
+  }
+  .ic-babel {
+    @include sprite($ic-babel);
+  }
+  .ic-bootstrap {
+    @include sprite($ic-bootstrap);
+  }
+  .ic-jasmine {
+    @include sprite($ic-jasmine);
+  }
+  .ic-jquery {
+    @include sprite($ic-jquery);
+  }
+  .ic-mocha {
+    @include sprite($ic-mocha);
+  }
+  .ic-react {
+    @include sprite($ic-react);
+  }
+  .ic-redux {
+    @include sprite($ic-redux);
+  }
+  // ========================
+  .ic-nightwatchjs {
+    @include sprite($ic-nightwatchjs);
+  }
+  .ic-docker {
+    @include sprite($ic-docker);
+  }
+  .ic-git {
+    @include sprite($ic-git);
+  }
+  .ic-grunt {
+    @include sprite($ic-grunt);
+  }
+  .ic-gulp {
+    @include sprite($ic-gulp);
+  }
+  .ic-karma {
+    @include sprite($ic-karma);
+  }
+  .ic-firebase {
+    @include sprite($ic-firebase);
+  }
+  .ic-npm {
+    @include sprite($ic-npm);
+  }
+  .ic-protractor {
+    @include sprite($ic-protractor);
+  }
+  .ic-travis {
+    @include sprite($ic-travis);
+  }
+  .ic-webpack {
+    @include sprite($ic-webpack);
+  }
+  .ic-svn {
+    @include sprite($ic-svn);
+  }
+}

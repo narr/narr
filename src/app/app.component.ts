@@ -19,12 +19,15 @@ export class AppComponent implements OnInit {
   constructor(private appRef: ElementRef) { }
 
   ngOnInit() {
+    if (window && 'ontouchstart' in window) {
+      this.appRef.nativeElement.classList.add('touch');
+    }
     this.mainEl = this.appRef.nativeElement.children[2]; // narr-main
   }
 
   @HostListener('window:scroll', ['$event'])
   private onScroll(e) {
-    // console.log(e);
+    console.log(e);
     this.setActiveArea(e.target.body.scrollTop);
   }
 
@@ -48,3 +51,4 @@ export class AppComponent implements OnInit {
     // console.log(this.activeEl);
   }
 }
+// comment this out to persist scroll position after refresh

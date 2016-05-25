@@ -4,18 +4,20 @@ $selector-host: ':host';
 #{$selector-host} {
   display: block;
   background: url(~asset/img/bg.jpg) no-repeat center center/cover fixed;
-  margin-left: 320px;
+  margin-left: 250px;
+  height: 100%;
+  overflow: auto;
 }
 
 @media only screen and (max-width: 1280px) {
   #{$selector-host} {
-    margin-left: 300px;
+    margin-left: 200px;
   }
 }
 
 @media only screen and (max-width: 1024px) {
   #{$selector-host} {
-    margin-left: 280px;
+    // margin-left: 280px;
   }
 }
 

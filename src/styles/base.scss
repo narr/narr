@@ -38,3 +38,8 @@ a:hover {
   display: table;
   clear: both;
 }
+
+@import '../../temp/icon/sprite/ics-skill-language.scss';
+@import '../../temp/icon/sprite/ics-skill-framework&library.scss';
+@import '../../temp/icon/sprite/ics-skill-etc.scss';
+@import './ics-skill.scss';
