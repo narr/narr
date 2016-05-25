@@ -2,6 +2,7 @@
 $selector-intro: narr-intro;
 $btn-color: #32AE8C;
 // ================================
+// ================================
 #{$selector-intro} {
   display: block;
   background: rgba(0, 144, 255, 0.3);
@@ -51,10 +52,6 @@ $btn-color: #32AE8C;
       font-weight: 800;
       letter-spacing: 1px;
     }
-    a:focus {
-      // for touch devices, to disable hover after click
-      @include a-normal();
-    }
   }
   .intro-scroll-down {
     display: block;
@@ -66,6 +63,23 @@ $btn-color: #32AE8C;
   }
 }
 
+// ================================
+// ================================
+.touch {
+  :host {
+    .intro-center {
+      // for touch devices, to disable hover after click
+      a:hover {
+        @include a-normal();
+      }
+    }
+  }
+}
+
+// .ie9 {
+//   :host {}
+// }
+// ================================
 // ================================
 @keyframes intro-scroll-down {
   0% {
@@ -79,11 +93,22 @@ $btn-color: #32AE8C;
 }
 
 // ================================
+// ================================
+@media only screen and (max-width: 1600px) {
+  :host {
+    .intro-center {
+      h1 {
+        font-size: 38px;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 1280px) {
   :host {
     .intro-center {
       h1 {
-        font-size: 36px;
+        font-size: 34px;
       }
     }
   }
@@ -96,13 +121,22 @@ $btn-color: #32AE8C;
     }
     .intro-center {
       h1 {
-        font-size: 28px;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  :host {
+    .intro-center {
+      h1 {
+        font-size: 26px;
       }
     }
   }
 }
 
 // @media only screen and (max-device-width: 800px) {
-//   :host {
-//   }
+//   :host {}
 // }

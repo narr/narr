@@ -35,7 +35,7 @@ $about-wrapper-width-max-480: 320 - nth($about-padding-max-480, 2) - nth($about-
   background: rgb(255, 255, 255);
   padding: $about-padding-over-1600;
   overflow: hidden;
-  opacity: 0.8;
+  opacity: 0.8; // instead of rgba, use this for the mobile performance
 }
 
 :host {
