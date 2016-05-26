@@ -1,9 +1,9 @@
-// $selector-intro: ':host';
-$selector-intro: narr-intro;
+// $selector-host: ':host';
+$selector-host: narr-intro;
 $btn-color: #32AE8C;
 // ================================
 // ================================
-#{$selector-intro} {
+#{$selector-host} {
   display: block;
   background: rgba(0, 144, 255, 0.3);
   position: relative;
