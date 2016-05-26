@@ -27,7 +27,7 @@ $selector-host: ':host';
     // transform: translateX(0);
     width: 100%;
     backface-visibility: hidden;
-    perspective: 1;
+    perspective: 99999px;
     &.sidebar-ani {
       // transition: margin-left 0.3s ease;
       transition: transform 0.3s ease;

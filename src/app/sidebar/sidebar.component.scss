@@ -140,7 +140,7 @@
     // @ for performance
     // http://blog.teamtreehouse.com/increase-your-sites-performance-with-hardware-accelerated-css
     backface-visibility: hidden;
-    perspective: 1;
+    perspective: 99999px;
     // for performance @
     &.sidebar-ani {
       // transition: margin-left 0.3s ease;
