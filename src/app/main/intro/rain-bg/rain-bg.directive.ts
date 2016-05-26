@@ -19,8 +19,10 @@ export class RainBgDirective implements OnInit {
     // console.log(this.el.nativeElement);
     const canvas = this.el.nativeElement;
     if (canvas.getContext) {
-      this.canvasW = canvas.width = canvas.offsetWidth;
-      this.canvasH = canvas.height = canvas.offsetHeight;
+      // this.canvasW = canvas.width = canvas.offsetWidth;
+      // this.canvasH = canvas.height = canvas.offsetHeight;
+      this.canvasW = canvas.width = 1920;
+      this.canvasH = canvas.height = 1080;
 
       this.ctx = canvas.getContext('2d');
       // this.ctx.fillStyle = 'rgba(0, 144, 255, 0.3)'; // bg
