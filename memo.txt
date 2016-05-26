@@ -12,7 +12,7 @@ progressive web app
 google PageSpeed Insights
 
 node 6(problem with installing sprite-webpack-plugin)
-coverage typescript src file
+coverage typescript src file // https://github.com/AngularClass/angular2-webpack-starter/issues/178
 IE9 the number limitation(31?) of style tags
 ng2 animate(continuous animations - timing)
 router(ie9-push, history-redirect, async), IE9 pushState issue // https://github.com/angular/angular/issues/6506
