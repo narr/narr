@@ -1,0 +1,52 @@
+$selector-host: ':host';
+// $selector-host: ':host narr-navbar';
+$host-font-size: 13px;
+// ================================
+$navbar-trigger-hover-color: #fff;
+// ================================
+// ================================
+#{$selector-host} {
+  position: fixed;
+  width: 100%;
+  height: 0; // for events of below elements
+  font-size: $host-font-size;
+  z-index: 100;
+  &.sidebar-open {
+    .navbar-trigger {
+      color: $navbar-trigger-hover-color;
+    }
+  }
+}
+
+:host {
+  .navbar {
+    height: 0;
+    text-align: right;
+  }
+  .navbar-trigger {
+    display: none;
+    background: rgba(33, 34, 40, 0.2);
+    margin: 20px 20px 0 0;
+    padding: 4px 12px;
+    line-height: 36px;
+    color: #3BCAA3;
+    font-size: 27px;
+    &:hover {
+      color: $navbar-trigger-hover-color;
+    }
+  }
+}
+
+// ================================
+// ================================
+// .touch {}
+// .ie9 {}
+// ================================
+// ================================
+@media only screen and (max-width: 800px) {
+  :host {
+    .navbar-trigger {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<section class="timeline">
+  <h1>Timeline</h1>
+  <!--<ul #baseOffsetTarget attr.data-current-year="{{currentYear}}">-->
+  <ul #baseOffsetTarget [attr.data-current-year]="currentYear">
+    <li class="center-line"></li>
+    <li #scrollTarget class="timeline-event" *ngFor="let val of events; let i = index;"
+      [ngClass]="{right: i%2, ani: eventScrolleds[i] && eventScrolleds[i].scrolled}">
+      <span class="ic"><i class="fa fa-tag" aria-hidden="true"></i></span>
+      <div class="content">
+        <a [href]="val.href" target="_blank" class="name">{{val.name}}</a>
+        <span class="time">{{val.time}}</span>
+        <a [href]="val.href" target="_blank" class="img-wrapper">
+          <img [src]="val.src" [alt]="val.name">
+        </a>
+        <p class="desc">{{val.desc}}</p>
+      </div>
+    </li>
+  </ul>
+</section>

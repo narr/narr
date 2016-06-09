@@ -11,11 +11,12 @@ module.exports = config => {
     ],
     exclude: [],
     plugins: [
-      'karma-webpack',
       'karma-coverage',
       'karma-jasmine',
       'karma-mocha-reporter',
       'karma-phantomjs-launcher',
+      'karma-remap-istanbul',
+      'karma-webpack'
     ],
     preprocessors: {
       './config/spec-bundle.js': [
@@ -23,13 +24,26 @@ module.exports = config => {
       ]
     },
     webpack: require('./webpack.test.js'),
-    reporters: ['mocha', 'coverage'],
+    reporters: ['mocha', 'coverage', 'karma-remap-istanbul'],
     coverageReporter: {
       dir: 'coverage/',
       reporters: [
         { type: 'text-summary' },
-        { type: 'html' }
+        // { type: 'html' }
+        {
+          type: 'json',
+          subdir: '.',
+          file: 'coverage-final.json'
+        }
       ]
+    },
+    remapIstanbulReporter: {
+      src: 'coverage/coverage-final.json',
+      reports: {
+        html: 'coverage'
+      },
+      timeoutNotCreated: 1000,
+      timeoutNoMoreFiles: 1000
     }
     // values => config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO ||
     // config.LOG_DEBUG

@@ -1,32 +1,30 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChildren
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ScrollService } from '../shared'; // from parent
-import { SkillsModel } from './skills.model';
-import { SkillService } from './skill.service';
+import { ScrollService } from '../../shared';
+import { SkillGroup } from './skill-group.model';
+import { SkillGroupService } from './skill-group.service';
 
 @Component({
   selector: 'narr-about',
   template: require('./about.component.html'),
-  providers: [SkillService]
+  providers: [SkillGroupService]
 })
-export class AboutComponent implements AfterViewInit, OnDestroy, OnInit {
-  private aboutMeScrolled: { el: any, scrolled: boolean };
-  private aboutSkillsScrolled: Array<{ el: any, scrolled: boolean }> = [];
-  private aboutSkillScrolledIdxs: Array<number> = [];
-  // http://stackoverflow.com/questions/32693061/angular-2-typescript-get-hold-of-an-element-in-the-template
-  // no spaces after a comma in rc.1
+export class AboutComponent implements AfterViewInit, OnInit {
+  private contentScrolled: { el: any, scrolled: boolean };
   @ViewChildren('scrollTarget') private scrollEventTargetQl: QueryList<ElementRef>;
-  private skills: SkillsModel[];
+  private skillGroups: SkillGroup[];
+  private skillGroupScrolleds: Array<{ el: any, scrolled: boolean }> = [];
+  private skillGroupScrolledIdxs: Array<number> = [];
   private subscription: Subscription;
 
   constructor(
     private changeDetectionRef: ChangeDetectorRef,
     private elementRef: ElementRef,
     private scrollService: ScrollService,
-    private skillService: SkillService
+    private skillGroupService: SkillGroupService
   ) {
     this.subscription = scrollService.getObservable().
       subscribe(({ viewPort, scrollTargets }) => {
@@ -39,18 +37,19 @@ export class AboutComponent implements AfterViewInit, OnDestroy, OnInit {
 
   ngAfterViewInit() {
     let i = 0;
+    let el;
     // sorted by the DOM tree structure
     this.scrollEventTargetQl.forEach(item => {
-      const el = item.nativeElement;
-      if (el.classList.contains('about-me')) {
-        this.aboutMeScrolled = {
+      el = item.nativeElement;
+      if (el.classList.contains('content')) {
+        this.contentScrolled = {
           el, scrolled: false
         };
       } else {
-        this.aboutSkillsScrolled.push({
+        this.skillGroupScrolleds.push({
           el, scrolled: false
         });
-        this.aboutSkillScrolledIdxs.push(i++);
+        this.skillGroupScrolledIdxs.push(i++);
       }
     });
     // console.log(this.aboutSkillScrolledIdxs);
@@ -58,48 +57,56 @@ export class AboutComponent implements AfterViewInit, OnDestroy, OnInit {
     this.changeDetectionRef.detectChanges();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  // no need this because this component's life cycle is the same with App component
+  //   this.subscription.unsubscribe();
+  // }
 
   ngOnInit() {
-    this.skills = this.skillService.getSkills();
+    this.skillGroups = this.skillGroupService.getSkillGroups();
   }
 
   private handleScrollE(viewPort: { top: number, bottom: number }) {
     // http://www.w3schools.com/jsref/prop_element_offsettop.asp
-    const aboutMe = this.aboutMeScrolled;
-    if (!aboutMe.scrolled) {
-      const aboutMeArea = {
-        top: aboutMe.el.offsetTop, bottom: aboutMe.el.offsetTop + aboutMe.el.offsetHeight
+    const content = this.contentScrolled;
+    if (!content.scrolled) {
+      const contentEl = content.el;
+      const contentArea = {
+        top: contentEl.offsetTop, bottom: contentEl.offsetTop + contentEl.offsetHeight
       };
-      if (this.scrollService.hasShareArea(viewPort, aboutMeArea)) {
-        aboutMe.scrolled = true;
+      if (this.scrollService.hasShareArea(viewPort, contentArea)) {
+        content.scrolled = true;
       }
     }
 
-    const skillIdxs = this.aboutSkillScrolledIdxs;
-    if (skillIdxs.length > 0) {
-      const skills = this.aboutSkillsScrolled;
-      const firstSkill = skills[skillIdxs[0]].el;
-      const lastSkill = skills[skillIdxs[skillIdxs.length - 1]].el;
+    const skillGroupIdxs = this.skillGroupScrolledIdxs;
+    if (skillGroupIdxs.length > 0) {
+      const skillGroups = this.skillGroupScrolleds;
+      const firstSkillGroup = skillGroups[skillGroupIdxs[0]].el;
+      const lastSkillGroup = skillGroups[skillGroupIdxs[skillGroupIdxs.length - 1]].el;
 
-      if (firstSkill.offsetTop < viewPort.bottom &&
-        viewPort.top < lastSkill.offsetTop + lastSkill.offsetHeight) {
-        for (let i = skillIdxs.length - 1; i > -1; i--) {
-          const skill = skills[skillIdxs[i]];
-          const skillArea = {
-            top: skill.el.offsetTop, bottom: skill.el.offsetTop + skill.el.offsetHeight
+      if (firstSkillGroup.offsetTop < viewPort.bottom &&
+        viewPort.top < lastSkillGroup.offsetTop + lastSkillGroup.offsetHeight) {
+        let skillGroup;
+        let skillGroupEl;
+        let top;
+        let skillGroupArea;
+        for (let i = skillGroupIdxs.length - 1; i > -1; i--) {
+          skillGroup = skillGroups[skillGroupIdxs[i]];
+          skillGroupEl = skillGroup.el;
+          top =  skillGroupEl.offsetTop;
+          skillGroupArea = {
+            top, bottom: top + skillGroupEl.offsetHeight
           };
-          if (this.scrollService.hasShareArea(viewPort, skillArea)) {
-            skill.scrolled = true;
-            skillIdxs.splice(i, 1);
+          if (this.scrollService.hasShareArea(viewPort, skillGroupArea)) {
+            skillGroup.scrolled = true;
+            skillGroupIdxs.splice(i, 1);
           }
         }
       }
     }
 
-    if (aboutMe.scrolled && skillIdxs.length < 1) {
+    if (content.scrolled && skillGroupIdxs.length < 1) {
       this.subscription.unsubscribe();
     }
   }

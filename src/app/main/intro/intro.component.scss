@@ -1,142 +1,156 @@
 // $selector-host: ':host';
-$selector-host: narr-intro;
-$btn-color: #32AE8C;
+$selector-host: ':host narr-intro';
+$host-font-size: 13px;
+// ================================
+$intro-scroll-down-padding-bottom: 0.5em;
+// ================================
+@mixin intro-text-shadow() {
+  $count: 10;
+  $base-color: #2e2e2e;
+  $ratio: 1%;
+  $color: '';
+  $text-shadow: 0 -1px 0 #e0dfdc;
+  @for $i from 1 through $count {
+    // $color: lighten($base-color, ($i - 1) * $ratio);
+    $color: darken($base-color, ($i - 1) * $ratio);
+    $next-shadow: 0 #{$i}px 0 $color;
+    $text-shadow: $text-shadow, $next-shadow;
+  }
+  text-shadow: $text-shadow,
+  0 $count * 2px $count * 2px rgba($color, 0.8);
+}
+
+$intro-btn-color: #32AE8C;
+@mixin intro-btn-normal() {
+  background: lighten($intro-btn-color, 2%);
+  border: 1px solid darken($intro-btn-color, 4%);
+  box-shadow: 3px 3px 1px darken($intro-btn-color, 8%);
+  color: #fff;
+}
+
 // ================================
 // ================================
 #{$selector-host} {
   display: block;
-  background: rgba(0, 144, 255, 0.3);
   position: relative;
-  min-height: 400px;
+  min-height: 600px;
   height: 100%;
-}
-
-@mixin a-normal() {
-  background: lighten($btn-color, 2%);
-  border: 1px solid darken($btn-color, 4%);
-  box-shadow: 3px 3px 1px darken($btn-color, 8%);
-  color: #fff;
+  font-size: $host-font-size;
 }
 
 :host {
-  canvas.rain-bg {
-    display: none; // In Mac, Canvas Ani has bad performance on a wide width window
-    width: 100%;
+  .intro {
     height: 100%;
+    // border: 1px dashed rgba(0, 0, 0, 0.2);
+    canvas.rain-bg {
+      display: none; // In Mac, Canvas Ani has a bad performance on a wide width of window
+      width: 100%;
+      height: 100%;
+    }
+    .intro-center {
+      $height: 16.5em;
+      position: absolute;
+      top: 50%;
+      margin: (-$height / 2 - 2) 0 0 0;
+      width: 100%;
+      height: $height;
+      text-align: center;
+      // border: 1px dashed rgba(0, 0, 0, 0.2);
+    }
+    .intro-scroll-down {
+      display: block;
+      position: absolute;
+      padding-bottom: $intro-scroll-down-padding-bottom;
+      width: 100%;
+      bottom: 0;
+      text-align: center;
+      color: #fff;
+      font-size: 5em;
+      &:hover {
+        animation: intro-scroll-down 0.8s linear 0.2s infinite alternate;
+      }
+    }
   }
   .intro-center {
-    position: absolute;
-    top: 50%;
-    margin: -88px 0 0 0;
-    width: 100%;
-    text-align: center;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.46);
     h1 {
-      margin-bottom: 50px;
+      margin-bottom: 2em;
       color: #fff;
-      font-size: 42px;
+      font-size: 3.3em;
       font-weight: 600;
-    }
-    a:hover {
-      background: darken($btn-color, 2%);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 1px 1px;
-      color: lighten($btn-color, 18%);
+      letter-spacing: 0.05em;
+      @include intro-text-shadow();
     }
     a {
-      @include a-normal();
-      padding: 10px 20px;
+      @include intro-btn-normal();
+      padding: 0.5em 1em;
       border-radius: 3px;
-      line-height: 36px;
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 1.5em;
+      font-weight: 600;
       letter-spacing: 1px;
-    }
-  }
-  .intro-scroll-down {
-    display: block;
-    position: absolute;
-    width: 100%;
-    bottom: 5%;
-    text-align: center;
-    animation: intro-scroll-down 0.8s linear 0s infinite alternate;
-  }
-}
-
-// ================================
-// ================================
-.touch {
-  :host {
-    .intro-center {
-      // for touch devices, to disable hover after click
-      a:hover {
-        @include a-normal();
+      &:hover {
+        background: darken($intro-btn-color, 2%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 1px 1px;
+        color: lighten($intro-btn-color, 18%);
       }
     }
   }
 }
 
-// .ie9 {
-//   :host {}
-// }
 // ================================
 // ================================
 @keyframes intro-scroll-down {
-  0% {
-    bottom: 5%;
-    opacity: 1;
-  }
   100% {
-    bottom: 7%;
-    opacity: 0.2;
+    opacity: 0;
+    padding-bottom: $intro-scroll-down-padding-bottom+ 0.4;
   }
 }
 
 // ================================
 // ================================
+// .touch {}
+// .ie9 {}
+// ================================
+// ================================
 @media only screen and (max-width: 1600px) {
+  #{$selector-host} {
+    font-size: $host-font-size - 1;
+  }
   :host {
     .intro-center {
-      h1 {
-        font-size: 38px;
+      a {
+        font-size: 18px;
       }
     }
   }
 }
 
 @media only screen and (max-width: 1280px) {
-  :host {
-    .intro-center {
-      h1 {
-        font-size: 34px;
-      }
-    }
+  #{$selector-host} {
+    font-size: $host-font-size - 2.5;
   }
 }
 
 @media only screen and (max-width: 800px) {
   :host {
-    canvas.rain-bg {
-      display: block;
-    }
-    .intro-center {
-      h1 {
-        font-size: 30px;
+    .intro {
+      canvas.rain-bg {
+        display: block;
       }
     }
   }
 }
 
 @media only screen and (max-width: 480px) {
+  #{$selector-host} {
+    min-height: 400px;
+    font-size: $host-font-size - 4;
+  }
   :host {
     .intro-center {
-      h1 {
-        font-size: 26px;
+      a {
+        font-size: 16px;
       }
     }
   }
 }
-
-// @media only screen and (max-device-width: 800px) {
-//   :host {}
-// }

@@ -1,11 +1,11 @@
 import {
   afterEach,
+  async,
   beforeEach,
   beforeEachProviders,
   describe,
   expect,
   inject,
-  injectAsync,
   it
 } from '@angular/core/testing';
 // import { TestComponentBuilder } from '@angular/compiler/testing';
@@ -19,10 +19,12 @@ describe('App', () => {
     provide(ElementRef, { useValue: ElementRef })
   ]);
 
-  it('should have a Regex for Tag name', inject([AppComponent], app => {
-    const subject = app.tagNameRegex;
-    const result = /narr-(.*?)$/i;
+  it('should have Sidebar\'s status false at first', inject([AppComponent], app => {
+    const subject = app.sidebarOpen;
+    const subject2 = app.sidebarSlide;
+    const result = false;
 
     expect(subject).toEqual(result);
+    expect(subject2).toEqual(result);
   }));
 });

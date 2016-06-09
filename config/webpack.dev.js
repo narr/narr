@@ -2,7 +2,6 @@ const helpers = require('./helpers');
 const Sprite = require('sprite-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const webpack = require('webpack');
 const WebpackMd5Hash = require('webpack-md5-hash');
@@ -20,24 +19,19 @@ const HMR = helpers.hasProcessFlag('--hot');
 const HASH = HMR ? 'hash' : 'chunkhash';
 const INDEX_PATH = helpers.root('src/index.html');
 const ICON_PATH = /icon/;
-const SPRITE_SRC_PATH = helpers.root('src/asset/icon/sprite');
+const SPRITE_SRC_PATH = helpers.root('src/asset/img/icon/sprite');
 const SPRITE_TARGET_PATH = helpers.root('temp/icon/sprite');
 
 const md5Hash = HMR ? f => f : new WebpackMd5Hash();
 
 module.exports = {
-  // custom data for index.html
-  metadata: {
-    ENV: ENV,
-    baseUrl: BASE_URL
-  },
+  metadata: {}, // for HtmlWebpackPlugin
 
   // http://webpack.github.io/docs/configuration.html#devtool
   // https://github.com/webpack/docs/wiki/build-performance#sourcemaps
   devtool: 'source-map',
 
-  // for entry and output path
-  context: ROOT_PATH,
+  context: ROOT_PATH, // for entry and output path(for file loader)
 
   entry: {
     polyfills: [
@@ -56,8 +50,7 @@ module.exports = {
   // http://webpack.github.io/docs/configuration.html#output
   output: {
     publicPath: BASE_URL,
-    // Cannot use [chunkhash] for HMR
-    filename: `js/[name].bundle.js?[${HASH}]`,
+    filename: `js/[name].bundle.js?[${HASH}]`, // Cannot use [chunkhash] for HMR
     chunkFilename: `js/[name].chunk.js?[${HASH}]`
   },
 
@@ -77,6 +70,9 @@ module.exports = {
       }
     ],
     loaders: [
+      // https://github.com/jtangelder/sass-loader
+      // https://github.com/postcss/postcss-loader
+      // https://github.com/webpack/css-loader
       // https://github.com/bholloway/resolve-url-loader
       {
         test: /\.scss$/,
@@ -84,18 +80,16 @@ module.exports = {
           FONT_AWESOME_SCSS_PATH,
           INDEX_SCSS_PATH
         ],
-        loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss', 'resolve-url', 'sass?sourceMap'])
+        loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss', 'resolve-url',
+          'sass?sourceMap'])
       },
-      // https://github.com/jtangelder/sass-loader
-      // https://github.com/postcss/postcss-loader
-      // https://github.com/webpack/css-loader
       {
         test: /\.scss$/,
         exclude: [
           FONT_AWESOME_SCSS_PATH,
           INDEX_SCSS_PATH
         ],
-        loaders: ['css', 'postcss', 'sass'] // no need sourceMap
+        loaders: ['css', 'postcss', 'sass'] // don't need sourceMap for style tags
       },
       // https://github.com/webpack/file-loader
       {
@@ -104,14 +98,13 @@ module.exports = {
           ICON_PATH
         ],
         loaders: [
-          'file?name=asset/icon/[name].[ext]?[hash]'
+          'file?name=asset/img/ic/[name].[ext]?[hash]'
         ]
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         exclude: [
-          ICON_PATH,
-          /node_modules\/font-awesome/
+          ICON_PATH
         ],
         loaders: [
           'file?name=asset/img/[name].[ext]?[hash]'
@@ -179,31 +172,6 @@ module.exports = {
       spriteName: 'ics',
       processor: 'scss',
       bundleMode: 'multiple'
-    }),
-
-    // https://github.com/kevlened/copy-webpack-plugin
-    // from: relative to context path
-    // to: relative to out path
-    // To overwrite sprite icon images again after they are copied by 'import'
-    // as it sometimes doesn't copy the images rightly because of timing(?).
-    // This plugin makes files builded one more time as they are watched
-    new CopyWebpackPlugin(
-      [
-        // make 'to path' diffrent from SPRITE_TARGET_PATH so webpack-dev-server read
-        // the sprite images properly
-        { from: '../temp/icon/sprite/*.png', to: 'asset/icon', flatten: true }
-      ],
-      {
-        ignore: [
-          '.DS_Store'
-        ]
-      }
-    )
-  ],
-
-  // https://webpack.github.io/docs/webpack-dev-server.html
-  // https://github.com/webpack/webpack-dev-server/blob/2c9a461b3433bb9d58fa2cea576aab822b88d5fd/bin/webpack-dev-server.js
-  devServer: {
-    outputPath: helpers.root('temp') // for CopyWebpackPlugin in webpack-dev-server
-  }
+    })
+  ]
 };

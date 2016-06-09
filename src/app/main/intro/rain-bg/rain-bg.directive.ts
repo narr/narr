@@ -1,6 +1,6 @@
 import { Directive, ElementRef, OnInit } from '@angular/core';
 
-import { RainBgModel } from './rain-bg.model'
+import { RainBg } from './rain-bg.model'
 
 @Directive({
   selector: '[narrRainBg]'
@@ -9,7 +9,8 @@ export class RainBgDirective implements OnInit {
   private canvasW: number;
   private canvasH: number;
   private ctx;
-  private particles: Array<RainBgModel>;
+  // private particles: Array<RainBg>;
+  private particles: RainBg[];
   private MAX_PARTS: number = 40;
   private SPEED: number = 0.4;
 
@@ -35,8 +36,8 @@ export class RainBgDirective implements OnInit {
         this.particles.push({
           x: Math.random() * this.canvasW,
           y: Math.random() * this.canvasH,
-          vx: Math.random() * 4 - 2,
-          vy: Math.random() * 10 + 10
+          vx: Math.random() * 4 - 2, // -2 <= vx < 2
+          vy: Math.random() * 10 + 10 // 10 <= vy < 20
         })
       }
 

@@ -1,5 +1,5 @@
 const path = require('path');
-const _root = path.resolve(__dirname, '..');
+const rootPath = path.resolve(__dirname, '..');
 // console.log('root directory:', root());
 
 function hasProcessFlag(flag) {
@@ -7,13 +7,8 @@ function hasProcessFlag(flag) {
   return process.argv.join('').indexOf(flag) > -1;
 }
 
-function root(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join.apply(path, [_root].concat(args));
-}
-
-function reverse(arr) {
-  return [...arr].reverse();
+function join(a, b) {
+  return path.join(a, b);
 }
 
 function packageSort(packages) {
@@ -39,7 +34,17 @@ function packageSort(packages) {
   }
 }
 
+function reverse(arr) {
+  return [...arr].reverse();
+}
+
+function root(args) {
+  args = Array.prototype.slice.call(arguments, 0);
+  return path.join.apply(path, [rootPath].concat(args));
+}
+
 exports.hasProcessFlag = hasProcessFlag;
-exports.root = root;
-exports.reverse = reverse;
+exports.join = join;
 exports.packageSort = packageSort;
+exports.reverse = reverse;
+exports.root = root;

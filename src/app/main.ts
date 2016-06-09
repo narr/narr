@@ -12,9 +12,7 @@ function main() {
 }
 
 if ('development' === ENV) {
-  // HMR does't work with IE 9
-  const ie9 = document.querySelector('html').className.indexOf('ie9');
-  if (true === HMR && -1 === ie9) {
+  if (true === HMR) {
     const ngHmr = require('angular2-hmr');
     ngHmr.hotModuleReplacement(main, module);
   } else {

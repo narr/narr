@@ -9,6 +9,4 @@ interface NodeRequire extends WebpackRequire { }
 // @ Webpack DefinePlugin variables
 declare var ENV: string;
 declare var HMR: boolean;
-declare var PROJECT_PATH: string;
-declare var BASE_URL: string;
 // Webpack DefinePlugin variables @

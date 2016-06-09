@@ -1,52 +1,60 @@
 $selector-host: ':host';
-// $selector-host: 'narr-main';
+// $selector-host: ':host narr-main'; // for SCSS's @import
+$host-margin-left: 250px; // sidebar width
+$host-font-size: 13px;
+$host-margin-left-sidebar-open: $host-margin-left - 50;
+// ================================
+//
+// ================================
+// @mixin m() {}
+// ================================
 // ================================
 #{$selector-host} {
   display: block;
-  background: url(~asset/img/bg.jpg) no-repeat center center/cover fixed;
-  margin-left: 250px;
+  background: url(~asset/img/bg.jpg);
+  background-size: cover;
+  margin-left: $host-margin-left;
   height: 100%;
-  overflow: auto;
+  font-size: $host-font-size;
+  overflow: auto; // for a scroll event
+  // border: 1px dashed rgba(0, 0, 0, 0.2);
 }
 
+// ================================
+// ================================
+// @keyframes kf {}
+// ================================
+// ================================
+// .touch {}
+// .ie9 {}
+// ================================
+// ================================
+// @media only screen and (max-width: 1600px) {}
 @media only screen and (max-width: 1280px) {
   #{$selector-host} {
-    margin-left: 200px;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  #{$selector-host} {
-    // margin-left: 280px;
+    margin-left: $host-margin-left-sidebar-open;
   }
 }
 
 @media only screen and (max-width: 800px) {
   #{$selector-host} {
     margin-left: 0;
-    // transform: translateX(0);
-    width: 100%;
     backface-visibility: hidden;
-    perspective: 99999px;
-    &.sidebar-ani {
-      // transition: margin-left 0.3s ease;
-      transition: transform 0.3s ease;
+    perspective: 1px;
+    &.slide {
+      transition: transform 0.3s;
     }
-    &.sidebar-active {
-      // margin-left: 200px;
-      transform: translateX(200px);
+    &.sidebar-open {
+      transform: translateX($host-margin-left-sidebar-open);
     }
   }
 }
 
-@media only screen and (max-width: 600px) {
-  #{$selector-host} {
-    background: url(~asset/img/bg.jpg) -1200px -120px;
-  }
-}
-
+// @media only screen and (max-width: 480px) {}
+// @media only screen and (max-device-width: 480px) {}
+// ================================
+// ================================
 @import './intro/intro.component';
-@import './portfolio/portfolio.component';
 @import './about/about.component';
+@import './timeline/timeline.component';
 @import './contact/contact.component';
-@import './footer/footer.component';

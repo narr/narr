@@ -1,1 +1,1 @@
-export * from './twitter-widget.directive';
+export * from './scroll.service';

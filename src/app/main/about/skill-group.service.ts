@@ -1,140 +1,167 @@
 import { Injectable } from '@angular/core';
 
-import { SkillsModel } from './skills.model';
+import { SkillGroup } from './skill-group.model';
 
 @Injectable()
-export class SkillService {
-  private skills: Array<SkillsModel>;
+export class SkillGroupService {
+  private skillGroups: SkillGroup[];
 
   constructor() {
-    this.skills = [
+    this.skillGroups = [
       {
         summary: 'Language',
-        skill: [
+        skills: [
           {
             href: 'https://www.w3.org/TR/html5/',
-            class: 'ic-html5'
+            class: 'ic-html5',
+            name: 'HTML5'
           },
           {
             href: 'https://www.w3.org/TR/CSS/',
-            class: 'ic-css3'
+            class: 'ic-css3',
+            name: 'CSS3'
           },
           {
             href: 'http://www.sass-lang.com/',
-            class: 'ic-sass'
+            class: 'ic-sass',
+            name: 'SASS'
           },
           {
             href: 'http://lesscss.org/',
-            class: 'ic-less'
+            class: 'ic-less',
+            name: 'LESS'
           },
           {
             href: 'http://www.ecma-international.org/ecma-262/6.0/',
-            class: 'ic-js'
+            class: 'ic-js',
+            name: 'Javascript'
           },
           {
             href: 'https://nodejs.org/en/',
-            class: 'ic-nodejs'
+            class: 'ic-nodejs',
+            name: 'Node.js'
           },
           {
             href: 'https://www.typescriptlang.org/',
-            class: 'ic-typescript'
+            class: 'ic-typescript',
+            name: 'Typescript'
           }
         ]
       },
       {
         summary: 'Framework & Library',
-        skill: [
+        skills: [
           {
             href: 'https://jquery.com/',
-            class: 'ic-jquery'
+            class: 'ic-jquery',
+            name: 'jQuery'
           },
           {
             href: 'http://getbootstrap.com/',
-            class: 'ic-bootstrap'
+            class: 'ic-bootstrap',
+            name: 'Bootstrap'
           },
           {
             href: 'https://angular.io/',
-            class: 'ic-angular'
+            class: 'ic-angular',
+            name: 'Angular'
           },
           {
             href: 'https://babeljs.io/',
-            class: 'ic-babel'
+            class: 'ic-babel',
+            name: 'Babel'
           },
           {
             href: 'https://facebook.github.io/react/',
-            class: 'ic-react'
+            class: 'ic-react',
+            name: 'React'
           },
           {
             href: 'http://redux.js.org/',
-            class: 'ic-redux'
+            class: 'ic-redux',
+            name: 'Redux'
           },
           {
             href: 'http://jasmine.github.io/',
-            class: 'ic-jasmine'
+            class: 'ic-jasmine',
+            name: 'Jasmine'
           },
           {
             href: 'https://mochajs.org/',
-            class: 'ic-mocha'
+            class: 'ic-mocha',
+            name: 'Mocha'
           }
         ]
       },
       {
         summary: 'ETC',
-        skill: [
+        skills: [
           {
             href: 'https://www.npmjs.com/',
-            class: 'ic-npm'
+            class: 'ic-npm',
+            name: 'NPM'
           },
           {
             href: 'https://webpack.github.io/',
-            class: 'ic-webpack'
+            class: 'ic-webpack',
+            name: 'Webpack'
           },
           {
             href: 'http://gulpjs.com/',
-            class: 'ic-gulp'
+            class: 'ic-gulp',
+            name: 'Gulp'
           },
           {
             href: 'http://gruntjs.com/',
-            class: 'ic-grunt'
+            class: 'ic-grunt',
+            name: 'Grunt'
           },
           {
             href: 'http://www.protractortest.org/',
-            class: 'ic-protractor'
+            class: 'ic-protractor',
+            name: 'Protractor'
           },
           {
             href: 'https://karma-runner.github.io/',
-            class: 'ic-karma'
+            class: 'ic-karma',
+            name: 'Karma'
           },
           {
             href: 'http://nightwatchjs.org/',
-            class: 'ic-nightwatchjs'
+            class: 'ic-nightwatchjs',
+            name: 'Nightwatch.js'
           },
           {
             href: 'https://git-scm.com/',
-            class: 'ic-git'
+            class: 'ic-git',
+            name: 'Git'
           },
           {
             href: 'https://subversion.apache.org/',
-            class: 'ic-svn'
+            class: 'ic-svn',
+            name: 'SVN'
           },
           {
             href: 'https://travis-ci.org/',
-            class: 'ic-travis'
+            class: 'ic-travis',
+            name: 'Travis'
           },
           {
             href: 'https://www.docker.com/',
-            class: 'ic-docker'
+            class: 'ic-docker',
+            name: 'Docker'
           },
           {
             href: 'https://www.firebase.com/',
-            class: 'ic-firebase'
+            class: 'ic-firebase',
+            name: 'Firebase'
           }
         ]
       }
     ];
   }
 
-  getSkills() {
-    return this.skills;
+  getSkillGroups() {
+    return this.skillGroups;
   }
 }

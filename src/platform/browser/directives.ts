@@ -1,7 +1,6 @@
 import { PLATFORM_DIRECTIVES, provide } from '@angular/core';
 
-export const APPLICATION_DIRECTIVES = [
-];
+export const APPLICATION_DIRECTIVES = [];
 
 export const DIRECTIVES = [
   // multi: true

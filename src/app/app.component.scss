@@ -1,8 +1,30 @@
+// $host: host;
+// ================================
+// $var: var;
+// ================================
+// ================================
+// @mixin m() {}
+// ================================
+// ================================
 :host {
   display: block;
-  // background: url(~asset/img/bg.jpg) no-repeat center center/cover fixed;
-  // background-size: cover;
-  background: #212228;
+  // makie it scrollable horizontally when the window is narrower than 320px(iPhone 5)
+  min-width: 320px;
   height: 100%;
+  // disable scrolling horizontally when sidebar is open in a narrow width of window
   overflow-x: hidden;
 }
+
+// ================================
+// ================================
+// @keyframes kf {}
+// ================================
+// ================================
+// .touch {}
+// .ie9 {}
+// ================================
+// ================================
+// @media only screen and (max-width: 1600px) {}
+// ================================
+// ================================
+// @import '';

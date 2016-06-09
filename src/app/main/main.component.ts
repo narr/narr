@@ -1,44 +1,44 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, OnInit } from '@angular/core';
+import {
+  AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Output
+} from '@angular/core';
 
 import { AboutComponent } from './about';
 import { ContactComponent } from './contact';
-import { FooterComponent } from './footer';
 import { IntroComponent } from './intro';
-import { PortfolioComponent } from './portfolio';
-import { ScrollService } from './shared';
+import { ScrollService } from '../shared'; // from parent
+import { TimelineComponent } from './timeline';
 
 @Component({
   selector: 'narr-main',
   template: require('./main.component.html'),
   styles: [require('./main.component.scss').toString()],
   directives: [
-    AboutComponent, ContactComponent, IntroComponent, PortfolioComponent, FooterComponent
-  ],
-  providers: [ScrollService]
+    AboutComponent, ContactComponent, IntroComponent, TimelineComponent
+  ]
 })
-export class MainComponent implements AfterViewInit, OnInit {
+export class MainComponent implements AfterViewInit {
+  @Output() disableSlide = new EventEmitter();
   private lastScrollTop: number;
+  private SLIDE_ENABLE_MAX_WIDTH = 800;
 
   constructor(
     private elementRef: ElementRef,
     private scrollService: ScrollService
-  ) { }
+  ) {
+    scrollService.setScrollTarget(elementRef.nativeElement);
+  }
 
-  ngAfterViewInit() {
+  ngAfterViewInit() { // to scroll after views are all rendered
     // http://www.w3schools.com/html/html5_webstorage.asp
     if (window && window.sessionStorage) {
       let scrollTop = window.sessionStorage.getItem('lastScrollTop');
       if (scrollTop !== null) {
-        // console.log(scrollTop);
         scrollTop *= 1; // convert to number
-        if (scrollTop !== 0) {
-          this.elementRef.nativeElement.scrollTop = scrollTop;
-        }
+        // console.log(scrollTop);
+        this.elementRef.nativeElement.scrollTop = scrollTop;
       }
     }
   }
-
-  ngOnInit() { }
 
   @HostListener('window:beforeunload', ['$event'])
   private onBeforeunload(e) {
@@ -48,13 +48,23 @@ export class MainComponent implements AfterViewInit, OnInit {
     }
   };
 
+  @HostListener('window:resize', ['$event'])
+  private onResize(e) {
+    // console.log(e);
+    this.setScrollTop();
+    if (window.innerWidth > this.SLIDE_ENABLE_MAX_WIDTH) {
+      this.disableSlide.emit(null);
+    }
+  }
+
   @HostListener('scroll', ['$event'])
   private onScroll(e) {
-    // TODO: disable this in IE9
-    const scrollTop = this.lastScrollTop = e.target.scrollTop;
+    this.setScrollTop();
+  }
+
+  private setScrollTop() {
     // console.log(scrollTop);
-    this.scrollService.onScroll({
-      event: e, scrollTop
-    });
+    this.lastScrollTop = this.elementRef.nativeElement.scrollTop;
+    this.scrollService.onScroll();
   }
 }

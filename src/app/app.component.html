@@ -1,6 +1,6 @@
-<narr-nav #nav (sidebarTrigger)="setActiveArea($event)"></narr-nav>
-<narr-sidebar [ngClass]="{'sidebar-ani': nav.sidebarAni, 'sidebar-active': nav.sidebarActive}"
-  [sidebarActive]="activeEl" (closeSidebar)="nav.sidebarActive = false" [refEl]="mainEl">
-</narr-sidebar>
-<narr-main class="clearfix" [ngClass]="{'sidebar-ani': nav.sidebarAni, 'sidebar-active': nav.sidebarActive}">
+<narr-navbar (triggerSidebar)="onTriggerSidebar($event)" [class.sidebar-open]="sidebarOpen">
+</narr-navbar>
+<narr-sidebar [ngClass]="{'open': sidebarOpen, 'slide': sidebarSlide}"></narr-sidebar>
+<narr-main [ngClass]="{'sidebar-open': sidebarOpen, 'slide': sidebarSlide}" (disableSlide)="
+  onDisableSlide()">
 </narr-main>

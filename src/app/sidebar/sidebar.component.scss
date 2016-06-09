@@ -1,181 +1,194 @@
-@mixin sidebar-about {
-  float: left;
-  width: 100%;
-  padding: 40px;
-  border-bottom: 1px solid #2C2D34;
-  .sidebar-thumbnail {
-    float: left;
-    width: 55px;
-  }
-  .sidebar-name {
-    float: left;
-    margin-left: 10px;
-  }
-  .sidebar-title {
-    font-size: 26px;
-    font-weight: 600;
-  }
-  .sidebar-content {
-    color: #bbb;
-    letter-spacing: 0.5px;
-  }
-}
-
-@mixin sidebar-filter-left-active {
-  border-left-color: #3AB694;
-  color: #3AB694;
-}
-
-@mixin sidebar-filter-left {
-  float: left;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 25px 0;
-  border-top: 1px solid #161616;
-  border-bottom: 1px solid #191919;
-  li {
-    float: left;
-    width: 100%;
-    border-left: 4px solid transparent;
-    color: #eee;
-    &:hover {
-      @include sidebar-filter-left-active;
+$selector-host: ':host';
+// $selector-host: ':host narr-sidebar';
+$host-width: 250px;
+$host-font-size: 13px;
+// ================================
+$sidebar-border-bottom-color: #292929;
+$sidebar-category-border-left-color: #3AB694;
+// ================================
+$sidebar-dash-colors: #3AA1BF,
+#1B8798,
+#3AB694;
+$sidebar-dash-num: length($sidebar-dash-colors);
+$sidebar-dash: 100% / $sidebar-dash-num;
+$sidebar-dash-gap: 100% - $sidebar-dash;
+$sidebar-dash-ani-duration: 8;
+$sidebar-dash-ani-speed: 4;
+@mixin get-sidebar-dash-ani() {
+  @for $i from 1 through $sidebar-dash-num {
+    &:nth-child(#{$i}) {
+      // a negative value in animation-delay - https://css-tricks.com/css-animation-tricks/
+      // animation: sidebar-dash-ani-#{$i} unquote($sidebar-dash-ani-duration + 's') linear infinite;
+      animation: sidebar-dash-ani-#{$i} $sidebar-dash-ani-duration#{s} linear infinite;
     }
   }
-  .sidebar-active {
-    @include sidebar-filter-left-active;
-  }
-  a {
-    float: left;
-    margin-left: 2px;
-    padding: 15px 40px;
-    width: 84%;
-    box-sizing: border-box;
-    color: inherit;
-    font-size: 18px;
-  }
 }
 
-@mixin sidebar-list-social {
-  float: left;
-  padding-left: 40px;
-  li {
-    float: left;
-  }
-  a {
-    padding: 4px;
-    vertical-align: top;
-    color: #0E7B5C;
-    font-size: 30px;
-  }
-  a:hover {
-    color: #bbb;
-  }
-}
-
-@mixin sidebar-made-with {
-  float: left;
-  margin-top: 5px;
-  padding: 15px 40px;
-  width: 100%;
-  border-top: 1px solid #292929;
-  color: #eee;
-  font-size: 14px;
-  a {
-    color: #bbb;
-    font-size: 15px;
-  }
-  a:hover {
-    color: #0E7B5C;
-  }
-}
-
-// ========================
-:host {
-  // background: #212228;
+// ================================
+// ================================
+#{$selector-host} {
+  background: #212228;
   position: fixed;
-  left: 0;
-  // top: 0;
-  // bottom: 0;
-  width: 250px;
+  width: $host-width;
   height: 100%;
-  box-shadow: inset -0.22em 0 0.22em 0 rgba(0, 0, 0, 0.1);
-  z-index: 101;
-  .sidebar-about {
-    @include sidebar-about;
-  }
-  .sidebar-filter-left {
-    @include sidebar-filter-left;
-  }
-  .sidebar-list-social {
-    @include sidebar-list-social;
-  }
-  .sidebar-made-with {
-    @include sidebar-made-with;
-  }
+  font-size: $host-font-size;
+  overflow: auto; // for a small height of window
+  // border: 1px dashed rgba(0, 0, 0, 0.2);
 }
 
-@media only screen and (max-width: 1280px) {
-  :host {
-    width: 200px;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  :host {
-    // width: 280px;
-    .sidebar-about {
-      .sidebar-title {
-        font-size: 22px;
+:host {
+  .sidebar {
+    .top {
+      position: relative;
+      height: 10em;
+      border-bottom: 1px solid $sidebar-border-bottom-color;
+    }
+    .home {
+      $width: 1em;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -$width / 2;
+      margin-top: -$width / 2;
+      width: $width;
+      height: $width;
+      font-size: 6em;
+      overflow: hidden; // for the right size of outline
+    }
+    svg {
+      // background: #082330;
+      width: 100%;
+      height: 100%;
+      font-weight: 600;
+    }
+    .stroke {
+      fill: none;
+      stroke-width: 2.5px;
+      stroke-dasharray: $sidebar-dash, $sidebar-dash-gap;
+      @for $i from 1 through $sidebar-dash-num {
+        &:nth-child(#{$i}) {
+          stroke: nth($sidebar-dash-colors, $i);
+          stroke-dashoffset: $sidebar-dash * ($i - 1);
+        }
+      }
+      // @include get-sidebar-dash-ani();
+    }
+    ul {
+      padding: 25px 0;
+      border-bottom: 1px solid $sidebar-border-bottom-color;
+    }
+    li {
+      margin-bottom: 10px;
+      border-left: 4px solid transparent;
+      box-sizing: border-box;
+      cursor: pointer;
+      &:hover,
+      &.active,
+      {
+        background: #353535;
+        border-left-color: $sidebar-category-border-left-color;
       }
     }
+  }
+  .sidbar-svg {
+    &:hover {
+      .stroke {
+        // for performance, do ani only on :hover state
+        @include get-sidebar-dash-ani();
+      }
+    }
+  }
+  .sidebar-category {
+    &:hover,
+    &.active {
+      a {
+        color: $sidebar-category-border-left-color;
+      }
+    }
+    a {
+      margin-left: 2em;
+      line-height: 2.5;
+      color: #eee;
+      font-size: 1.6em;
+    }
+  }
+  .sidebar-built-with {
+    padding: 40px;
+    line-height: 2;
+    color: #aaa;
+    font-size: 1.1em;
+    a {
+      display: block;
+      background: #1667b7;
+      margin-top: 5px;
+      padding: 5px 0;
+      text-align: center;
+      color: #fff;
+    }
+    a:hover {
+      color: #263238;
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+// ================================
+// ================================
+@for $i from 1 through $sidebar-dash-num {
+  @keyframes sidebar-dash-ani-#{$i} {
+    100% {
+      // negative value => to change the ani direction
+      // stroke-dashoffset: -$sidebar-dash-gap * $sidebar-dash-ani-duration * //
+      // $sidebar-dash-ani-speed + $sidebar-dash * ($i - 1);
+      stroke-dashoffset: -$sidebar-dash-gap * $sidebar-dash-ani-duration * //
+      $sidebar-dash-ani-speed + $sidebar-dash * ($i - 1);
+    }
+  }
+}
+
+// ================================
+// ================================
+// .touch {}
+// .ie9 {}
+// ================================
+// ================================
+@media only screen and (max-width: 1280px) {
+  #{$selector-host} {
+    width: $host-width - 50;
+    font-size: $host-font-size - 1;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  :host {
-    // margin-left: -200px;
-    transform: translateX(-200px);
-    width: 200px;
+  #{$selector-host} {
+    font-size: $host-font-size - 1.5;
+    transform: translateX(-($host-width - 50));
     // @ for performance
     // http://blog.teamtreehouse.com/increase-your-sites-performance-with-hardware-accelerated-css
     backface-visibility: hidden;
-    perspective: 99999px;
+    perspective: 1px;
     // for performance @
-    &.sidebar-ani {
-      // transition: margin-left 0.3s ease;
-      transition: transform 0.3s ease;
+    &.slide {
+      // for performance, slide css should be defined before open css
+      transition: transform 0.3s;
     }
-    &.sidebar-active {
-      // margin-left: 0;
+    &.open {
       transform: translateX(0);
     }
-    .sidebar-about {
-      padding: 20px;
-      .sidebar-thumbnail {
-        display: none;
-      }
-    }
-    .sidebar-filter-left {
-      a {
-        padding: 12px 20px;
-      }
-    }
-    .sidebar-list-social {
-      padding-left: 20px;
-    }
-    .sidebar-made-with {
-      padding: 15px 20px;
-    }
   }
-}
-
-@media only screen and (max-width: 768px) {
   :host {
-    .sidebar-filter-left {
-      a {
-        margin: 0;
+    .sidebar {
+      ul {
+        padding: 15px 0;
       }
+    }
+    .sidebar-built-with {
+      padding: 30px;
     }
   }
 }

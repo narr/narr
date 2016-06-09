@@ -1,3 +1,3 @@
 export * from './about.component';
-export * from './skill.service';
-export * from './skills.model';
+export * from './skill-group.service';
+export * from './skill-group.model';

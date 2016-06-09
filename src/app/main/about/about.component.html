@@ -1,32 +1,35 @@
-<div class="about-wrapper">
-  <div class="about-section about-me" #scrollTarget [class.ani]="aboutMeScrolled &&
-    aboutMeScrolled.scrolled">
+<section class="about">
+  <div class="about-section about-me">
     <h1>About me</h1>
-    <span class="summary">I am a front‑end developer who is an enthusiastic supporter for
-    Open-source.</span>
-    <p>I started my career as an Android programmer but after I got the simplicity of
-      the debugging process(refreshing browser) in Javascript, I fell in love with
-      JS.
-      <br>
-      <br> When I code, I like to make it testable, efficient and reusable. I am
-      eager to learn new technologies and like to share opinions. That's why I'm
-      into Open-source and Javascript.
-      <br>
-      <br>I love coffee(not CoffeeScript but Typescript), binge-watching, taking
-      a walk, dogs and a simple life.
-    </p>
+    <div class="content" #scrollTarget [class.ani]="contentScrolled && contentScrolled.scrolled">
+      <span class="summary">I am a front‑end developer who is an enthusiastic supporter for
+        Open-source.</span>
+      <p>I started my career as an Android programmer but after I got the simplicity
+        of the debugging process(refreshing browser) in Javascript, I fell in love
+        with JS.
+        <br>
+        <br> When I code, I like to make it testable, efficient and reusable. I am
+        eager to learn new technologies and like to share opinions. That's why I'm
+        into Open-source and Javascript.
+        <br>
+        <br>I love coffee(not CoffeeScript but Typescript), binge-watching, taking
+        a walk, dogs and a simple life.
+      </p>
+    </div>
   </div>
   <div class="about-section about-skills">
     <h1>About skills</h1>
-    <div class="skills" *ngFor="let val of skills; let skillIdx = index;" #scrollTarget
-      [class.ani]="aboutSkillsScrolled[skillIdx] && aboutSkillsScrolled[skillIdx].scrolled">
+    <div class="group" *ngFor="let val of skillGroups; let i = index;" #scrollTarget
+      [class.ani]="skillGroupScrolleds[i] && skillGroupScrolleds[i].scrolled">
       <span class="summary">{{val.summary}}</span>
-      <a class="about-skill-detail" [href]="item.href" target="_blank" *ngFor="let item of val.skill">
+      <a class="about-skills-skill" [href]="skill.href" target="_blank" *ngFor="let skill of
+        val.skills">
+        <span class="blind">{{skill.name}}</span>
         <div class="about-skill-bg-wrapper ic-sprite-50">
-          <span [class]="item.class"></span>
-          <span [class]="'rotate-x ' + item.class"></span>
+          <span [class]="skill.class"></span>
+          <span [class]="'rotate-x ' + skill.class"></span>
         </div>
       </a>
     </div>
   </div>
-</div>
+</section>

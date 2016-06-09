@@ -3,8 +3,8 @@ const rimraf = require('rimraf');
 const Sprite = require('sprite-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fs = require('fs');
+const copy = require('copy');
 
 const webpack = require('webpack');
 const WebpackMd5Hash = require('webpack-md5-hash');
@@ -22,7 +22,7 @@ const ENTRY_ORDER = ['polyfills', 'vendor', 'main'];
 const OUTPUT_PATH = IS_FOR_GITHUB_PAGE ? helpers.root('gh-pages') : helpers.root('dist');
 const INDEX_PATH = helpers.root('src/index.html');
 const ICON_PATH = /icon/;
-const SPRITE_SRC_PATH = helpers.root('src/asset/icon/sprite');
+const SPRITE_SRC_PATH = helpers.root('src/asset/img/icon/sprite');
 const SPRITE_TARGET_PATH = helpers.root('temp/icon/sprite');
 
 const IS_DEV_MODE = helpers.hasProcessFlag('-my-dev');
@@ -30,14 +30,66 @@ const IS_DEV_MODE = helpers.hasProcessFlag('-my-dev');
 rimraf.sync(helpers.root('temp'));
 rimraf.sync(OUTPUT_PATH);
 
+function copyAfterDone() {
+  // @ robots.txt
+  copy(helpers.root('src/asset/robots.txt'), OUTPUT_PATH, {
+    flatten: true
+  }, (err, file) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+  // robots.txt @
+
+  // @ sprite
+  // To copy sprite icon images after the process of imaging is done
+  // As it is not ready to be copied, when it is imported by 'SCSS' and be handled by 'file-loader'
+  // in webpack
+  // const path = helpers.join(SPRITE_TARGET_PATH, '*.png');
+  // const out = helpers.join(OUTPUT_PATH, 'asset/img/ic');
+  // setTimeout(() => {
+  //   copy(path, out, function (err, file) {
+  //     if (err) {
+  //       console.log(err);
+  //     }
+  //   });
+  // }, 1000); // a delay for Sprite plugin to finish making images
+  // sprite @
+}
+
+function rename(src, dest) {
+  var cbCalled = false;
+  var rd;
+  var wr;
+
+  function done(err) {
+    if (!cbCalled) {
+      if (err) {
+        console.log(err);
+      }
+      cbCalled = true;
+    }
+  }
+
+  rd = fs.createReadStream(src);
+  rd.on('error', done);
+
+  wr = fs.createWriteStream(dest);
+  wr.on('error', done);
+  wr.on('close', () => {
+    done();
+  });
+
+  rd.pipe(wr);
+}
+
+
 module.exports = {
   metadata: {
-    ENV: ENV,
-    baseUrl: BASE_URL,
     ga: IS_FOR_GITHUB_PAGE
   },
   devtool: 'source-map',
-  context: ROOT_PATH, // for entry and output path(for file loader)
+  context: ROOT_PATH,
   entry: {
     polyfills: [
       './polyfills.ts'
@@ -75,7 +127,8 @@ module.exports = {
           FONT_AWESOME_SCSS_PATH,
           INDEX_SCSS_PATH
         ],
-        loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss', 'resolve-url', 'sass?sourceMap'])
+        loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss', 'resolve-url',
+          'sass?sourceMap'])
       },
       {
         test: /\.scss$/,
@@ -91,7 +144,7 @@ module.exports = {
           ICON_PATH
         ],
         loaders: [
-          'file?name=asset/icon/[name].[ext]?[hash]'
+          'file?name=asset/img/ic/[name].[ext]?[hash]'
         ]
       },
       {
@@ -122,10 +175,6 @@ module.exports = {
     ]
   },
   postcss: () => [autoprefixer({ browsers: 'last 3 versions' })],
-  tslint: {
-    emitErrors: false,
-    failOnHint: false
-  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
@@ -162,71 +211,35 @@ module.exports = {
       processor: 'scss',
       bundleMode: 'multiple'
     }),
-    new CopyWebpackPlugin(
-      [
-        { from: '../temp/icon/sprite/*.png', to: 'asset/icon', flatten: true },
-        { from: './asset/robots.txt', to: '' }
-      ],
-      {
-        ignore: [
-          '.DS_Store'
-        ]
-      }
-    ),
 
     // https://github.com/webpack/docs/wiki/optimization#deduplication
     new webpack.optimize.DedupePlugin(),
 
     IS_DEV_MODE ? f => f :
-    // https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-    // https://github.com/mishoo/UglifyJS2
-    new webpack.optimize.UglifyJsPlugin({
-      // mangle: false,
-      // beautify: true,
-      // comments: false
-
-      compress: {
-        drop_console: true
-      }
-    }),
-
-    function copyHtmlTmpl() {
-      // console.log(OUTPUT_PATH);
-      const sourcePath = OUTPUT_PATH + '/index.html';
-      const targetPath = OUTPUT_PATH + '/index.tmpl';
-      var cbCalled = false;
-      var rd;
-      var wr;
-
-      function done(err) {
-        if (!cbCalled) {
-          if (err) {
-            console.log(err);
-          }
-          cbCalled = true;
+      // https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
+      // https://github.com/mishoo/UglifyJS2
+      new webpack.optimize.UglifyJsPlugin({
+        // mangle: false,
+        // beautify: true,
+        // comments: false
+        compress: {
+          drop_console: true
         }
-      }
+      }),
 
+    function done() {
       this.plugin('done', stats => {
-        rd = fs.createReadStream(sourcePath);
-        rd.on('error', done);
-
-        wr = fs.createWriteStream(targetPath);
-        wr.on('error', done);
-        wr.on('close', () => {
-          done();
-        });
-        rd.pipe(wr);
+        if (stats.compilation.errors && stats.compilation.errors.length) {
+          // console.log(stats.compilation.errors);
+          console.log(stats.compilation.errors[0]);
+          process.exit(1);
+        } else {
+          const src = helpers.join(OUTPUT_PATH, 'index.html');
+          const dest = helpers.join(OUTPUT_PATH, 'index.tmpl');
+          rename(src, dest);
+          copyAfterDone();
+        }
       });
     }
-    // function failOnError() {
-    //   this.plugin('done', stats => {
-    //     if (stats.compilation.errors && stats.compilation.errors.length) {
-    //       // console.log(stats.compilation.errors);
-    //       console.log(stats.compilation.errors[0].toString());
-    //       process.exit(1);
-    //     }
-    //   });
-    // }
   ]
 };

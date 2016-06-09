@@ -1,44 +1,31 @@
-<div class="sidebar-about box-sizing">
-  <img class="sidebar-thumbnail" [src]="thumbnail" alt="World Food Program">
-  <div class="sidebar-name">
-    <h1 class="sidebar-title">Wfp.org</h1>
-    <p class="sidebar-content">Fighting Hunger</p>
+<nav class="sidebar">
+  <div class="top">
+    <a href="#home" class="home" (click)=reload($event)>
+      <span class="blind">Home</span>
+      <svg class="sidbar-svg">
+        <symbol id="home-txt">
+          <text x="50%" y="85%" text-anchor="middle">N</text>
+        </symbol>
+        <g>
+          <use xlink:href="#home-txt" class="stroke"></use>
+          <use xlink:href="#home-txt" class="stroke"></use>
+          <use xlink:href="#home-txt" class="stroke"></use>
+        </g>
+      </svg>
+    </a>
   </div>
-</div>
 
-<ul class="sidebar-filter-left">
-  <li [class.sidebar-active]="'intro' === sidebarActive">
-    <a href="#intro" (click)=onClick($event)>Intro</a>
-  </li>
-  <li [class.sidebar-active]="'portfolio' === sidebarActive">
-    <a href="#portfolio" (click)=onClick($event)>Portfolio</a>
-  </li>
-  <li [class.sidebar-active]="'about' === sidebarActive">
-    <a href="#about" (click)=onClick($event)>About Me</a>
-  </li>
-  <li [class.sidebar-active]="'contact' === sidebarActive">
-    <a href="#contact" (click)=onClick($event)>Contact</a>
-  </li>
-</ul>
+  <ul>
+    <li class="sidebar-category" *ngFor="let val of categories;" [class.active]="val ===
+      activeTarget" (click)=goto($event)>
+      <a [href]="'#' + val.toLowerCase()">{{val}}</a>
+    </li>
+  </ul>
 
-<ul class="sidebar-list-social">
-  <li>
-    <a href="https://github.com/narr" title="Github" target="_blank">
-      <i class="fa fa-github-square" aria-hidden="true"></i>
+  <p class="sidebar-built-with">
+    This website is built with:
+    <a [href]="builtWith.href" target="_blank">
+      <img [src]="builtWith.src" [alt]="builtWith.name">{{builtWith.name}}
     </a>
-  </li>
-  <li>
-    <a href="https://www.linkedin.com/in/narrkim" title="LinkedIn" target="_blank">
-      <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a href="https://twitter.com/nardgu" title="Twitter" target="_blank">
-      <i class="fa fa-twitter-square" aria-hidden="true"></i>
-    </a>
-  </li>
-</ul>
-
-<p class="sidebar-made-with box-sizing">
-  Made With: <a href="https://angular.io">Angular2</a>
-</p>
+  </p>
+</nav>

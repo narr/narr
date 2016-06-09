@@ -21,9 +21,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file?name=asset/img/[name].[ext]?[hash]'
-        ]
+        loaders: ['null']
       },
       {
         test: /\.html$/,
@@ -41,14 +39,16 @@ module.exports = {
         loaders: ['istanbul-instrumenter'],
         include: helpers.root('src'),
         exclude: [
-          /\.(e2e|spec)\.ts$/
+          /\.spec\.ts$/
         ]
       }
     ]
   },
-  tslint: {
-    emitErrors: false,
-    failOnHint: false
+  ts: { // to generate coverages
+    compilerOptions: {
+      sourceMap: false,
+      inlineSourceMap: true
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -59,5 +59,5 @@ module.exports = {
       ENV: JSON.stringify(ENV),
       HMR: false
     }),
-  ],
+  ]
 };

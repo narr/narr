@@ -1,25 +1,38 @@
-<h1 class="contact-heading">Contact</h1>
-<div class="contact-section">
-  <form>
-    <div class="contact-grouped">
-      <div class="contact-w-50">
-        <label>Your Name<span class="contact-require">*</span></label>
-        <input type="text" placeholder="Username">
-      </div>
-      <div class="contact-w-50">
-        <label>Email address<span class="contact-require">*</span></label>
-        <input type="text" placeholder="Email">
-      </div>
-    </div>
+<section class="contact">
+  <h1>Contact</h1>
+  <div class="contact-ways clearfix">
+    <a [href]="'mailto:' + email" class="mail">{{email}}</a>
+    <ul>
+      <li *ngFor="let val of links;">
+        <span class="rotate scale"></span>
+        <span class="rotate"></span>
+        <a [href]="val.href" target="_blank">
+          <span class="blind">{{val.name}}</span>
+          <i [class]="val.class" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
 
-    <label>Phone number<span class="contact-require">*</span></label>
-    <input type="text" placeholder="Phone number">
-
-    <label>Question<span class="contact-require">*</span></label>
-    <textarea rows="8" placeholder="what's on your mind?"></textarea>
-
+  <form class="contact-form" [ngFormModel]="contactForm" (ngSubmit)="onSubmit()" [class.dirty]="
+    formDirty">
+    <label for="contact-form-subject">Subject</label>
+    <!--<input type="text" id="contact-form-subject" [disabled]="submitted" ngControl="subject"
+      #ctrlInput="ngForm">-->
+    <input type="text" id="contact-form-subject" [disabled]="submitted" ngControl="subject">
+    <label for="contact-form-msg">Message</label>
+    <!--<textarea id="contact-form-msg" [disabled]="submitted" ngControl="msg" #ctrlTarea="ngForm">
+    </textarea>-->
+    <textarea id="contact-form-msg" [disabled]="submitted" ngControl="msg"></textarea>
     <p>
-      <button type="submit" class="contact-button">Submit</button>
+      <span class="info" [class.error]="infoError" [innerHtml]="INFO_STRING"></span>
+      <button type="submit" [disabled]="submitted" [ngClass]="{'submit-start': submitStart,
+        'submit-end': submitEnd}">SEND</button>
     </p>
   </form>
-</div>
+</section>
+
+<a href="#intro" class="go-to-top" (click)="onClick($event)">
+  <span class="blind">Intro</span>
+  <i class="fa fa-arrow-up" aria-hidden="true"></i>
+</a>

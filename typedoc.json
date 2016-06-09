@@ -1,5 +1,5 @@
 {
-  "exclude": "**/*.+(spec|e2e).ts",
+  "exclude": "**/*.+(spec|e2e-spec).ts",
   "ignoreCompilerErrors": true,
   "mode": "file",
   "out": "doc",

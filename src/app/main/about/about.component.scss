@@ -1,102 +1,83 @@
 // $selector-host: ':host';
-$selector-host: narr-about; // for SCSS's @import
+$selector-host: ':host narr-about';
+$host-padding: 6em 8em;
+$host-font-size: 13px;
 // ================================
-// over-1600
-$about-padding-over-1600: 100px 0 100px 80px;
-// 250 => sidebar width
-$about-wrapper-width-over-1600: 1600 - 250 - nth($about-padding-over-1600, 2) - nth($about-padding-over-1600, 4);
-$about-me-margin-right-over-1600: 100px;
-$about-me-width-over-1600: ($about-wrapper-width-over-1600 - $about-me-margin-right-over-1600) / 2;
-$about-skill-width-over-1600: $about-me-width-over-1600 - 50;
-$about-section-font-size-over-1600: 13px;
-$skill-img-size: 50px;
-// ================================
-// max-1600
-$about-padding-max-1600: 80px 0 80px 50px;
-$about-wrapper-width-max-1600: 1280 - 250 - nth($about-padding-max-1600, 2) - nth($about-padding-max-1600, 4);
-$about-me-width-max-1600: ($about-wrapper-width-max-1600 - $about-me-margin-right-over-1600) / 2;
-// ================================
-// max-1280
-$about-padding-max-1280: 80px 50px 80px 50px;
-$about-wrapper-width-max-1280: 800 - 200 - nth($about-padding-max-1280, 2) - nth($about-padding-max-1280, 4);
-// ================================
-// max-800
-$about-padding-max-800: 80px 40px 80px 40px;
-$about-wrapper-width-max-800: 480 - nth($about-padding-max-800, 2) - nth($about-padding-max-800, 4);
-// ================================
-// ================================
-// max-480
-$about-padding-max-480: 50px 25px 50px 25px;
-$about-wrapper-width-max-480: 320 - nth($about-padding-max-480, 2) - nth($about-padding-max-480, 4);
+$about-section-h1-margin-bottom: 1.5em;
+$about-section-summary-margin-bottom: 2em;
+$about-skills-group-margin-bottom: 4em;
 // ================================
 // ================================
 #{$selector-host} {
   display: block;
-  background: rgb(255, 255, 255);
-  padding: $about-padding-over-1600;
-  overflow: hidden;
-  opacity: 0.8; // instead of rgba, use this for the mobile performance
+  background: #f5eedb;
+  padding: $host-padding;
+  font-size: $host-font-size;
 }
 
 :host {
-  .about-wrapper {
-    // background: #ffa;
-    margin: 0 auto;
-    width: $about-wrapper-width-over-1600;
-    overflow: auto;
+  .about {
+    overflow: hidden; // to hide when this children start a scale event
+    // border: 1px dashed rgba(0, 0, 0, 0.2);
   }
   .about-section {
     float: left;
-    font-size: $about-section-font-size-over-1600;
+    width: 50%;
     h1 {
-      margin-bottom: 30px;
+      margin-bottom: $about-section-h1-margin-bottom;
       color: #109f9a;
       font-size: 3.3em;
       font-weight: 600;
     }
     .summary {
       display: block;
-      margin-bottom: 40px;
+      margin-bottom: $about-section-summary-margin-bottom;
+      line-height: 2;
       color: #535353;
       font-size: 1.8em;
     }
   }
   .about-me {
-    margin-right: $about-me-margin-right-over-1600;
-    width: $about-me-width-over-1600;
-    opacity: 0;
-    &.ani {
-      animation: about-zoom-out-blur 2s linear forwards;
+    .content {
+      opacity: 0;
+      &.ani {
+        animation: about-zoom-out-blur 2s linear forwards;
+      }
     }
     p {
-      line-height: 36px;
+      line-height: 2.5;
       color: #636363;
       font-size: 1.4em;
     }
   }
   .about-skills {
-    width: $about-skill-width-over-1600;
-    .skills {
-      margin-bottom: 20px;
+    padding-left: 100px;
+    box-sizing: border-box;
+    .group {
+      margin-bottom: $about-skills-group-margin-bottom;
       opacity: 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
       &.ani {
         animation: about-zoom-in 2s linear forwards;
       }
     }
     .summary {
-      margin-bottom: 10px;
+      margin-bottom: 0.8em;
     }
   }
-  .about-skill-detail {
+  .about-skills-skill {
+    $img-size: 50px;
     display: inline-block;
-    margin-right: 30px;
-    margin-bottom: 10px;
-    width: $skill-img-size;
-    height: $skill-img-size;
+    margin-right: 2.5em;
+    margin-bottom: 1.5em;
+    width: $img-size;
+    height: $img-size;
     perspective: 99999px;
     &:hover {
       .about-skill-bg-wrapper {
-        transform: rotateX(90deg) translateY($skill-img-size/-2);
+        transform: rotateX(90deg) translateY($img-size / -2);
       }
     }
   }
@@ -107,10 +88,6 @@ $about-wrapper-width-max-480: 320 - nth($about-padding-max-480, 2) - nth($about-
     transition: transform 0.4s;
     transform-origin: 50% 0;
     transform-style: preserve-3d;
-    span {
-      width: 100%;
-      height: 100%;
-    }
     .rotate-x {
       position: absolute;
       left: 0;
@@ -125,28 +102,13 @@ $about-wrapper-width-max-480: 320 - nth($about-padding-max-480, 2) - nth($about-
 
 // ================================
 // ================================
-.touch {
-  :host {
-    .about-me {
-      &.ani {
-        animation: about-zoom-out 2s linear forwards;
-      }
-    }
-  }
-}
-
-// ================================
-// ================================
 @keyframes about-zoom-out-blur {
   0% {
-    opacity: 0;
     text-shadow: 0 0 40px grey;
     transform: scale(1.2);
   }
   100% {
     opacity: 1;
-    text-shadow: 0 0 0 grey;
-    transform: scale(1);
   }
 }
 
@@ -155,18 +117,15 @@ $about-wrapper-width-max-480: 320 - nth($about-padding-max-480, 2) - nth($about-
 // http://stackoverflow.com/questions/32948596/is-csss-efficiency-with-text-shadow-as-bad-as-box-shadow
 @keyframes about-zoom-out {
   0% {
-    opacity: 0;
     transform: scale(1.2);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
 @keyframes about-zoom-in {
   0% {
-    opacity: 0;
     transform: scale(0);
   }
   100% {
@@ -177,83 +136,64 @@ $about-wrapper-width-max-480: 320 - nth($about-padding-max-480, 2) - nth($about-
 
 // ================================
 // ================================
+.touch {
+  :host {
+    .about-me {
+      .content {
+        &.ani {
+          animation: about-zoom-out 2s linear forwards;
+        }
+      }
+    }
+  }
+}
+
+// .ie9 {}
+// ================================
+// ================================
 @media only screen and (max-width: 1600px) {
   #{$selector-host} {
-    padding: $about-padding-max-1600;
-  }
-  :host {
-    .about-wrapper {
-      width: $about-wrapper-width-max-1600;
-    }
-    .about-section {
-      font-size: $about-section-font-size-over-1600 - 1;
-    }
-    .about-me {
-      width: $about-me-width-max-1600;
-    }
-    .about-skills {
-      width: $about-me-width-max-1600;
-    }
+    padding: nth($host-padding, 1) nth($host-padding, 1) nth($host-padding, 1) //
+    nth($host-padding, 2);
+    font-size: $host-font-size - 1;
   }
 }
 
 @media only screen and (max-width: 1280px) {
   #{$selector-host} {
-    padding: $about-padding-max-1280;
+    padding: $host-padding;
   }
   :host {
-    .about-wrapper {
-      width: $about-wrapper-width-max-1280;
+    .about-section {
+      width: 100%;
+      h1 {
+        margin-bottom: $about-section-h1-margin-bottom - 0.5;
+      }
+      .summary {
+        margin-bottom: $about-section-summary-margin-bottom - 0.5;
+      }
     }
     .about-me {
-      margin-right: 0;
-      margin-bottom: 100px;
-      width: $about-wrapper-width-max-1280;
+      margin-bottom: 8em;
     }
     .about-skills {
-      width: $about-wrapper-width-max-1280;
+      padding-left: 0;
+      .group {
+        margin-bottom: $about-skills-group-margin-bottom - 1;
+      }
     }
   }
 }
 
 @media only screen and (max-width: 800px) {
   #{$selector-host} {
-    padding: $about-padding-max-800;
-  }
-  :host {
-    .about-wrapper {
-      width: $about-wrapper-width-max-800;
-    }
-    .about-section {
-      font-size: $about-section-font-size-over-1600 - 2;
-    }
-    .about-me {
-      margin-bottom: 100px;
-      width: $about-wrapper-width-max-800;
-    }
-    .about-skills {
-      width: $about-wrapper-width-max-800;
-    }
+    padding: nth($host-padding, 1);
   }
 }
 
 @media only screen and (max-width: 480px) {
   #{$selector-host} {
-    padding: $about-padding-max-480;
-  }
-  :host {
-    .about-wrapper {
-      width: $about-wrapper-width-max-480;
-    }
-    .about-section {
-      font-size: $about-section-font-size-over-1600 - 3;
-    }
-    .about-me {
-      margin-bottom: 100px;
-      width: $about-wrapper-width-max-480;
-    }
-    .about-skills {
-      width: $about-wrapper-width-max-480;
-    }
+    padding: nth($host-padding, 1) nth($host-padding, 1) - 2;
+    font-size: $host-font-size - 3;
   }
 }
