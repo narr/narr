@@ -127,7 +127,8 @@ module.exports = {
           FONT_AWESOME_SCSS_PATH,
           INDEX_SCSS_PATH
         ],
-        loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss', 'resolve-url',
+        // to disable removing vendor prefixes, add '-autoprefixer' option
+        loader: ExtractTextPlugin.extract(['css?sourceMap&-autoprefixer', 'postcss', 'resolve-url',
           'sass?sourceMap'])
       },
       {
@@ -136,7 +137,7 @@ module.exports = {
           FONT_AWESOME_SCSS_PATH,
           INDEX_SCSS_PATH
         ],
-        loaders: ['css', 'postcss', 'sass']
+        loaders: ['css?-autoprefixer', 'postcss', 'sass']
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
