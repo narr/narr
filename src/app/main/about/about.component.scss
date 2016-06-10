@@ -148,7 +148,26 @@ $about-skills-group-margin-bottom: 4em;
   }
 }
 
-// .ie9 {}
+.ie9 {
+  :host {
+    .about-me {
+      .content {
+        opacity: 1;
+      }
+    }
+    .about-skills {
+      .group {
+        opacity: 1;
+      }
+    }
+    .about-skill-bg-wrapper {
+      .rotate-x {
+        display: none;
+      }
+    }
+  }
+}
+
 // ================================
 // ================================
 @media only screen and (max-width: 1600px) {

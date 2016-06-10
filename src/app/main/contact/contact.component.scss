@@ -9,6 +9,8 @@ $host-font-size: 13px;
   display: block;
   position: relative;
   background: linear-gradient(#5f7979 20%, #c7a88c 80%);
+  // no space after "progid:"
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#5f7979', endColorstr='#c7a88c');
   padding: 6em 0 12.5em;
   // to make the Main component's scrollTop reach to this component's area
   // Intro's min-height(400 on max-width(480)) * 0.5 / 100 = 2px
@@ -219,12 +221,13 @@ $host-font-size: 13px;
     left: 50%;
     bottom: 0;
     margin-left: -$height;
+    padding-top: 15px;
     width: $height * 2;
     height: $height;
     border-top-left-radius: 999px;
     border-top-right-radius: 999px;
     text-align: center;
-    line-height: $height+ 5;
+    box-sizing: border-box;
     color: #fff;
     font-size: 30px;
   }
