@@ -2311,9 +2311,9 @@
       "resolved": "https://registry.npmjs.org/he/-/he-1.1.0.tgz"
     },
     "highlight.js": {
-      "version": "8.9.1",
-      "from": "highlight.js@>=8.6.0 <9.0.0",
-      "resolved": "https://registry.npmjs.org/highlight.js/-/highlight.js-8.9.1.tgz"
+      "version": "9.4.0",
+      "from": "highlight.js@>=9.0.0 <10.0.0",
+      "resolved": "https://registry.npmjs.org/highlight.js/-/highlight.js-9.4.0.tgz"
     },
     "hoek": {
       "version": "2.16.3",
@@ -2843,9 +2843,9 @@
       "resolved": "https://registry.npmjs.org/karma-jasmine/-/karma-jasmine-1.0.2.tgz"
     },
     "karma-mocha-reporter": {
-      "version": "2.0.3",
-      "from": "karma-mocha-reporter@>=2.0.3 <3.0.0",
-      "resolved": "https://registry.npmjs.org/karma-mocha-reporter/-/karma-mocha-reporter-2.0.3.tgz"
+      "version": "2.0.4",
+      "from": "karma-mocha-reporter@2.0.4",
+      "resolved": "https://registry.npmjs.org/karma-mocha-reporter/-/karma-mocha-reporter-2.0.4.tgz"
     },
     "karma-phantomjs-launcher": {
       "version": "1.0.0",
@@ -4872,58 +4872,21 @@
       "resolved": "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
     },
     "typedoc": {
-      "version": "0.3.12",
-      "from": "typedoc@0.3.12",
-      "resolved": "https://registry.npmjs.org/typedoc/-/typedoc-0.3.12.tgz",
+      "version": "0.4.2",
+      "from": "typedoc@0.4.2",
+      "resolved": "https://registry.npmjs.org/typedoc/-/typedoc-0.4.2.tgz",
       "dependencies": {
-        "async": {
-          "version": "0.2.10",
-          "from": "async@>=0.2.6 <0.3.0",
-          "resolved": "https://registry.npmjs.org/async/-/async-0.2.10.tgz"
-        },
-        "fs-extra": {
-          "version": "0.22.1",
-          "from": "fs-extra@>=0.22.1 <0.23.0",
-          "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-0.22.1.tgz"
-        },
-        "handlebars": {
-          "version": "3.0.3",
-          "from": "handlebars@3.0.3",
-          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-3.0.3.tgz"
-        },
-        "minimatch": {
-          "version": "2.0.10",
-          "from": "minimatch@>=2.0.10 <3.0.0",
-          "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-2.0.10.tgz"
-        },
-        "source-map": {
-          "version": "0.1.43",
-          "from": "source-map@>=0.1.40 <0.2.0",
-          "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.1.43.tgz"
-        },
-        "typescript": {
-          "version": "1.6.2",
-          "from": "typescript@1.6.2",
-          "resolved": "https://registry.npmjs.org/typescript/-/typescript-1.6.2.tgz"
-        },
-        "uglify-js": {
-          "version": "2.3.6",
-          "from": "uglify-js@>=2.3.0 <2.4.0",
-          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-2.3.6.tgz",
-          "dependencies": {
-            "optimist": {
-              "version": "0.3.7",
-              "from": "optimist@>=0.3.5 <0.4.0",
-              "resolved": "https://registry.npmjs.org/optimist/-/optimist-0.3.7.tgz"
-            }
-          }
+        "lodash": {
+          "version": "3.10.1",
+          "from": "lodash@>=3.10.1 <4.0.0",
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
         }
       }
     },
     "typedoc-default-themes": {
-      "version": "0.3.4",
-      "from": "typedoc-default-themes@0.3.4",
-      "resolved": "https://registry.npmjs.org/typedoc-default-themes/-/typedoc-default-themes-0.3.4.tgz"
+      "version": "0.4.0",
+      "from": "typedoc-default-themes@>=0.4.0 <0.5.0",
+      "resolved": "https://registry.npmjs.org/typedoc-default-themes/-/typedoc-default-themes-0.4.0.tgz"
     },
     "typescript": {
       "version": "1.8.10",
