@@ -2336,9 +2336,9 @@
       "resolved": "https://registry.npmjs.org/html-minifier/-/html-minifier-2.1.3.tgz"
     },
     "html-webpack-plugin": {
-      "version": "2.19.0",
-      "from": "html-webpack-plugin@>=2.19.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/html-webpack-plugin/-/html-webpack-plugin-2.19.0.tgz"
+      "version": "2.20.0",
+      "from": "html-webpack-plugin@2.20.0",
+      "resolved": "https://registry.npmjs.org/html-webpack-plugin/-/html-webpack-plugin-2.20.0.tgz"
     },
     "htmlparser2": {
       "version": "3.3.0",
@@ -2736,9 +2736,9 @@
       "resolved": "https://registry.npmjs.org/jasmine-core/-/jasmine-core-2.4.1.tgz"
     },
     "jasmine-spec-reporter": {
-      "version": "2.4.0",
-      "from": "jasmine-spec-reporter@>=2.4.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/jasmine-spec-reporter/-/jasmine-spec-reporter-2.4.0.tgz"
+      "version": "2.5.0",
+      "from": "jasmine-spec-reporter@2.5.0",
+      "resolved": "https://registry.npmjs.org/jasmine-spec-reporter/-/jasmine-spec-reporter-2.5.0.tgz"
     },
     "jasminewd2": {
       "version": "0.0.9",
