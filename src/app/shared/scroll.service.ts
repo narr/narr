@@ -33,7 +33,7 @@ export class ScrollService {
           bottom: scrollTop + target.offsetHeight
         };
         const scrollTargets = this.getScrollTargets(target, viewPort);
-        // console.log(val);
+        // console.log(scrollTop);
         return {
           viewPort, scrollTargets
         };
@@ -98,7 +98,11 @@ export class ScrollService {
     let childArea = { top: undefined, bottom: undefined };
     for (let child of children) {
       top = child.offsetTop;
-      bottom = top + child.offsetHeight;
+      if (child.nextElementSibling) {
+        bottom = child.nextElementSibling.offsetTop;
+      } else {
+        bottom = top + child.offsetHeight;
+      }
       childArea.top = top;
       childArea.bottom = bottom;
       if (this.hasShareArea(viewPort, childArea)) {
