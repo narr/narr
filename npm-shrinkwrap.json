@@ -547,9 +547,9 @@
       "resolved": "https://registry.npmjs.org/code-point-at/-/code-point-at-1.0.0.tgz"
     },
     "codelyzer": {
-      "version": "0.0.22",
-      "from": "codelyzer@0.0.22",
-      "resolved": "https://registry.npmjs.org/codelyzer/-/codelyzer-0.0.22.tgz"
+      "version": "0.0.23",
+      "from": "codelyzer@0.0.23",
+      "resolved": "https://registry.npmjs.org/codelyzer/-/codelyzer-0.0.23.tgz"
     },
     "color": {
       "version": "0.11.1",
@@ -4894,9 +4894,9 @@
       "resolved": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz"
     },
     "typings": {
-      "version": "1.0.4",
-      "from": "typings@>=1.0.4 <2.0.0",
-      "resolved": "https://registry.npmjs.org/typings/-/typings-1.0.4.tgz",
+      "version": "1.0.5",
+      "from": "typings@1.0.5",
+      "resolved": "https://registry.npmjs.org/typings/-/typings-1.0.5.tgz",
       "dependencies": {
         "minimist": {
           "version": "1.2.0",
