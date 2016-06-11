@@ -94,6 +94,8 @@ $sidebar-dash-ani-speed: 4;
     &:hover {
       .stroke {
         // for performance, do ani only on :hover state
+        // this doesn't work in IE
+        // http://stackoverflow.com/questions/24918529/animate-path-in-internet-explorer
         @include get-sidebar-dash-ani();
       }
     }

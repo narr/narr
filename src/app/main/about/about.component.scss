@@ -67,35 +67,40 @@ $about-skills-group-margin-bottom: 4em;
       margin-bottom: 0.8em;
     }
   }
+  $skill-img-size: 50px;
   .about-skills-skill {
-    $img-size: 50px;
     display: inline-block;
     margin-right: 2.5em;
     margin-bottom: 1.5em;
-    width: $img-size;
-    height: $img-size;
-    perspective: 99999px;
-    &:hover {
-      .about-skill-bg-wrapper {
-        transform: rotateX(90deg) translateY($img-size / -2);
-      }
-    }
+    width: $skill-img-size;
+    height: $skill-img-size;
   }
   .about-skill-bg-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.4s;
-    transform-origin: 50% 0;
-    transform-style: preserve-3d;
-    .rotate-x {
+    perspective: 99999px;
+    &:hover {
+      .rotate-base {
+        transform: rotateX(90deg) translateY(-$skill-img-size);
+      }
+      .rotate-hidden {
+        transform: rotateX(0deg) translateY(-$skill-img-size);
+      }
+    }
+    span {
+      transform-origin: 50% 0;
+      transition: transform 0.4s;
+      transform-style: preserve-3d;
+    }
+    .rotate-hidden {
+      // display: none;
       position: absolute;
       left: 0;
       top: 100%;
       width: 100%;
       height: 100%;
       transform: rotateX(-90deg);
-      transform-origin: inherit;
     }
   }
 }
@@ -161,7 +166,7 @@ $about-skills-group-margin-bottom: 4em;
       }
     }
     .about-skill-bg-wrapper {
-      .rotate-x {
+      .rotate-hidden {
         display: none;
       }
     }

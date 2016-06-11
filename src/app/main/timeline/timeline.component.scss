@@ -231,7 +231,8 @@ $content-arrow-color: #fff;
         &::before,
         &::after {
           margin-left: -$ul-pseudo-font-size / 2;
-          font-size: $ul-pseudo-font-size - 0.2;
+          // font-size: $ul-pseudo-font-size - 0.2;
+          font-size: 23.4px; // em unit in Media Queries in IE10 behaves strange
         }
       }
       li {
@@ -317,6 +318,12 @@ $content-arrow-color: #fff;
   :host {
     .timeline {
       max-width: 380px;
+      ul {
+        &::before,
+        &::after {
+          font-size: 19.8px; // em unit in Media Queries in IE10 behaves strange
+        }
+      }
       img {
         height: 180px;
       }
