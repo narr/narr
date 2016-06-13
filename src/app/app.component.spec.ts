@@ -12,11 +12,13 @@ import {
 import { ElementRef, provide } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { ScrollService } from './shared';
 
 describe('App', () => {
   beforeEachProviders(() => [
     AppComponent,
-    provide(ElementRef, { useValue: ElementRef })
+    provide(ElementRef, { useValue: ElementRef }),
+    provide(ScrollService, { useValue: ScrollService })
   ]);
 
   it('should have Sidebar\'s status false at first', inject([AppComponent], app => {
