@@ -31,7 +31,8 @@ node 6(problem with installing sprite-webpack-plugin) - https://github.com/EyalA
 narr npm version up to 1.0.0(tag)
 ========================
 ========================
-medium image loading, loading UI for Init, Firebase for msg(tab UI for read and write)
+medium image loading, loading UI for Init, Firebase for msg(tab UI for read and write), make intro
+fixed and change opacity 1 to 0 on scrolling
 
 other good things from others' portfolios
 
