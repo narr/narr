@@ -4,29 +4,17 @@ npm run typings i dt~node -- -SG
 npm run typings i dt~node -- -DG
 ========================
 ========================
-finish the base version(write my own contents)
-
-push and merge to tmp
-
-Mobile, IE9 and other browsers' test and build test
-
 specs for units and e2e
 
 universal(async false)
 
 travis, appveyor(for IE)
 
-push and merge to master
-========================
 progressive web app
 
 google analytics, google PageSpeed Insights
 
 social media meta tags(Twitter Card / Open Graph tags-FB)
-
-find a11y lib of ng2
-
-node 6(problem with installing sprite-webpack-plugin) - https://github.com/EyalAr/lwip/issues/249
 
 narr npm version up to 1.0.0(tag)
 ========================
@@ -40,19 +28,17 @@ ng2 animate(continuous animations - timing)
 
 router(ie9-push, history-redirect(back button issue) - https://github.com/angular/angular/pull/6069
 , async - support for webpack?)
+
+find a11y lib of ng2
 ========================
 webpack-dev-server issue - its dependency, sockjs-client(1.1.1) has a problem(WebsocketDriver) with
 IE9. So to maintain the lower version of sockjs-client(1.0.3), add it to package.json
 
-coverage typescript src file // https://github.com/AngularClass/angular2-webpack-starter/issues/178
+node 6(problem with installing sprite-webpack-plugin) - https://github.com/EyalAr/lwip/issues/249
 
 IE9 pushState(router) issue // https://github.com/angular/angular/issues/6506
 
 IE9 the number limitation(31?) of style tags(support for merging style tags)
-
-Typedoc issue
-https://github.com/TypeStrong/typedoc/issues/223 - for this(v0.4.1), maintain v0.3.12
-https://github.com/TypeStrong/typedoc/issues/193
 
 material-ui(>=IE11)
 
