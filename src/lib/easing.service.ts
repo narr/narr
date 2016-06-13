@@ -40,6 +40,10 @@ import { Injectable } from '@angular/core'
 @Injectable()
 export class EasingService {
   // t: elapsed time, b: start value, c: amount of change(end value - start value), d: duration
+  linear(t, b, c, d) {
+    return t * c / d + b;
+  }
+
   easeInQuad(t, b, c, d) {
     return c * (t /= d) * t + b;
   }

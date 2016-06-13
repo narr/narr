@@ -9,8 +9,10 @@ import { EasingService } from '../../lib';
  */
 @Injectable()
 export class ScrollService {
+  private doc = document;
   private easingService = new EasingService();
   private scroll$: Observable<{ viewPort: { top: number, bottom: number }, scrollTargets: {} }>;
+  private scrollSrc;
   private scrollSource = new Subject();
   private scrollTarget;
   private scrollToForced: boolean;
@@ -26,18 +28,24 @@ export class ScrollService {
       // this is used to get the current category of sidebar
       .delay(100)
       .map(() => {
-        const target = this.scrollTarget;
-        const scrollTop = target.scrollTop;
+        const scrollTop = this.getScrollTop();
         const viewPort = {
           top: scrollTop,
-          bottom: scrollTop + target.offsetHeight
+          bottom: scrollTop + this.getSrcHeihgt()
         };
-        const scrollTargets = this.getScrollTargets(target, viewPort);
+        const scrollTargets = this.getScrollTargets(viewPort);
         // console.log(scrollTop);
         return {
           viewPort, scrollTargets
         };
       });
+  }
+
+  handleScrollChange() {
+    // console.log('scrolled');
+    if (!this.scrollToForced) { // block the scroll event while scrollTo is forced
+      this.scrollSource.next(null);
+    }
   }
 
   hasShareArea(a: { top: number, bottom: number },
@@ -61,11 +69,14 @@ export class ScrollService {
     return this.scroll$;
   }
 
-  onScroll() {
-    // console.log(this.scrollTarget.scrollTop);
-    if (!this.scrollToForced) { // block the scroll event while scrollTo is forced
-      this.scrollSource.next(null);
+  getScrollTop(): number {
+    let top;
+    if (this.scrollSrc) {
+      top = this.scrollSrc.scrollTop;
+    } else {
+      top = this.doc.documentElement.scrollTop || this.doc.body.scrollTop;
     }
+    return top;
   }
 
   scrollTo(childTagName: string, delay: number = 0) {
@@ -76,8 +87,18 @@ export class ScrollService {
     }, delay);
   }
 
-  setScrollTarget(target) {
+  setScrollSrcTarget(src, target) {
+    this.scrollSrc = src;
     this.scrollTarget = target;
+  }
+
+  setScrollTop(top) {
+    if (this.scrollSrc) {
+      this.scrollSrc.scrollTop = top;
+    } else {
+      this.doc.documentElement.scrollTop = top;
+      this.doc.body.scrollTop = top;
+    }
   }
 
   private getChildOffsetTop(childTagName: string): number {
@@ -90,8 +111,8 @@ export class ScrollService {
     }
   }
 
-  private getScrollTargets(parentEl, viewPort) {
-    const children = parentEl.children;
+  private getScrollTargets(viewPort) {
+    const children = this.scrollTarget.children;
     let targets = {};
     let top;
     let bottom;
@@ -112,13 +133,22 @@ export class ScrollService {
     return targets;
   }
 
+  private getSrcHeihgt(): number {
+    let height;
+    if (this.scrollSrc) {
+      height = this.scrollSrc.offsetHeight;
+    } else {
+      height = this.doc.body.offsetHeight;
+    }
+    return height;
+  }
+
   private scroll(endScrollTop: number) {
-    const target = this.scrollTarget;
-    const startScrollTop = target.scrollTop;
+    const startScrollTop = this.getScrollTop();
     const diffrence = endScrollTop - startScrollTop;
 
     if (-100 < diffrence && diffrence < 100 && diffrence !== 0) {
-      target.scrollTop = endScrollTop;
+      this.setScrollTop(endScrollTop);
     } else {
       const startTime = Date.now();
       const DURATION = 1000;
@@ -143,14 +173,14 @@ export class ScrollService {
     const elapsed = Date.now() - startTime;
     if (elapsed > duration) {
       this.scrollToForced = false;
-      this.scrollTarget.scrollTop = endScrollTop;
+      this.setScrollTop(endScrollTop);
       // The last event would not be fired if prev events' scrollTop are
       // the same(or almost the same). So emit it explicitly
-      this.scrollSource.next(null);
+      this.handleScrollChange();
     } else {
+      // const value = this.easingService.linear(elapsed, startScrollTop, diffrence, duration);
       const value = this.easingService.easeOutQuad(elapsed, startScrollTop, diffrence, duration);
-      this.scrollTarget.scrollTop = value;
-      // this.scrollSource.next(null); // don't emit while scrolling for performance
+      this.setScrollTop(value);
       this.scrollToRafId = window.requestAnimationFrame(timestamp => {
         this.scrollStep(timestamp, {
           endScrollTop, startTime, startScrollTop, diffrence, duration

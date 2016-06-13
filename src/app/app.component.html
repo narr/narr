@@ -1,6 +1,7 @@
 <narr-navbar (triggerSidebar)="onTriggerSidebar($event)" [class.sidebar-open]="sidebarOpen">
 </narr-navbar>
 <narr-sidebar [ngClass]="{'open': sidebarOpen, 'slide': sidebarSlide}"></narr-sidebar>
-<narr-main [ngClass]="{'sidebar-open': sidebarOpen, 'slide': sidebarSlide}" (disableSlide)="
-  onDisableSlide()">
+<!-- main's scroll event is for mobile -->
+<narr-main [ngClass]="{'sidebar-open': sidebarOpen, 'slide': sidebarSlide}" (scroll)="
+  onScroll($event)">
 </narr-main>

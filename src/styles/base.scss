@@ -27,8 +27,16 @@ a:hover {
   text-decoration: none;
 }
 
-.loading {
-  color: blue;
+html.touch {
+  overflow-x: hidden;
+}
+
+body {
+  background: url(~asset/img/bg.jpg) fixed;
+  background-size: cover;
+  // disable scrolling horizontally when sidebar is open in a narrow width of window
+  // especially this is for IE 11 even though it is still scrollable horizontally(by translateX)
+  overflow-x: hidden;
 }
 
 @import '../../temp/icon/sprite/ics-skill-language.scss';

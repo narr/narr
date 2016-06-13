@@ -8,11 +8,7 @@
 // ================================
 :host {
   display: block;
-  // makie it scrollable horizontally when the window is narrower than 320px(iPhone 5)
-  min-width: 320px;
   height: 100%;
-  // disable scrolling horizontally when sidebar is open in a narrow width of window
-  overflow-x: hidden;
 }
 
 // ================================

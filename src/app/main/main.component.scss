@@ -11,12 +11,12 @@ $host-margin-left-sidebar-open: $host-margin-left - 50;
 // ================================
 #{$selector-host} {
   display: block;
-  background: url(~asset/img/bg.jpg);
-  background-size: cover;
+  position: absolute; // to make body's scrollHeight the same value of this scrollHeight
   margin-left: $host-margin-left;
   height: 100%;
   font-size: $host-font-size;
-  overflow: auto; // for a scroll event
+  // scrolling in elements except body shows a bad performance especially in Edge
+  // overflow: auto; // for a scroll event
   // border: 1px dashed rgba(0, 0, 0, 0.2);
 }
 
@@ -25,7 +25,13 @@ $host-margin-left-sidebar-open: $host-margin-left - 50;
 // @keyframes kf {}
 // ================================
 // ================================
-// .touch {}
+.touch {
+  #{$selector-host} {
+    position: static; // position absolute leads to a strange overflow in mobile
+    overflow: auto; // for a scroll event
+  }
+}
+
 // .ie9 {}
 // ================================
 // ================================

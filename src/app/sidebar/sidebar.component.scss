@@ -34,6 +34,7 @@ $sidebar-dash-ani-speed: 4;
   font-size: $host-font-size;
   overflow: auto; // for a small height of window
   // border: 1px dashed rgba(0, 0, 0, 0.2);
+  z-index: 100; // for the horizontal overflow in 'narr-main' by translateX in IE 11
 }
 
 :host {
