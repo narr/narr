@@ -2,6 +2,8 @@ npm show @angular/core versions
 
 npm run typings i dt~node -- -SG
 npm run typings i dt~node -- -DG
+
+kill -9 $(ps | awk '/karma\.conf/ {print $1}')
 ========================
 ========================
 specs for units and e2e
