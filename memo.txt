@@ -69,3 +69,8 @@ social media meta tags(Twitter Card / Open Graph tags-FB)
 a11y, w3c validation(custom attributes and tags)?
 
 version up(node, npm, modules, typings)
+========================
+========================
+about test
+
+http://programmers.stackexchange.com/questions/135047/new-to-tdd-should-i-avoid-private-methods-now
