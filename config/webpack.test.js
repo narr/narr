@@ -1,4 +1,5 @@
 const helpers = require('./helpers');
+const rimraf = require('rimraf');
 const webpack = require('webpack');
 const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
@@ -44,7 +45,7 @@ module.exports = {
       }
     ]
   },
-  ts: { // to generate coverages
+  ts: { // to generate the coverage
     compilerOptions: {
       sourceMap: false,
       inlineSourceMap: true
@@ -59,5 +60,10 @@ module.exports = {
       ENV: JSON.stringify(ENV),
       HMR: false
     }),
+    function done() {
+      this.plugin('done', stats => {
+        rimraf.sync(helpers.root('coverage')); // remove the previous coverage
+      });
+    }
   ]
 };
