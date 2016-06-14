@@ -40,7 +40,8 @@ module.exports = {
         loaders: ['istanbul-instrumenter'],
         include: helpers.root('src'),
         exclude: [
-          /\.spec\.ts$/
+          /\.spec\.ts$/,
+          helpers.root('src/lib')
         ]
       }
     ]
