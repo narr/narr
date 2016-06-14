@@ -374,9 +374,9 @@
       "resolved": "https://registry.npmjs.org/boom/-/boom-2.10.1.tgz"
     },
     "boxen": {
-      "version": "0.5.1",
-      "from": "boxen@>=0.5.1 <0.6.0",
-      "resolved": "https://registry.npmjs.org/boxen/-/boxen-0.5.1.tgz",
+      "version": "0.6.0",
+      "from": "boxen@>=0.6.0 <0.7.0",
+      "resolved": "https://registry.npmjs.org/boxen/-/boxen-0.6.0.tgz",
       "dependencies": {
         "camelcase": {
           "version": "2.1.1",
@@ -4796,9 +4796,9 @@
       }
     },
     "ts-node": {
-      "version": "0.9.0",
-      "from": "ts-node@0.9.0",
-      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-0.9.0.tgz",
+      "version": "0.9.1",
+      "from": "ts-node@0.9.1",
+      "resolved": "https://registry.npmjs.org/ts-node/-/ts-node-0.9.1.tgz",
       "dependencies": {
         "minimist": {
           "version": "1.2.0",
@@ -4894,9 +4894,9 @@
       "resolved": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz"
     },
     "typings": {
-      "version": "1.0.5",
-      "from": "typings@1.0.5",
-      "resolved": "https://registry.npmjs.org/typings/-/typings-1.0.5.tgz",
+      "version": "1.1.0",
+      "from": "typings@1.1.0",
+      "resolved": "https://registry.npmjs.org/typings/-/typings-1.1.0.tgz",
       "dependencies": {
         "minimist": {
           "version": "1.2.0",
@@ -4990,9 +4990,9 @@
       "resolved": "https://registry.npmjs.org/unzip-response/-/unzip-response-1.0.0.tgz"
     },
     "update-notifier": {
-      "version": "0.7.0",
-      "from": "update-notifier@>=0.7.0 <0.8.0",
-      "resolved": "https://registry.npmjs.org/update-notifier/-/update-notifier-0.7.0.tgz"
+      "version": "1.0.0",
+      "from": "update-notifier@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/update-notifier/-/update-notifier-1.0.0.tgz"
     },
     "upper-case": {
       "version": "1.1.3",
