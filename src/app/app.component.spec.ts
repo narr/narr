@@ -14,7 +14,7 @@ import { ElementRef, provide } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ScrollService } from './shared';
 
-describe('App', () => {
+describe('AppComponent', () => {
   let myWindow;
   let scrollService;
 
