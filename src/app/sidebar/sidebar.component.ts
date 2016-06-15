@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, Inject } from '@angular/core';
 
 import { ScrollService } from '../shared';
 
@@ -8,17 +8,18 @@ import { ScrollService } from '../shared';
   template: require('./sidebar.component.html')
 })
 export class SidebarComponent {
-  private builtWith = {
+  builtWith = {
     href: 'https://angular.io',
     src: require('asset/img/icon/sprite/skill/framework&library/angular.png'),
     name: 'Angular2'
   };
-  private categories = [
+  categories = [
     'Intro', 'About', 'Timeline', 'Contact'
   ];
-  private activeTarget = this.categories[0];
+  activeTarget = this.categories[0];
 
   constructor(
+    @Inject(Window) private window: Window,
     private elementRef: ElementRef,
     private scrollService: ScrollService
   ) {
@@ -28,20 +29,9 @@ export class SidebarComponent {
     });
   }
 
-  private handleScroll(targets): string {
-    let tagName;
-    for (let val of this.categories) {
-      tagName = 'NARR-' + val.toUpperCase();
-      // console.log(tagName);
-      if (targets[tagName]) {
-        return val;
-      }
-    }
-  }
-
-  private goto(e) {
+  goto(e) {
     e.preventDefault();
-    const style = window.getComputedStyle(this.elementRef.nativeElement);
+    const style = this.window.getComputedStyle(this.elementRef.nativeElement);
     // console.log(style);
     let delay = 0;
     if (style.transform !== 'none') {
@@ -62,8 +52,19 @@ export class SidebarComponent {
     this.scrollService.scrollTo('NARR-' + name.toUpperCase(), delay);
   }
 
-  private reload(e) {
+  reload(e) {
     e.preventDefault();
-    window.location.reload();
+    this.window.location.reload();
+  }
+
+  private handleScroll(targets): string {
+    let tagName;
+    for (let val of this.categories) {
+      tagName = 'NARR-' + val.toUpperCase();
+      // console.log(tagName);
+      if (targets[tagName]) {
+        return val;
+      }
+    }
   }
 }
