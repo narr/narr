@@ -13,10 +13,10 @@ import { TimelineService } from './timeline.service';
   providers: [TimelineService]
 })
 export class TimelineComponent implements AfterViewInit, OnInit {
+  currentYear = new Date().getFullYear();
+  events: Timeline[];
+  eventScrolleds: Array<{ el: any, scrolled: boolean }> = [];
   private baseOffsetEl;
-  private currentYear = new Date().getFullYear();
-  private events: Timeline[];
-  private eventScrolleds: Array<{ el: any, scrolled: boolean }> = [];
   private eventScrolledIdxs: Array<number> = [];
   // http://stackoverflow.com/questions/32693061/angular-2-typescript-get-hold-of-an-element-in-the-template
   // no spaces after a comma in rc.1
