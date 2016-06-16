@@ -13,10 +13,10 @@ import { SkillGroupService } from './skill-group.service';
   providers: [SkillGroupService]
 })
 export class AboutComponent implements AfterViewInit, OnInit {
-  private contentScrolled: { el: any, scrolled: boolean };
+  contentScrolled: { el: any, scrolled: boolean };
+  skillGroups: SkillGroup[];
+  skillGroupScrolleds: Array<{ el: any, scrolled: boolean }> = [];
   @ViewChildren('scrollTarget') private scrollEventTargetQl: QueryList<ElementRef>;
-  private skillGroups: SkillGroup[];
-  private skillGroupScrolleds: Array<{ el: any, scrolled: boolean }> = [];
   private skillGroupScrolledIdxs: Array<number> = [];
   private subscription: Subscription;
 
@@ -94,7 +94,7 @@ export class AboutComponent implements AfterViewInit, OnInit {
         for (let i = skillGroupIdxs.length - 1; i > -1; i--) {
           skillGroup = skillGroups[skillGroupIdxs[i]];
           skillGroupEl = skillGroup.el;
-          top =  skillGroupEl.offsetTop;
+          top = skillGroupEl.offsetTop;
           skillGroupArea = {
             top, bottom: top + skillGroupEl.offsetHeight
           };
