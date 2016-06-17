@@ -43,5 +43,8 @@
   "beautify.CSSfiles": [
     "css",
     "scss"
-  ]
+  ],
+  //-------- Local history configuration --------
+  // A day number to purge local history. (0: no purge)
+  "local-history.daysLimit": 7
 }
