@@ -27,6 +27,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     private scrollService: ScrollService
   ) {
     this.hasTouch = this.window && 'ontouchstart' in this.window;
+    // this.hasTouch = true; // to test
   }
 
   ngAfterViewInit() { // to scroll after views are all rendered
@@ -51,9 +52,8 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     if (this.hasTouch) {
-      document.body.parentElement.classList.add('touch');
+      this.window.document.body.parentElement.classList.add('touch');
     }
-    // document.body.parentElement.classList.add('touch'); // to test
   }
 
   @HostListener('window:beforeunload', ['$event'])
