@@ -76,3 +76,12 @@ version up(node, npm, modules, typings)
 about test
 
 http://programmers.stackexchange.com/questions/135047/new-to-tdd-should-i-avoid-private-methods-now
+
+Unit test error
+'expect' was used when there was no current spec, this could be because an asynchronous test timed out
+=> a temp solution: add one more test
+describe('Dummy test to avoid \'"expect" was used when there was no current spec\'', () => { });
+http://stackoverflow.com/questions/34469116/expect-was-used-when-there-was-no-current-spec-this-could-be-because-an-async
+
+Incorrect src line number on Unit test error when setting inlineSourceMap: true in tsconfig
+=> guess the src line number by basing on the showed number
