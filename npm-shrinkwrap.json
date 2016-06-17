@@ -2857,6 +2857,11 @@
       "from": "karma-remap-istanbul@>=0.1.0 <0.2.0",
       "resolved": "https://registry.npmjs.org/karma-remap-istanbul/-/karma-remap-istanbul-0.1.0.tgz"
     },
+    "karma-sourcemap-loader": {
+      "version": "0.3.7",
+      "from": "karma-sourcemap-loader@latest",
+      "resolved": "https://registry.npmjs.org/karma-sourcemap-loader/-/karma-sourcemap-loader-0.3.7.tgz"
+    },
     "karma-webpack": {
       "version": "1.7.0",
       "from": "karma-webpack@>=1.7.0 <2.0.0",

@@ -16,11 +16,12 @@ module.exports = config => {
       'karma-mocha-reporter',
       'karma-phantomjs-launcher',
       'karma-remap-istanbul',
+      'karma-sourcemap-loader',
       'karma-webpack'
     ],
     preprocessors: {
       './config/spec-bundle.js': [
-        'coverage', 'webpack'
+        'coverage', 'webpack', 'sourcemap'
       ]
     },
     webpack: require('./webpack.test.js'),

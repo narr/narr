@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 module.exports = {
+  devtool: 'inline-source-map', // to show the src line number on Unit test error
   resolve: {
     extensions: ['', '.ts', '.js'],
     root: helpers.root('src')
