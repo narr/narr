@@ -1,5 +1,5 @@
 import { ControlGroup, FormBuilder, Validators } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 import { ScrollService } from '../../shared';
 
@@ -8,14 +8,11 @@ import { ScrollService } from '../../shared';
   template: require('./contact.component.html')
 })
 export class ContactComponent {
-  private BASE_STRING = 'Feel free to send me a msg..!!';
-  private contactForm: ControlGroup;
-  private email = 'nardgu@gmail.com';
-  private formDirty = false;
-  private infoError = false;
-  private INFO_STRING = this.BASE_STRING;
-
-  private links = [
+  contactForm: ControlGroup;
+  email = 'nardgu@gmail.com';
+  formDirty = false;
+  infoError = false;
+  links = [
     {
       name: 'github',
       href: 'https://github.com/narr',
@@ -37,6 +34,12 @@ export class ContactComponent {
       class: 'fa fa-rss'
     }
   ];
+  submitEnd;
+  submitStart = false;
+  submitted = false;
+
+  private BASE_STRING = 'Feel free to send me a msg..!!';
+  INFO_STRING = this.BASE_STRING;
 
   private MSG_MAX_LENGTH = 150;
   private MSG_MIN_LENGTH = 2;
@@ -50,13 +53,13 @@ export class ContactComponent {
   private SUBMIT_BUTTON_PULSE_ANI_DURATION = 3000;
   private SUBMIT_BUTTON_END_ANI_DURATION = 500;
   private SUBMIT_BUTTON_START_ANI_DURATION = 500 + this.SUBMIT_BUTTON_PULSE_ANI_DURATION;
-  private submitEnd = false;
-  private submitStart = false;
-  private submitted = false;
+  private SUBMIT_BUTTON_TIMEOUT_FOR_BLINK = 100;
+
   private SUBMITTED_STRING = 'Thanks..!!';
   private TOP_TAG_NAME = 'NARR-INTRO';
 
   constructor(
+    @Inject(Window) private window: Window,
     private formBuilder: FormBuilder,
     private scrollService: ScrollService
   ) {
@@ -75,6 +78,8 @@ export class ContactComponent {
         Validators.maxLength(this.MSG_MAX_LENGTH)
       ])],
     });
+    // (<any>this.contactForm.controls['subject']).updateValue('TEST test');
+    // (<any>this.contactForm.statusChanges).emit();
     // console.log(this.contactForm);
     this.contactForm.statusChanges.subscribe(val => {
       const form = this.contactForm;
@@ -96,30 +101,13 @@ export class ContactComponent {
     });
   }
 
-  private endSubmit() {
-    this.submitStart = false;
-    this.submitEnd = true;
-    setTimeout(() => {
-      this.INFO_STRING = this.BASE_STRING;
-      const controls = this.contactForm.controls;
-      const subject = controls['subject'].value;
-      const msg = controls['msg'].value;
-      const mailto = `mailto:${this.email}?subject=${encodeURIComponent(subject)}&body=` +
-        `${encodeURIComponent(msg)}`;
-
-      // console.log(mailto);
-      window.location.href = mailto;
-      this.submitted = false;
-    }, this.SUBMIT_BUTTON_END_ANI_DURATION); // duration of submit button's end ani
-  }
-
-  private onClick(e) {
+  onClick(e) {
     e.preventDefault();
     // console.log(e);
     this.scrollService.scrollTo(this.TOP_TAG_NAME);
   }
 
-  private onSubmit() {
+  onSubmit() {
     this.formDirty = true;
     this.submitted = true;
     if (this.contactForm.valid) {
@@ -136,13 +124,29 @@ export class ContactComponent {
       setTimeout(() => {
         if (this.contactForm.controls['subject'].valid) {
           this.INFO_STRING = this.MSG_ERR_STRING;
-          this.infoError = true;
         } else {
           this.INFO_STRING = this.SUBJECT_ERR_STRING;
-          this.infoError = true;
         }
+        this.infoError = true;
         this.submitted = false;
-      }, 100); // for a blink
+      }, this.SUBMIT_BUTTON_TIMEOUT_FOR_BLINK);
     }
+  }
+
+  private endSubmit() {
+    this.submitStart = false;
+    this.submitEnd = true;
+    setTimeout(() => {
+      this.INFO_STRING = this.BASE_STRING;
+      const controls = this.contactForm.controls;
+      const subject = controls['subject'].value;
+      const msg = controls['msg'].value;
+      const mailto = `mailto:${this.email}?subject=${encodeURIComponent(subject)}&body=` +
+        `${encodeURIComponent(msg)}`;
+
+      // console.log(mailto);
+      this.window.location.href = mailto;
+      this.submitted = false;
+    }, this.SUBMIT_BUTTON_END_ANI_DURATION); // duration of submit button's end ani
   }
 }
