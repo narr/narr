@@ -9,7 +9,6 @@ import { EasingService } from '../../lib';
  */
 @Injectable()
 export class ScrollService {
-  private doc = document;
   private easingService = new EasingService();
   private scroll$: Observable<{ viewPort: { top: number, bottom: number }, scrollTargets: {} }>;
   private scrollSrc;
@@ -18,8 +17,11 @@ export class ScrollService {
   private scrollToForced: boolean;
   private scrollToRafId;
   private scrollToTimeoutId;
+  private SCROLL_ANIMATION_DURATION = 1000;
 
-  constructor() {
+  constructor(
+    @Inject(Window) private window: Window
+  ) {
     this.scroll$ = this.scrollSource.asObservable()
       // https://github.com/ReactiveX/rxjs/blob/master/src/operator/throttleTime.ts
       .throttleTime(100) // ms
@@ -28,16 +30,7 @@ export class ScrollService {
       // this is used to get the current category of sidebar
       .delay(100)
       .map(() => {
-        const scrollTop = this.getScrollTop();
-        const viewPort = {
-          top: scrollTop,
-          bottom: scrollTop + this.getSrcHeihgt()
-        };
-        const scrollTargets = this.getScrollTargets(viewPort);
-        // console.log(scrollTop);
-        return {
-          viewPort, scrollTargets
-        };
+        return this.handleScrollSourceNextE();
       });
   }
 
@@ -74,7 +67,8 @@ export class ScrollService {
     if (this.scrollSrc) {
       top = this.scrollSrc.scrollTop;
     } else {
-      top = this.doc.documentElement.scrollTop || this.doc.body.scrollTop;
+      const doc = this.window.document;
+      top = doc.documentElement.scrollTop || doc.body.scrollTop;
     }
     return top;
   }
@@ -96,9 +90,23 @@ export class ScrollService {
     if (this.scrollSrc) {
       this.scrollSrc.scrollTop = top;
     } else {
-      this.doc.documentElement.scrollTop = top;
-      this.doc.body.scrollTop = top;
+      const doc = this.window.document;
+      doc.documentElement.scrollTop = top;
+      doc.body.scrollTop = top;
     }
+  }
+
+  private handleScrollSourceNextE() {
+    const scrollTop = this.getScrollTop();
+    const viewPort = {
+      top: scrollTop,
+      bottom: scrollTop + this.getSrcHeihgt()
+    };
+    const scrollTargets = this.getScrollTargets(viewPort);
+    // console.log(scrollTop);
+    return {
+      viewPort, scrollTargets
+    };
   }
 
   private getChildOffsetTop(childTagName: string): number {
@@ -138,7 +146,7 @@ export class ScrollService {
     if (this.scrollSrc) {
       height = this.scrollSrc.offsetHeight;
     } else {
-      height = this.doc.body.offsetHeight;
+      height = this.window.document.body.offsetHeight;
     }
     return height;
   }
@@ -147,16 +155,19 @@ export class ScrollService {
     const startScrollTop = this.getScrollTop();
     const diffrence = endScrollTop - startScrollTop;
 
-    if (-100 < diffrence && diffrence < 100 && diffrence !== 0) {
+    if (diffrence === 0) {
+      return;
+    }
+
+    if (-100 < diffrence && diffrence < 100) {
       this.setScrollTop(endScrollTop);
     } else {
       const startTime = Date.now();
-      const DURATION = 1000;
-
+      const DURATION = this.SCROLL_ANIMATION_DURATION;
       // rAF helps you get the ultimate 60 fps that is ideal,
       // and 60 fps translates to 16.7ms per frame.
-      window.cancelAnimationFrame(this.scrollToRafId);
-      this.scrollToRafId = window.requestAnimationFrame(timestamp => {
+      this.window.cancelAnimationFrame(this.scrollToRafId);
+      this.scrollToRafId = this.window.requestAnimationFrame(timestamp => {
         this.scrollStep(timestamp, {
           endScrollTop, startTime, startScrollTop, diffrence, duration: DURATION
         });
@@ -181,7 +192,7 @@ export class ScrollService {
       // const value = this.easingService.linear(elapsed, startScrollTop, diffrence, duration);
       const value = this.easingService.easeOutQuad(elapsed, startScrollTop, diffrence, duration);
       this.setScrollTop(value);
-      this.scrollToRafId = window.requestAnimationFrame(timestamp => {
+      this.scrollToRafId = this.window.requestAnimationFrame(timestamp => {
         this.scrollStep(timestamp, {
           endScrollTop, startTime, startScrollTop, diffrence, duration
         });

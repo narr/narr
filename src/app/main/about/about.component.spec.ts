@@ -22,7 +22,7 @@ describe('AboutComponent', () => {
     }
   };
 
-  const scrollService = new ScrollService();
+  const scrollService = new ScrollService(null);
   let scrollSource;
   scrollService.getObservable = () => {
     scrollSource = new Subject();
