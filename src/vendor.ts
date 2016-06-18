@@ -1,3 +1,6 @@
+// lib folder
+import './lib';
+
 // RxJS
 // v4: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/categories.md
 // v5: https://github.com/ReactiveX/rxjs
