@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, Inject, OnInit } from '@angular/core';
 
 import { RainBg } from './rain-bg.model'
 
@@ -14,7 +14,10 @@ export class RainBgDirective implements OnInit {
   private MAX_PARTS: number = 40;
   private SPEED: number = 0.4;
 
-  constructor(private el: ElementRef) { }
+  constructor(
+    @Inject(Window) private window: Window,
+    private el: ElementRef
+  ) { }
 
   ngOnInit() {
     // console.log(this.el.nativeElement);
@@ -31,23 +34,14 @@ export class RainBgDirective implements OnInit {
       this.ctx.lineWidth = 2;
       this.ctx.lineCap = 'round';
 
-      this.particles = [];
-      for (let i = 0; i < this.MAX_PARTS; i++) {
-        this.particles.push({
-          x: Math.random() * this.canvasW,
-          y: Math.random() * this.canvasH,
-          vx: Math.random() * 4 - 2, // -2 <= vx < 2
-          vy: Math.random() * 10 + 10 // 10 <= vy < 20
-        })
-      }
-
+      this.setParticles();
       this.aniLoop();
     }
   }
 
   private aniLoop() {
     this.draw();
-    window.requestAnimationFrame(this.aniLoop.bind(this));
+    this.window.requestAnimationFrame(this.aniLoop.bind(this));
   }
 
   // http://www.html5rocks.com/en/tutorials/canvas/performance/
@@ -71,6 +65,19 @@ export class RainBgDirective implements OnInit {
         p.x = Math.random() * this.canvasW;
         p.y = Math.random() * this.canvasH * -1;
       }
+    }
+  }
+
+  private setParticles() {
+    // console.log(Math.random());
+    this.particles = [];
+    for (let i = 0; i < this.MAX_PARTS; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvasW,
+        y: Math.random() * this.canvasH,
+        vx: Math.random() * 4 - 2, // -2 <= vx < 2
+        vy: Math.random() * 10 + 10 // 10 <= vy < 20
+      })
     }
   }
 }
