@@ -18,7 +18,7 @@ google analytics, google PageSpeed Insights
 
 social media meta tags(Twitter Card / Open Graph tags-FB)
 
-narr npm version up to 1.0.0(tag)
+narr npm version up to 1.x.0(tag)
 ========================
 ========================
 medium image loading, loading UI for Init, Firebase for msg(tab UI for read and write), make intro
