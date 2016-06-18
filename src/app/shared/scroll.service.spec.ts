@@ -40,7 +40,7 @@ describe('ScrollService', () => {
     })
   ]);
 
-  it('should have a shared area', inject([ScrollService], (scroll) => {
+  it('should have a shared area', inject([ScrollService], scroll => {
     const a = { top: 200, bottom: 300 };
     const b = { top: 200, bottom: 300 };
     const subject = scroll.hasShareArea(a, b);
@@ -49,7 +49,7 @@ describe('ScrollService', () => {
   }));
 
   it('should not scroll to a target if the target is the same with current scrollTop',
-    fakeAsync(inject([ScrollService], (scroll) => {
+    fakeAsync(inject([ScrollService], scroll => {
       const tagName = 'TEST-TAG';
       const offsetTop = 480;
       const delay = 0;
@@ -70,7 +70,7 @@ describe('ScrollService', () => {
     })));
 
   it('should not animate if diffrence of the target and current scrollTop is less than 100',
-    fakeAsync(inject([ScrollService], (scroll) => {
+    fakeAsync(inject([ScrollService], scroll => {
       const tagName = 'TEST-TAG';
       const offsetTop = 480;
       const delay = 50;
@@ -93,7 +93,7 @@ describe('ScrollService', () => {
     })));
 
   it('should animate if diffrence of the target and current scrollTop is not less than 100',
-    fakeAsync(inject([ScrollService], (scroll) => {
+    fakeAsync(inject([ScrollService], scroll => {
       const tagName = 'TEST-TAG';
       const offsetTop = 450;
 
@@ -112,7 +112,7 @@ describe('ScrollService', () => {
       expect(subject).toEqual(result);
     })));
 
-  it('should get the right scrollTargets on scroll', inject([ScrollService], (scroll) => {
+  it('should get the right scrollTargets on scroll', inject([ScrollService], scroll => {
     const child2 = {
       tagName: 'child2',
       offsetTop: 800,

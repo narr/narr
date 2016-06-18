@@ -30,7 +30,7 @@ describe('ContactComponent', () => {
 
   describe('Info Text', () => {
     it('should show the base text when the form state is pristine or valid',
-      async(inject([ContactComponent], (contact) => {
+      async(inject([ContactComponent], contact => {
         contact.contactForm.statusChanges.subscribe(val => {
           const subject = contact.INFO_STRING;
           const subject2 = contact.infoError;
@@ -43,7 +43,7 @@ describe('ContactComponent', () => {
       })));
 
     it('should show the subject error text when the subject is dirty and invalid',
-      async(inject([ContactComponent], (contact) => {
+      async(inject([ContactComponent], contact => {
         contact.contactForm.statusChanges.subscribe(val => {
           const subject = contact.INFO_STRING;
           const subject2 = contact.infoError;
@@ -57,7 +57,7 @@ describe('ContactComponent', () => {
       })));
 
     it('should show the msg error text when the msg is dirty and invalid',
-      async(inject([ContactComponent], (contact) => {
+      async(inject([ContactComponent], contact => {
         contact.contactForm.statusChanges.subscribe(val => {
           const subject = contact.INFO_STRING;
           const subject2 = contact.infoError;
@@ -71,7 +71,7 @@ describe('ContactComponent', () => {
       })));
 
     it('should show the base text when the subject is dirty and valid and the msg is pristine',
-      async(inject([ContactComponent], (contact) => {
+      async(inject([ContactComponent], contact => {
         contact.contactForm.statusChanges.subscribe(val => {
           const subject = contact.INFO_STRING;
           const subject2 = contact.infoError;
@@ -88,7 +88,7 @@ describe('ContactComponent', () => {
 
   describe('On Submit', () => {
     it('should change the submit status and Info text on valid',
-      fakeAsync(inject([ContactComponent], (contact) => {
+      fakeAsync(inject([ContactComponent], contact => {
         contact.contactForm.statusChanges.subscribe(val => {
           contact.onSubmit();
           const subject = contact.formDirty;
@@ -132,7 +132,7 @@ describe('ContactComponent', () => {
       })));
 
     it('should change the submit status and Info text when subject is invalid',
-      fakeAsync(inject([ContactComponent], (contact) => {
+      fakeAsync(inject([ContactComponent], contact => {
         contact.contactForm.statusChanges.subscribe(val => {
           contact.onSubmit();
           const subject = contact.formDirty;
@@ -172,7 +172,7 @@ describe('ContactComponent', () => {
       })));
 
     it('should change the submit status and Info text when msg is invalid',
-      fakeAsync(inject([ContactComponent], (contact) => {
+      fakeAsync(inject([ContactComponent], contact => {
         contact.contactForm.statusChanges.subscribe(val => {
           contact.onSubmit();
           const subject = contact.formDirty;
