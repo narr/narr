@@ -35,7 +35,8 @@ export class SidebarComponent implements OnInit {
     const style = this.window.getComputedStyle(this.elementRef.nativeElement);
     // console.log(style);
     let delay = 0;
-    if (style.transform !== 'none') {
+    // In IE9, style.transform is undefined
+    if (style.transform !== undefined && style.transform !== 'none') {
       const DURATION_OF_SIDEBAR_ANI = 300; // ms
       const WAITING_TIME = 200; // 200 is a waiting time till scrollTo starts
       delay = DURATION_OF_SIDEBAR_ANI + WAITING_TIME;
