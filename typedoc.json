@@ -1,5 +1,5 @@
 {
-  "exclude": "**/*.+(spec|e2e-spec).ts",
+  "exclude": "**/{*.{spec,e2e-spec}.ts,ng-html-generator/**/*.ts}",
   "ignoreCompilerErrors": true,
   "mode": "file",
   "out": "doc",
