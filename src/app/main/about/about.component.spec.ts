@@ -45,8 +45,8 @@ describe('AboutComponent', () => {
         nativeElement: {
           offsetTop: 200,
           offsetHeight: 400,
-          classList: {
-            contains: () => true
+          className: {
+            indexOf: () => 0
           }
         }
       }
@@ -60,8 +60,8 @@ describe('AboutComponent', () => {
         nativeElement: {
           offsetTop: offsetTop[i],
           offsetHeight: 200,
-          classList: {
-            contains: () => false
+          className: {
+            indexOf: () => -1
           }
         }
       });
@@ -102,8 +102,8 @@ describe('AboutComponent', () => {
           nativeElement: {
             offsetTop: 300,
             offsetHeight: 300,
-            classList: {
-              contains: () => true
+            className: {
+              indexOf: () => 0
             }
           }
         }
@@ -117,8 +117,8 @@ describe('AboutComponent', () => {
           nativeElement: {
             offsetTop: offsetTop[i],
             offsetHeight: 150,
-            classList: {
-              contains: () => false
+            className: {
+              indexOf: () => -1
             }
           }
         });

@@ -5,26 +5,21 @@ const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fs = require('fs');
 const copy = require('copy');
-
 const webpack = require('webpack');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const IS_FOR_GITHUB_PAGE = helpers.hasProcessFlag('-my-ghp');
 const BASE_URL = IS_FOR_GITHUB_PAGE ? '/narr/' : '/';
 const ROOT_PATH = helpers.root('src');
-
 const INDEX_SCSS_PATH = helpers.root('src/index.scss');
 const FONT_AWESOME_SCSS_PATH = helpers.root('node_modules/font-awesome/scss/font-awesome.scss');
 const ENTRY_ORDER = ['polyfills', 'vendor', 'main'];
-
 const OUTPUT_PATH = IS_FOR_GITHUB_PAGE ? helpers.root('gh-pages') : helpers.root('dist');
 const INDEX_PATH = helpers.root('src/index.html');
 const ICON_PATH = /icon/;
 const SPRITE_SRC_PATH = helpers.root('src/asset/img/icon/sprite');
 const SPRITE_TARGET_PATH = helpers.root('temp/icon/sprite');
-
 const IS_DEV_MODE = helpers.hasProcessFlag('-my-dev');
 
 rimraf.sync(helpers.root('temp'));
@@ -83,10 +78,10 @@ function rename(src, dest) {
   rd.pipe(wr);
 }
 
-
 module.exports = {
   metadata: {
     ga: IS_FOR_GITHUB_PAGE
+    // baseUrl: BASE_URL
   },
   devtool: 'source-map',
   context: ROOT_PATH,
@@ -178,12 +173,7 @@ module.exports = {
   postcss: () => [autoprefixer({ browsers: 'last 3 versions' })],
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        ENV: JSON.stringify(ENV),
-        NODE_ENV: JSON.stringify(ENV)
-      },
-      ENV: JSON.stringify(ENV),
-      HMR: false
+      ENV: JSON.stringify('production')
     }),
     new ExtractTextPlugin('css/[name].bundle.css?[contenthash]'),
     new WebpackMd5Hash(),

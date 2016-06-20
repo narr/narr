@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 
 import { ScrollService } from '../shared';
 
@@ -7,7 +7,7 @@ import { ScrollService } from '../shared';
   styles: [require('./sidebar.component.scss').toString()],
   template: require('./sidebar.component.html')
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   builtWith = {
     href: 'https://angular.io',
     src: require('asset/img/icon/sprite/skill/framework&library/angular.png'),
@@ -17,6 +17,7 @@ export class SidebarComponent {
     'Intro', 'About', 'Timeline', 'Contact'
   ];
   activeTarget = this.categories[0];
+  ngHtml = false;
 
   constructor(
     @Inject(Window) private window: Window,
@@ -50,6 +51,12 @@ export class SidebarComponent {
     const name = target.hash.substring(1); // remove #
     // console.log(name);
     this.scrollService.scrollTo('NARR-' + name.toUpperCase(), delay);
+  }
+
+  ngOnInit() {
+    if (ENV === 'ng-html') {
+      this.ngHtml = true; // g tag is not supported in ng-universal yet(v0.102.1).
+    }
   }
 
   reload(e) {

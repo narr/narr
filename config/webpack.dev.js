@@ -2,26 +2,20 @@ const helpers = require('./helpers');
 const Sprite = require('sprite-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const webpack = require('webpack');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-const BASE_URL = '/';
 const ROOT_PATH = helpers.root('src');
-
 const INDEX_SCSS_PATH = helpers.root('src/index.scss');
 const FONT_AWESOME_SCSS_PATH = helpers.root('node_modules/font-awesome/scss/font-awesome.scss');
 const ENTRY_ORDER = ['polyfills', 'vendor', 'main'];
-
 const HMR = helpers.hasProcessFlag('--hot');
 const HASH = HMR ? 'hash' : 'chunkhash';
 const INDEX_PATH = helpers.root('src/index.html');
 const ICON_PATH = /icon/;
 const SPRITE_SRC_PATH = helpers.root('src/asset/img/icon/sprite');
 const SPRITE_TARGET_PATH = helpers.root('temp/icon/sprite');
-
 const md5Hash = HMR ? f => f : new WebpackMd5Hash();
 
 module.exports = {
@@ -49,7 +43,7 @@ module.exports = {
 
   // http://webpack.github.io/docs/configuration.html#output
   output: {
-    publicPath: BASE_URL,
+    publicPath: '/',
     filename: `js/[name].bundle.js?[${HASH}]`, // Cannot use [chunkhash] for HMR
     chunkFilename: `js/[name].chunk.js?[${HASH}]`
   },
@@ -134,11 +128,7 @@ module.exports = {
   plugins: [
     // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
     new webpack.DefinePlugin({
-      'process.env': {
-        ENV: JSON.stringify(ENV),
-        NODE_ENV: JSON.stringify(ENV)
-      },
-      ENV: JSON.stringify(ENV),
+      ENV: JSON.stringify('development'),
       HMR: HMR
     }),
 

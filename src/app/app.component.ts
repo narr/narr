@@ -45,7 +45,12 @@ export class AppComponent implements AfterViewInit, OnInit {
       if (scrollTop !== null) {
         scrollTop *= 1; // convert to number
         // console.log(scrollTop);
-        this.scrollService.setScrollTop(scrollTop); // for mobile
+        // scroll event is not called if new scroll top is the same with old scroll top.
+        if (scrollTop === this.scrollService.getScrollTop()) {
+          this.scrollService.handleScrollChange();
+        } else {
+          this.scrollService.setScrollTop(scrollTop); // for mobile
+        }
       }
     }
   }

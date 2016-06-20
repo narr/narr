@@ -41,7 +41,8 @@ export class AboutComponent implements AfterViewInit, OnInit {
     // sorted by the DOM tree structure
     this.scrollEventTargetQl.forEach(item => {
       el = item.nativeElement;
-      if (el.classList.contains('content')) {
+      // classList is not supported in ng-universal
+      if (el.className.indexOf('content') > -1) {
         this.contentScrolled = {
           el, scrolled: false
         };

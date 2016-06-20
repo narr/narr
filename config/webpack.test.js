@@ -1,7 +1,6 @@
 const helpers = require('./helpers');
 const rimraf = require('rimraf');
 const webpack = require('webpack');
-const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 module.exports = {
   devtool: 'inline-source-map', // to show the src line number on Unit test error
@@ -54,14 +53,7 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        ENV: JSON.stringify(ENV),
-        NODE_ENV: JSON.stringify(ENV)
-      },
-      ENV: JSON.stringify(ENV),
-      HMR: false
-    }),
+    // new webpack.DefinePlugin({}),
     function done() {
       this.plugin('done', stats => {
         rimraf.sync(helpers.root('coverage')); // remove the previous coverage
