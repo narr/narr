@@ -27,14 +27,10 @@ exports.config = {
     // https://github.com/bcaudan/jasmine-spec-reporter/blob/master/docs/protractor-configuration.md
     jasmine.getEnv().addReporter(new SpecReporter({ displayStacktrace: 'all' }));
     browser.ignoreSynchronization = true; // for a non-angular site or for async
+    // browser.driver.manage().window().maximize(); // for firefox
   },
 
   capabilities: {
-    browserName: 'chrome',
-    chromeOptions: {
-      args: [
-        // '--window-size=1920,1200'
-      ]
-    }
+    browserName: 'firefox'
   }
 };

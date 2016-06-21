@@ -21,6 +21,7 @@
     "server": "http-server ./dist",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor ./config/protractor.chrome.js",
+    "e2e:ff": "protractor ./config/protractor.firefox.js",
     "e2e:ip": "npm run e2e -- --baseUrl http://192.168.0.2:8080/",
     "e2e:ip:live": "npm run e2e:ip -- --elementExplorer",
     "doc": "typedoc --options ./typedoc.json ./src",
