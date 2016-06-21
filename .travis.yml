@@ -16,8 +16,9 @@ addons:
     packages:
       - g++-4.8
 # To compile native modules @
-  firefox: "latest" # default 31.0
-  # firefox: "40.0"
+  # the latest version(v47) emits Error: Timed out waiting for the WebDriver server at http://127.0.0.1:47624/hub
+  # firefox: "latest" # default 31.0
+  firefox: "46.0"
 
 install:
   - npm install
