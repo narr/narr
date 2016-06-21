@@ -16,6 +16,7 @@ addons:
     packages:
       - g++-4.8
 # To compile native modules @
+  firefox: "latest"
 
 install:
   - npm install

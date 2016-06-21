@@ -26,11 +26,16 @@ exports.config = {
   onPrepare: () => {
     // https://github.com/bcaudan/jasmine-spec-reporter/blob/master/docs/protractor-configuration.md
     jasmine.getEnv().addReporter(new SpecReporter({ displayStacktrace: 'all' }));
+    // use below coz 'useAllAngular2AppRoots' doesn't work as of now
     browser.ignoreSynchronization = true; // for a non-angular site or for async
     // browser.driver.manage().window().maximize(); // for firefox
+    browser.driver.manage().window().setSize(1024, 800);
   },
 
   capabilities: {
     browserName: 'firefox'
   }
+
+  // https://github.com/angular/protractor/issues/3174
+  // useAllAngular2AppRoots: true
 };
