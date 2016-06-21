@@ -29,6 +29,7 @@ before_script:
 script:
   - npm test
   - npm run build
+  - npm run gen:html
   - npm run server & # run a command in the background by appending '&'
   - sleep 3 # give a server some time to start
   - npm run e2e:ff
