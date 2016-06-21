@@ -29,6 +29,8 @@ exports.config = {
     // use below coz 'useAllAngular2AppRoots' doesn't work as of now
     browser.ignoreSynchronization = true; // for a non-angular site or for async
     // browser.driver.manage().window().maximize(); // for firefox
+
+    // In Travis, the default window size would be different so set it explicitly.
     browser.driver.manage().window().setSize(1024, 800);
   },
 
