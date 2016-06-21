@@ -20,6 +20,7 @@
     "gen:html:ghp": "npm run _build:html:ghp && node ./temp/ng-html/generator.bundle.js",
     "server": "http-server ./dist",
     "pree2e": "webdriver-manager update",
+    "pree2e:ff": "webdriver-manager update",
     "e2e": "protractor ./config/protractor.chrome.js",
     "e2e:ff": "protractor ./config/protractor.firefox.js",
     "e2e:ip": "npm run e2e -- --baseUrl http://192.168.0.2:8080/",

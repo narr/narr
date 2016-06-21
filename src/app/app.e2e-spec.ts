@@ -9,7 +9,7 @@ describe('/', () => {
     expect(subject).toEqual(result);
   });
 
-  it('should have active class after Contact, one of Sidebar menus is clicked and' +
+  it('should have active class after Contact, one of Sidebar menus is clicked and ' +
     'its animation is finished', done => {
       const ANI_DURATION = 2000; // ANI_DURATION > sidebar ani(500) + scroll ani(1000)
       const contact = element(by.css('narr-sidebar li:nth-child(4)'));
