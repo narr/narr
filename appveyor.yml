@@ -8,6 +8,9 @@ branches:
   only:
   - master
 
+services:
+  - iis
+
 environment:
   nodejs_version: "6.2.1"
 
@@ -32,8 +35,14 @@ test_script:
 
 deploy:
   - provider: Local
-    port: 8080
-    path: .\dist
+    # port: 8080
+    # path: .\dist
+  narr-app.deploy_website: true
+  narr-app.site_name: Test
+  narr-app.hostname: localhost
+  narr-app.port: 8080
+  narr-app.protocol: http
+  narr-app.path: .\dist
 
 after_deploy:
   - npm run e2e:ie
