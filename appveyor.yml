@@ -12,10 +12,15 @@ environment:
 
 # Install scripts. (runs after repo cloning)
 install:
-  - ps: Install-Product node $env:nodejs_version
-  - del ./npm-shrinkwrap.json
+  - ps: Install-Product node $env:nodejs_version # ps => PowerShell
+  - del .\npm-shrinkwrap.json
   - npm install
 
 # Post-install test scripts.
 test_script:
   - npm run test:ie
+  - npm run build
+  - npm run gen:html
+  - START /B npm run server # run a command in the background
+  - timeout 3 # give a server some time to start
+  - npm run e2e:ie
