@@ -43,7 +43,7 @@ gulp.task('e2e', done => {
   protractor.server(8080, './dist').then(server => {
     return gulp.src([])
       .pipe(gulpProtractor({
-        configFile: 'config/protractor.chrome.js'
+        configFile: 'config/protractor.ie.js'
       }))
       .on('error', error => { throw error; })
       .on('end', () => {
