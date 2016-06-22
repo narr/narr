@@ -16,6 +16,7 @@ install:
   - del .\npm-shrinkwrap.json
   - npm install
 
+# MSBUILD off
 build: off
 
 # Post-install test scripts.
@@ -23,6 +24,6 @@ test_script:
   - npm run test:ie
   - npm run build
   - npm run gen:html
-  - START /B npm run server # run a command in the background
-  - timeout 3 # give a server some time to start
+  - START npm run server # run a command in a new CMD
+  # - timeout 3 # give a server some time to start
   - npm run e2e:ie
