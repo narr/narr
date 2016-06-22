@@ -13,7 +13,7 @@ environment:
 # Install scripts. (runs after repo cloning)
 install:
   - ps: Install-Product node $env:nodejs_version # ps => PowerShell
-  - del .\npm-shrinkwrap.json
+  - rm -rf ./npm-shrinkwrap.json
   - npm install
 
 # MSBUILD off
@@ -24,6 +24,7 @@ test_script:
   - npm run test:ie
   - npm run build
   - npm run gen:html
-  - START npm run server # run a command in a new CMD
+  - npm run server & # run a command in a new CMD
   # - timeout 3 # give a server some time to start
+  - sleep 3
   - npm run e2e:ie
