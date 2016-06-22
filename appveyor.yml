@@ -36,10 +36,12 @@ test_script:
 artifacts:
 - path: .\dist
   name: narr
+  type: WebDeployPackage
 
 deploy:
   - provider: Local
-    narr.port: 8080
+    port: 8080
+    artifact: narr
 
 after_deploy:
   - npm run e2e:ie
