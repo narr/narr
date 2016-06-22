@@ -28,7 +28,7 @@ test_script:
   - npm run test:ie
   - npm run build
   - npm run gen:html
-  - echo %cd%
+  - dir | find "Directory"
   # - npm run server & ls & npm run e2e:ie # run a command in a new CMD
   # - timeout 3 # give a server some time to start
   # - sleep 3
