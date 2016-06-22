@@ -17,15 +17,11 @@ cache: node_modules
 environment:
   nodejs_version: "6.2.1"
 
-# Fix line endings on Windows
-init:
-  - git config --global core.autocrlf true
-
 # Install scripts. (runs after repo cloning)
 install:
   - ps: Install-Product node $env:nodejs_version # ps: => PowerShell, cmd: cmd
   - del .\npm-shrinkwrap.json
-  - ren .\npm-shrinkwrap.window.json npm-shrinkwrap.json
+  # - ren .\npm-shrinkwrap.window.json npm-shrinkwrap.json
   - npm install
 
 # MSBUILD off
@@ -36,4 +32,4 @@ test_script:
   - npm run test:ie
   - npm run build
   - npm run gen:html
-  - npm run e2e:appveyor
+  - npm run e2e:test

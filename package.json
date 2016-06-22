@@ -27,7 +27,7 @@
     "e2e:ip:live": "npm run e2e:ip -- --elementExplorer",
     "e2e:ff": "npm run pree2e && protractor ./config/protractor.firefox.js",
     "e2e:ie": "npm run pree2e && protractor ./config/protractor.ie.js",
-    "e2e:appveyor": "npm run pree2e && node ./config/protractor.js -- ./config/protractor.chrome.js",
+    "e2e:test": "gulp e2e",
     "doc": "typedoc --options ./typedoc.json ./src",
     "start": "npm run dev",
     "postinstall": "typings install"
@@ -52,6 +52,8 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "gulp-protractor": "^2.4.0",
     "html-minifier": "^2.1.5",
     "html-webpack-plugin": "^2.21.0",
     "http-server": "^0.9.0",
