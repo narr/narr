@@ -14,5 +14,5 @@ require('rxjs/add/operator/throttleTime');
 // src/vendor.ts @
 
 // https://webpack.github.io/docs/context.html#require-context
-const testsContext = require.context('../src', true, /\.spec\.ts/);
+var testsContext = require.context('../src', true, /\.spec\.ts/);
 testsContext.keys().map(testsContext);

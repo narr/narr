@@ -28,6 +28,7 @@ exports.config = {
     jasmine.getEnv().addReporter(new SpecReporter({ displayStacktrace: 'all' }));
     // use below coz 'useAllAngular2AppRoots' doesn't work as of now
     browser.ignoreSynchronization = true; // for a non-angular site or for async
+    // browser.driver.manage().window().maximize();
     browser.driver.manage().window().setSize(1024, 800);
   },
 

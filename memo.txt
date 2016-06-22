@@ -4,21 +4,39 @@ npm run typings i dt~node -- -SG
 npm run typings i dt~node -- -DG
 
 kill -9 $(ps | awk '/karma\.conf/ {print $1}')
+
+git commit -m "update memo [skip ci]" => don't trigger travis
 ========================
 ========================
-specs for units and e2e
+Window
 
-universal(async false)
+https://github.com/nodejs/node-gyp
+install Visual C++ Build Tools
+npm config set msvs_version 2015
 
-travis, appveyor(for IE)
+remove npm-shrinkwrap.json
+
+for selenium, install Java 8 or 7
+SET PATH=%PATH%;C:\Data\Project\narr\webdriver\ie
+========================
+========================
+appveyor(for IE)
 
 progressive web app
 
+update version to 1.2.0
+
 google analytics, google PageSpeed Insights
+
+update version to 1.3.0
 
 social media meta tags(Twitter Card / Open Graph tags-FB)
 
-narr npm version up to 1.x.0(tag)
+update version to 1.4.0
+
+update to rc2(check this.changeDetectionRef.detectChanges();)
+
+update version to 1.5.0
 ========================
 ========================
 medium image loading, loading UI for Init, Firebase for msg(tab UI for read and write), make intro

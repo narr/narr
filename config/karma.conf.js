@@ -2,6 +2,9 @@
 module.exports = config => {
   config.set({
     browsers: [
+      // 'IE',
+      // 'IE10',
+      // 'IE9',
       'PhantomJS'
     ],
     frameworks: ['jasmine'],
@@ -12,6 +15,7 @@ module.exports = config => {
     exclude: [],
     plugins: [
       'karma-coverage',
+      'karma-ie-launcher',
       'karma-jasmine',
       'karma-mocha-reporter',
       'karma-phantomjs-launcher',
@@ -45,6 +49,16 @@ module.exports = config => {
       },
       timeoutNotCreated: 1000,
       timeoutNoMoreFiles: 1000
+    },
+    customLaunchers: {
+      IE10: {
+        base: 'IE',
+        'x-ua-compatible': 'IE=EmulateIE10'
+      },
+      IE9: {
+        base: 'IE',
+        'x-ua-compatible': 'IE=EmulateIE9'
+      }
     }
     // values => config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO ||
     // config.LOG_DEBUG

@@ -1,6 +1,7 @@
 const helpers = require('./helpers');
 const rimraf = require('rimraf');
 const webpack = require('webpack');
+const ie = helpers.hasProcessFlag('IE');
 
 module.exports = {
   devtool: 'inline-source-map', // to show the src line number on Unit test error
@@ -56,7 +57,12 @@ module.exports = {
     // new webpack.DefinePlugin({}),
     function done() {
       this.plugin('done', stats => {
-        rimraf.sync(helpers.root('coverage')); // remove the previous coverage
+        // In Window, if remove the previous coverage, it won't make new one
+        // msg => WARN [reporter.remap-istanbul]:
+        // Could not find any specified files, exiting without doing anything
+        if (!ie) {
+          rimraf.sync(helpers.root('coverage')); // remove the previous coverage
+        }
       });
     }
   ]
