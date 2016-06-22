@@ -16,6 +16,8 @@ install:
   - del .\npm-shrinkwrap.json
   - npm install
 
+build: off
+
 # Post-install test scripts.
 test_script:
   - npm run test:ie
