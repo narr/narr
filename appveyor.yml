@@ -1,5 +1,8 @@
 # http://www.appveyor.com/docs/lang/nodejs-iojs
 
+skip_commits:
+  message: /\[skip appveyor\]/
+
 branches:
   only:
   - master
@@ -10,8 +13,9 @@ environment:
 # Install scripts. (runs after repo cloning)
 install:
   - ps: Install-Product node $env:nodejs_version
+  - del ./npm-shrinkwrap.json
   - npm install
 
 # Post-install test scripts.
 test_script:
-  - npm test
+  - npm run test:ie
