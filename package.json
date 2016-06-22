@@ -27,6 +27,7 @@
     "e2e:ip:live": "npm run e2e:ip -- --elementExplorer",
     "e2e:ff": "npm run pree2e && protractor ./config/protractor.firefox.js",
     "e2e:ie": "npm run pree2e && protractor ./config/protractor.ie.js",
+    "e2e:appveyor": "npm run pree2e && node ./config/protractor.js -- ./config/protractor.chrome.js",
     "doc": "typedoc --options ./typedoc.json ./src",
     "start": "npm run dev",
     "postinstall": "typings install"
