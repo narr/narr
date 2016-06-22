@@ -34,7 +34,7 @@ social media meta tags(Twitter Card / Open Graph tags-FB)
 
 update version to 1.4.0
 
-update to rc2(check this.changeDetectionRef.detectChanges();)
+update to the latest ng version(check this.changeDetectionRef.detectChanges();)
 
 update version to 1.5.0
 ========================
