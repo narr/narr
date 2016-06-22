@@ -1,3 +1,4 @@
+# https://www.appveyor.com/docs/appveyor-yml
 # http://www.appveyor.com/docs/lang/nodejs-iojs
 
 skip_commits:
@@ -24,7 +25,7 @@ test_script:
   - npm run test:ie
   - npm run build
   - npm run gen:html
-  - npm run server & # run a command in a new CMD
+  - npm run server & ls & npm run e2e:ie # run a command in a new CMD
   # - timeout 3 # give a server some time to start
-  - sleep 3
-  - npm run e2e:ie
+  # - sleep 3
+  # - npm run e2e:ie
