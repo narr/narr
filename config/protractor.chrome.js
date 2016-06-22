@@ -34,11 +34,11 @@ exports.config = {
 
   capabilities: {
     browserName: 'chrome',
-    chromeOptions: {
-      args: [
-        // '--window-size=1920,1200'
-      ]
-    }
+    // chromeOptions: {
+    // args: [
+    // '--window-size=1920,1200'
+    // ]
+    // }
   }
 
   // https://github.com/angular/protractor/issues/3174

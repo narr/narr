@@ -32,6 +32,11 @@ exports.config = {
 
   capabilities: {
     browserName: 'internet explorer'
+  },
+
+  localSeleniumStandaloneOpts: {
+    // https://github.com/angular/protractor/issues/2728
+    args: ['-Djna.nosys=true']
   }
 
   // https://github.com/angular/protractor/issues/3174
