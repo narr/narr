@@ -20,8 +20,6 @@ for selenium, install Java 8 or 7
 SET PATH=%PATH%;C:\Data\Project\narr\webdriver\ie
 ========================
 ========================
-appveyor(for IE)
-
 progressive web app
 
 update version to 1.2.0
