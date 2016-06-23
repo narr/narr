@@ -36,3 +36,6 @@ script:
   - npm run server & # run a command in the background by appending '&'
   - sleep 3 # give a server some time to start
   - npm run e2e:ff
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
