@@ -38,5 +38,7 @@ script:
   - npm run e2e:ff
 
 after_success:
+  # because of this issue, https://github.com/marcules/karma-remap-istanbul/issues/3
+  # use remap-istanbul to generate 'lcov.info' from 'coverage-final.json'
+  - cat ./coverage/coverage-final.json | ./node_modules/.bin/remap-istanbul -o ./coverage/lcov.info -t lcovonly
   - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
-  - echo "Coverage data was sent to coveralls!"

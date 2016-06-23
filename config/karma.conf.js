@@ -45,7 +45,7 @@ module.exports = config => {
     remapIstanbulReporter: {
       src: 'coverage/coverage-final.json',
       reports: {
-        lcovonly: 'coverage/lcov.info',
+        // lcovonly: 'coverage/lcov.info',
         html: 'coverage'
       },
       timeoutNotCreated: 1000,
