@@ -39,3 +39,4 @@ script:
 
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+  - echo "Coverage data was sent to coveralls!"
