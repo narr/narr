@@ -21,7 +21,7 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version # ps: => PowerShell, cmd: cmd
   - del .\npm-shrinkwrap.json
-  - ren .\npm-shrinkwrap.window.json npm-shrinkwrap.json
+  # - ren .\npm-shrinkwrap.window.json npm-shrinkwrap.json
   - npm install
 
 # MSBUILD off
