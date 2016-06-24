@@ -9,6 +9,7 @@
 :host {
   display: block;
   height: 100%;
+  overflow: hidden; // to prevent scrolling its viewport on mobile
 }
 
 // ================================
