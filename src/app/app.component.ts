@@ -4,12 +4,12 @@ import { NavbarComponent } from './navbar';
 // to avoid a conflict between ./main.ts and ./main/index.ts, add index after main folder
 import { MainComponent } from './main/index';
 import { SidebarComponent } from './sidebar';
-import { ScrollService } from './shared';
+import { ScrollService, StyleCheckService } from './shared';
 
 @Component({
   selector: 'narr-app',
   template: require('./app.component.html'),
-  styles: [require('./app.component.scss').toString()],
+  styles: StyleCheckService.getStyleStr(require('./app.component.scss').toString()),
   directives: [NavbarComponent, MainComponent, SidebarComponent],
   providers: [ScrollService]
 })

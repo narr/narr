@@ -54,7 +54,9 @@ module.exports = {
     }
   },
   plugins: [
-    // new webpack.DefinePlugin({}),
+    new webpack.DefinePlugin({
+      ENV: JSON.stringify('unit-test')
+    }),
     function done() {
       this.plugin('done', stats => {
         // In Window, if remove the previous coverage, it won't make new one
