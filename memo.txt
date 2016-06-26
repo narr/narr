@@ -6,6 +6,8 @@ npm run typings i dt~node -- -DG
 kill -9 $(ps | awk '/karma\.conf/ {print $1}')
 
 git commit -m "update memo [skip ci]" => don't trigger travis
+
+remove 'service worker' for dev mode or use IP(192.168.0.2)
 ========================
 ========================
 Window
@@ -20,15 +22,11 @@ for selenium, install Java 8 or 7
 SET PATH=%PATH%;C:\Data\Project\narr\webdriver\ie
 ========================
 ========================
-progressive web app
-
-update version to 1.2.0
-
-google analytics, google PageSpeed Insights
+social media meta tags(Twitter Card / Open Graph tags-FB)
 
 update version to 1.3.0
 
-social media meta tags(Twitter Card / Open Graph tags-FB)
+google analytics, google PageSpeed Insights
 
 update version to 1.4.0
 
