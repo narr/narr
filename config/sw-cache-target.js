@@ -12,7 +12,8 @@ module.exports = {
     'css/main.bundle.css.map': true,
     'js/polyfills.bundle.js.map': true,
     'js/vendor.bundle.js.map': true,
-    'css/vendor.bundle.css.map': true
+    'css/vendor.bundle.css.map': true,
+    'asset/img/ss.intro.jpg': true
   }
 };
 
