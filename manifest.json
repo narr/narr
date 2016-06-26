@@ -1,0 +1,35 @@
+{
+  "background_color": "#2080a9",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/narr/asset/img/ic/ic.narr.128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/narr/asset/img/ic/ic.narr.144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/narr/asset/img/ic/ic.narr.152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/narr/asset/img/ic/ic.narr.192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/narr/asset/img/ic/ic.narr.256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "name": "Narr's Website",
+  "short_name": "Narr",
+  "start_url": "/index.html",
+  "theme_color": "#1667b7"
+}
