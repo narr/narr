@@ -24,7 +24,7 @@ var filesToCache = [ '/narr/',
 '/narr/asset/img/ic/ic.narr.152x152.png?a57be3a49d7bc6c753bed2eb473146aa',
 '/narr/asset/img/ic/ic.narr.192x192.png?2b4e607a0375e1620b849200d2d0c72a',
 '/narr/asset/img/ic/ic.narr.256x256.png?5e76e023ef7c724a60943e61b9237f7a',
-'/narr/js/main.bundle.js?cfee7d4ea539e7a8b10e',
+'/narr/js/main.bundle.js?4f93b53481f108684e11',
 '/narr/js/polyfills.bundle.js?809369a5e0952c967fad',
 '/narr/js/vendor.bundle.js?0bcf218e4dd1cc79fd12',
 '/narr/css/main.bundle.css?bd5c126a6137db44db599b471d94c8a9',
@@ -93,4 +93,4 @@ self.addEventListener('fetch', function (e) {
     }
 });
 
-// 1466926534279
+// 1466927165210
