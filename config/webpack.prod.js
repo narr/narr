@@ -8,6 +8,7 @@ const copy = require('copy');
 const webpack = require('webpack');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const swCacheKeys = require('./sw-cache-target');
 
 const IS_FOR_GITHUB_PAGE = helpers.hasProcessFlag('-my-ghp');
 const BASE_URL = IS_FOR_GITHUB_PAGE ? '/narr/' : '/';
@@ -78,9 +79,68 @@ function rename(src, dest) {
   rd.pipe(wr);
 }
 
+function setCacheTargetForServiceWorker(assets) {
+  let targetStr = '';
+  const include = swCacheKeys.include;
+  for (let key in include) {
+    if (include.hasOwnProperty(key)) {
+      if (key === '/') {
+        targetStr += '\'' + BASE_URL + '\',\n';
+      } else {
+        targetStr += '\'' + BASE_URL + key + '\',\n';
+      }
+    }
+  }
+  // console.log('\n' + targetStr);
+
+  const exclude = swCacheKeys.exclude;
+  let splitArray;
+  let name;
+  for (let key in assets) {
+    if (assets.hasOwnProperty(key)) {
+      splitArray = key.split('?');
+      name = splitArray[0];
+      if (!exclude[name]) {
+        targetStr += '\'' + BASE_URL + key + '\',\n';
+      }
+    }
+  }
+  targetStr = '[ ' + targetStr + ' ]';
+  // console.log(targetStr);
+  return targetStr;
+}
+
+function replaceCacheTargetForServiceWorker(targetStr) {
+  const swPath = OUTPUT_PATH + '/service-worker.js';
+  // console.log(swPath);
+  const readStream = fs.createReadStream(swPath, 'utf8');
+  let replaced = false;
+  let newStr = '';
+
+  readStream.on('data', chunk => {
+    // console.log(chunk.toString());
+    newStr += chunk.toString();
+    if (!replaced) {
+      newStr = newStr.replace('\'SW_CACHE_TARGET\'', targetStr);
+      replaced = true;
+    }
+  });
+
+  readStream.on('end', () => {
+    // console.log('Done reading service-worker.js..!!');
+    // console.log(newStr);
+    fs.writeFile(swPath, newStr, err => {
+      if (err) {
+        return console.log(err);
+      }
+      // console.log('Set Cache Target..!!');
+    });
+  });
+}
+
 module.exports = {
   metadata: {
-    ga: IS_FOR_GITHUB_PAGE
+    github: IS_FOR_GITHUB_PAGE
     // baseUrl: BASE_URL
   },
   devtool: 'source-map',
@@ -229,6 +289,9 @@ module.exports = {
           const dest = helpers.join(OUTPUT_PATH, 'index.tmpl');
           rename(src, dest);
           copyAfterDone();
+
+          const targetStr = setCacheTargetForServiceWorker(stats.compilation.assets);
+          replaceCacheTargetForServiceWorker(targetStr);
         }
       });
     }

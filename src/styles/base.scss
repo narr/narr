@@ -32,7 +32,7 @@ html.touch {
 }
 
 body {
-  background: url(~asset/img/bg.jpg) fixed;
+  background: url(~asset/img/bg.jpg) no-repeat fixed;
   background-size: cover;
   // disable scrolling horizontally when sidebar is open in a narrow width of window
   // especially this is for IE 11 even though it is still scrollable horizontally(by translateX)
