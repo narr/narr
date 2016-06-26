@@ -14,16 +14,12 @@
     </ul>
   </div>
 
-  <form class="contact-form" [ngFormModel]="contactForm" (ngSubmit)="onSubmit()" [class.dirty]="
+  <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()" [class.dirty]="
     formDirty">
     <label for="contact-form-subject">Subject</label>
-    <!--<input type="text" id="contact-form-subject" [disabled]="submitted" ngControl="subject"
-      #ctrlInput="ngForm">-->
-    <input type="text" id="contact-form-subject" [disabled]="submitted" ngControl="subject">
+    <input type="text" id="contact-form-subject" [disabled]="submitted" formControlName="subject">
     <label for="contact-form-msg">Message</label>
-    <!--<textarea id="contact-form-msg" [disabled]="submitted" ngControl="msg" #ctrlTarea="ngForm">
-    </textarea>-->
-    <textarea id="contact-form-msg" [disabled]="submitted" ngControl="msg"></textarea>
+    <textarea id="contact-form-msg" [disabled]="submitted" formControlName="msg"></textarea>
     <p>
       <span class="info" [class.error]="infoError" [innerHtml]="INFO_STRING"></span>
       <button type="submit" [disabled]="submitted" [ngClass]="{'submit-start': submitStart,

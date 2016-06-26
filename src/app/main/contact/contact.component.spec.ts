@@ -8,7 +8,7 @@ import {
   it,
   tick
 } from '@angular/core/testing';
-import { FormBuilder } from '@angular/common';
+import { FormBuilder } from '@angular/forms';
 import { provide } from '@angular/core';
 
 import { ContactComponent } from './contact.component';
@@ -82,7 +82,8 @@ describe('ContactComponent', () => {
         });
         contact.contactForm.controls['subject'].markAsDirty();
         contact.contactForm.controls['subject'].updateValue('TEST test');
-        contact.contactForm.statusChanges.emit();
+        // In @angular/forms(0.1.1), no need to call emit() as updateValue() do it
+        // contact.contactForm.statusChanges.emit();
       })));
   });
 
@@ -90,6 +91,10 @@ describe('ContactComponent', () => {
     it('should change the submit status and Info text on valid',
       fakeAsync(inject([ContactComponent], contact => {
         contact.contactForm.statusChanges.subscribe(val => {
+          // As updateValue is called twice, this also will be called twice
+          if (!contact.contactForm.valid) { // wait till a form is valid
+            return;
+          }
           contact.onSubmit();
           const subject = contact.formDirty;
           const subject2 = contact.submitted;
@@ -127,7 +132,7 @@ describe('ContactComponent', () => {
         });
         contact.contactForm.controls['subject'].updateValue('subject test');
         contact.contactForm.controls['msg'].updateValue('msg test');
-        contact.contactForm.statusChanges.emit();
+        // contact.contactForm.statusChanges.emit();
         tick();
       })));
 
@@ -167,7 +172,7 @@ describe('ContactComponent', () => {
           expect(subject8).toEqual(result8);
         });
         contact.contactForm.controls['msg'].updateValue('msg test');
-        contact.contactForm.statusChanges.emit();
+        // contact.contactForm.statusChanges.emit();
         tick();
       })));
 
@@ -207,7 +212,7 @@ describe('ContactComponent', () => {
           expect(subject8).toEqual(result8);
         });
         contact.contactForm.controls['subject'].updateValue('subject test');
-        contact.contactForm.statusChanges.emit();
+        // contact.contactForm.statusChanges.emit();
         tick();
       })));
   });

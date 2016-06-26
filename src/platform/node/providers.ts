@@ -1,3 +1,4 @@
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import {
   // NODE_HTTP_PROVIDERS,
   // NODE_ROUTER_PROVIDERS
@@ -7,7 +8,9 @@ import {
 export const APPLICATION_PROVIDERS = [
   // ...NODE_HTTP_PROVIDERS,
   // ...NODE_ROUTER_PROVIDERS,
-  provide(Window, { useValue: {} })
+  provide(Window, { useValue: {} }),
+  disableDeprecatedForms(),
+  provideForms()
 ];
 
 export const PROVIDERS = [

@@ -16,6 +16,7 @@ import 'rxjs/add/operator/throttleTime';
 // Angular 2
 import '@angular/core';
 import '@angular/platform-browser-dynamic';
+import '@angular/forms';
 
 // Angular2 HMR
 if ('development' === ENV && HMR === true) {

@@ -1,14 +1,18 @@
-import { ControlGroup, FormBuilder, Validators } from '@angular/common';
 import { Component, Inject } from '@angular/core';
+import {
+  FormGroup, FormBuilder, REACTIVE_FORM_DIRECTIVES, Validators
+}
+from '@angular/forms';
 
 import { ScrollService } from '../../shared';
 
 @Component({
   selector: 'narr-contact',
-  template: require('./contact.component.html')
+  template: require('./contact.component.html'),
+  directives: [REACTIVE_FORM_DIRECTIVES]
 })
 export class ContactComponent {
-  contactForm: ControlGroup;
+  contactForm: FormGroup;
   email = 'nardgu@gmail.com';
   formDirty = false;
   infoError = false;

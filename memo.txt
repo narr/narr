@@ -22,13 +22,11 @@ for selenium, install Java 8 or 7
 SET PATH=%PATH%;C:\Data\Project\narr\webdriver\ie
 ========================
 ========================
-google analytics, google PageSpeed Insights
-
-update version to 1.4.0
-
 update to the latest ng version(check this.changeDetectionRef.detectChanges();)
 
-last browser checks
+
+
+
 ========================
 ========================
 medium image loading, loading UI for Init, Firebase for msg(tab UI for read and write), make intro
@@ -43,6 +41,11 @@ router(ie9-push, history-redirect(back button issue) - https://github.com/angula
 
 find a11y lib of ng2
 ========================
+sass-loader v3.2.2 issue
+Module build failed: ModuleNotFoundError: Module not found: Error: Cannot resolve 'file' or 'directory'
+
+karma v1.10 still no emit logs from console.log
+
 webpack-dev-server issue - its dependency, sockjs-client(1.1.1) has a problem(WebsocketDriver) with
 IE9. So to maintain the lower version of sockjs-client(1.0.3), add it to package.json
 
