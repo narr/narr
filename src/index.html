@@ -21,14 +21,25 @@
   <meta name="twitter:site" content="@nardgu">
   <meta name="twitter:title" content="Narr's Website">
   <meta name="twitter:description" content="This is Narr's personal website">
+  <% if (webpackConfig.metadata.github === true) { %>
+  <meta name="twitter:image" content="https://narr.github.io<%= require('' +
+  './asset/img/ss.intro.jpg') %>">
+  <% } else { %>
   <meta name="twitter:image" content="https://narr.github.io/narr<%= require('' +
-    './asset/img/ss.intro.jpg') %>">
+  './asset/img/ss.intro.jpg') %>">
+  <% } %>
+
   <meta property="og:url" content="https://narr.github.io/narr/">
   <meta property="og:title" content="Narr's Website">
   <meta property="og:description" content="This is Narr's personal website">
   <meta property="og:site_name" content="Narr">
+  <% if (webpackConfig.metadata.github === true) { %>
+  <meta property="og:image" content="https://narr.github.io<%= require('' +
+    './asset/img/ss.intro.jpg') %>">
+  <% } else { %>
   <meta property="og:image" content="https://narr.github.io/narr<%= require('' +
     './asset/img/ss.intro.jpg') %>">
+  <% } %>
 
   <% if (webpackConfig.metadata.github === true) { %>
   <script>
