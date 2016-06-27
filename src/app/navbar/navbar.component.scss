@@ -28,6 +28,11 @@ $navbar-trigger-hover-color: #fff;
     background: rgba(33, 34, 40, 0.2);
     margin: 30px 40px 0 0;
     padding: 4px 12px;
+    // @ to make this not change its size on the font loading in mobile
+    width: 48px;
+    height: 44px;
+    box-sizing: border-box;
+    // to make this not change its size on the font loading in mobile @
     line-height: 36px;
     color: #3BCAA3;
     font-size: 27px;
