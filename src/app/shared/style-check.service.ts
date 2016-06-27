@@ -12,7 +12,7 @@ export class StyleCheckService {
   static getStyleStr(styleText: string): string[] {
     let styles = [styleText];
     // if HTML is from Server rendering
-    if ('development' === ENV || 'production' == ENV &&
+    if (('development' === ENV || 'production' == ENV) &&
       (<any>document.getElementsByTagName('narr-app')[0]).children.length > 0) {
       styles = null;
     }
