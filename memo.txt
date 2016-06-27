@@ -29,6 +29,9 @@ update to the latest ng version(check this.changeDetectionRef.detectChanges();)
 
 ========================
 ========================
+For mobile, the first loaded screen should not use a big img or a custom font otherwise use
+a loding view.
+
 medium image loading, loading UI for Init, Firebase for msg(tab UI for read and write), make intro
 fixed and change opacity 1 to 0 on scrolling
 
